@@ -1,0 +1,15 @@
+# Summary
+
+- [📖 Introduction and ToC](./introduction.md)
+- [❓ When to Optimise](./when_to_optimise.md)
+- [🔎 Profiling](./profiling.md)
+  - [time.time() + print](./profiling/the_simplest_method.md)
+  - [The Unix time Command](./profiling/unix_time_command.md)
+  - [The timeit Module](./profiling/the_timeit_module.md)
+  - [Splitting Function Calls with cProfile](./profiling/function_calls_with_cprofile.md)
+  - [Adding a Decorator Function](./profiling/adding_decorator_function.md)
+  - [Getting Granular with line-profiler](./profiling/getting_granular_with_line_profiler.md)
+  - [Profiling Memory Usage](./profiling/profiling_memory_usage.md)
+  - [Profiling on the Fly with Py-Spy](./profiling/profiling_on_the_fly.md)
+- [🏛️ Data Structures and Types](./data_structures_and_types.md)
+  - [Arrays (Lists vs Tuples)](./data_structures_and_types/arrays_lists_vs_tuples.md)

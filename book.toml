@@ -1,0 +1,10 @@
+[book]
+authors = ["Will Denby"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Make Python Faster: a Practical Guide to Accelerating your Code"
+
+[output.html.fold]
+enable = true
+level = 0
