@@ -1,0 +1,623 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Make Python Faster: a Practical Guide to Accelerating your Code</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Make Python Faster: a Practical Guide to Accelerating your Code</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-introduction"><a class="header" href="#-introduction">📖 Introduction</a></h1>
+<p>I wrote this book as a way to condense and summarise my learnings from <em>High Performance Python</em><sup class="footnote-reference"><a href="#note">1</a></sup>. If you want to explore any of the topics in greater depth, you can find that book <a href="https://www.oreilly.com/library/view/high-performance-python/9781492055013/">here</a>.</p>
+<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents:</a></h2>
+<ul>
+<li><a href="./when_to_optimise.html">❓ When to Optimise</a></li>
+<li><a href="./profiling.html">🔎 Profiling</a></li>
+</ul>
+<div class="footnote-definition" id="note"><sup class="footnote-definition-label">1</sup>
+<p><em>High Performance Python</em>, 2nd ed., by Micha Gorelick and Ian Ozsvald (O'Reilly). Copyright 202 Micha Gorelick and Ian Ozsvald, 978-1-492-05502-0.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-when-to-optimise-your-code"><a class="header" href="#-when-to-optimise-your-code">❓ When to Optimise your Code</a></h1>
+<p>In most organisations, programmers live under the paradigm: <code>overall team velocity &gt; individual code optimisation</code></p>
+<p>Some of the tips in this book are general best practice (e.g. avoid pointless iterations in your loops); others require more of a time investment. So before considering any implementation of the latter, ask yourself the following three questions;</p>
+<ol>
+<li><strong>Does the code achieve its objectives?</strong></li>
+</ol>
+<p>Can you build a prototype to demonstrate proof-of-concept? Is the code useful? Does it do what it's meant to do? If not, figure this bit out first!</p>
+<ol start="2">
+<li><strong>Is the code robust?</strong></li>
+</ol>
+<p>Have you documented what you're doing? Does your code conform to organisational standards? Can other developers easily build on top of it?</p>
+<ol start="3">
+<li><strong>Is it worth further development?</strong></li>
+</ol>
+<p>Is this a mission-critical piece of code? Or is it only being run occasionally? Remember the famous quote from Tony Hoare/Donald Knuth: <code>Premature optimisation is the root of all evil</code></p>
+<p>We code to make the world more efficient. But consult this xkcd graphic if in doubt:</p>
+<p><img src="https://imgs.xkcd.com/comics/is_it_worth_the_time.png" alt="A matrix about time saved vs time invested" /></p>
+<p>Some problems just aren't worth worrying about!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-profiling"><a class="header" href="#-profiling">🔎 Profiling</a></h1>
+<p>It's tempting to just dive into your code and start refactoring at once! But you might end up spending lots of time eeking out tiny performance gains on parts of your code that are already pretty efficient - and completely missing the real bottlenecks.</p>
+<p>That's why we start with profiling. Figure out where the problems are - and just how bad they really are. That way, you can make an evidence-based request for more time from management to spend on improving the code.</p>
+<p>Here are resources you might want to profile in terms of usage:</p>
+<ul>
+<li>CPU</li>
+<li>Memory</li>
+<li>Network bandwidth</li>
+<li>Disk IO</li>
+</ul>
+<p>One other thing to always remember is that profiling can add to the computer workload, and slow things down. But hopefully this is only by a very tiny amount.</p>
+<p>In this chapter, we'll explore a variety of profiling methods. There's no universal panacea - it depends on how much time you have and how much granularity you need!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-simplest-method-timetime--print"><a class="header" href="#the-simplest-method-timetime--print">The Simplest Method: time.time() + print</a></h1>
+<p>Let's create a simple Python function with a time complexity of O(n<sup>2</sup>). This is a "CPU-bound" problem.</p>
+<p>The function <code>print_all_pairs</code> takes a list of numbers as input and prints out all pairs of numbers from the list. The function <code>generate_random_numbers</code> returns a list of numbers as long as its input, in which all the numbers are between 1 and a 1000. Feel free to run it first, to make sure everything's working.</p>
+<pre><code class="language-python">import random
+
+def print_all_pairs(numbers):
+    n = len(numbers)
+    for i in range(n):        
+        for j in range(n):    
+            print(numbers[i], numbers[j])
+
+def generate_random_numbers(length):
+    return [random.randint(1, 1000) for _ in range(length)]
+
+random_numbers = generate_random_numbers(1000)
+print_all_pairs(random_numbers)
+</code></pre>
+<p>Now let's use Python's built-in time module to add some super-simple profiling! This involves adding a few lines of code, commented below</p>
+<pre><code class="language-python">import random
+import time # import the time module
+
+... # leave our functions as they are
+
+random_numbers = generate_random_numbers(1000)
+
+start_time = time.time() # start the clock
+print_all_pairs(random_numbers)
+end_time = time.time() # stop the clock
+
+time_taken = end_time - start_time # calculate the time taken
+print(time_taken) # print the result
+</code></pre>
+<p>Be aware that the <code>time_taken</code> will always vary - it's an approximation. Your computer might be doing other more- or less-intensive things, at any given time.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-unix-time-command"><a class="header" href="#the-unix-time-command">The Unix time Command</a></h1>
+<p>If you're on a Unix-like system, you can use the <code>time</code> command! This has several benefits, which we'll explore below.</p>
+<p>Now there are actually two possible commands: a shell version (accessed through <code>time</code>) and a system command (accessed through <code>/usr/bin/time</code>). We want the latter.</p>
+<p>Again, let's take our original, simplest script, saved as <code>test.py</code>:</p>
+<pre><code class="language-python">import random
+
+def print_all_pairs(numbers):
+    n = len(numbers)
+    for i in range(n):        
+        for j in range(n):    
+            print(numbers[i], numbers[j])
+
+def generate_random_numbers(length):
+    return [random.randint(1, 1000) for _ in range(length)]
+
+random_numbers = generate_random_numbers(1000)
+print_all_pairs(random_numbers)
+</code></pre>
+<p>Run it from the command line like this: <code>/usr/bin/time -p --verbose python test.py</code></p>
+<p>The <code>-p</code> flag puts our results on separate lines, which is prettier. You'll get something like this:</p>
+<pre><code class="language-shell">real 9.86 # this represents the total time taken
+user 2.64 # this is how much time the CPU spent outside kernel functions
+sys 1.09 # this is how much time spent on kernel functions
+</code></pre>
+<p><code>real</code> - <code>user</code> - <code>sys</code> = time spent on IO tasks + any other system tasks.</p>
+<p>We can see the advantage of using the Unix <code>time</code> command now: it allows us to strip away "background noise"; it also includes the time taken to load the Python executable, which may be relevant if you're profiling code that spawns lots of processes.</p>
+<p>Try adding <code>-l</code> on MacOS or <code>--verbose</code> on Linux for more info. <code>Page faults</code> are worth keeping an eye on - they suggest that you're using RAM and the kernel is resorting to disk access.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-timeit-module-profiling-from-the-terminal"><a class="header" href="#the-timeit-module-profiling-from-the-terminal">The timeit Module: Profiling from the Terminal</a></h1>
+<p>We can also use Python's built-in <code>timeit</code> module to test our script from the command line. This helps solve for any CPU fluctuations in our profiling time, by running several loops and iterations.</p>
+<p>Let's go back to our original Python script:</p>
+<pre><code class="language-python">import random
+
+def print_all_pairs(numbers):
+    n = len(numbers)
+    for i in range(n):        
+        for j in range(n):    
+            print(numbers[i], numbers[j])
+
+def generate_random_numbers(length):
+    return [random.randint(1, 1000) for _ in range(length)]
+
+random_numbers = generate_random_numbers(1000)
+print_all_pairs(random_numbers)
+</code></pre>
+<p>Then, in your terminal, you'll want to run the following:</p>
+<pre><code class="language-shell">python -m timeit -v -s "import test; random_numbers = test.generate_random_numbers(1000)" "test.print_all_pairs(random_numbers)"
+</code></pre>
+<p>I've included the <code>-v</code> (i.e. <code>--verbose</code>) flag, because I want to see the cumulative time spent, from which I can calculate an average variability. This will output something like:</p>
+<pre><code class="language-shell">raw times: 10.8 sec, 9.85 sec, 8.05 sec, 9.03 sec, 10 sec
+
+1 loop, best of 5: 8.05 sec per loop
+</code></pre>
+<p><strong>Pretty consistent! 😎</strong>
+<strong>But timeit seems to have slowed me down vs the decoractor method 😞</strong></p>
+<p>Other flags you might want to include are <code>-n</code> (number of loops) and <code>-r</code> (number of repetitions). If you leave this out, timeit will use its defaults.</p>
+<h2 id="the-timeit-magic-profiling-in-jupyter"><a class="header" href="#the-timeit-magic-profiling-in-jupyter">The %timeit Magic: Profiling in Jupyter</a></h2>
+<p>If you're using a Jupyter Notebook, you can do something similar with the <code>%timeit</code> magic. Stick it before what you want to profile:</p>
+<pre><code class="language-python">%timeit print_all_pairs(random_numbers)
+</code></pre>
+<p>N.B. the methodology behind the Python <code>timeit</code> module and the Jupyter <code>%timeit</code> magic is a little different: the former picks the quickest time; the latter gives the mean and standard deviation.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="splitting-function-calls-with-cprofile"><a class="header" href="#splitting-function-calls-with-cprofile">Splitting Function Calls with cProfile</a></h1>
+<p>Perhaps you don't want to manage a system of decorator functions, and you just want to see the breakout times for all the functions in your code. <code>cProfile</code> is a built-in tool to help.</p>
+<p>It adds some computational overhead, but it helps you profile which parts of your code are being called the most and quantify what time penalty they are incurring.</p>
+<p>To demonstrate this utility, let's break our nested loop script into two functions, and remove our use of <code>random</code> to avoid any <code>import</code> overhead, as below:</p>
+<pre><code class="language-python">def inner_loop(numbers, i):
+    n = len(numbers)
+    for j in range(n):
+        print(numbers[i], numbers[j])
+
+def outer_loop(numbers):
+    n = len(numbers)
+    for i in range(n):
+        inner_loop(numbers, i)
+
+numbers = list(range(1, 1001))  # List of numbers from 1 to 1000
+outer_loop(numbers)
+</code></pre>
+<p>Now let's run it from the command line, with <code>cProfile</code>:</p>
+<pre><code class="language-shell">python -m cProfile -s cumulative test.py
+</code></pre>
+<p>The <code>-s cumulative</code> flag sorts the output by cumulative time spent. It should look something like this:</p>
+<pre><code class="language-shell">1002005 function calls in 7.515 seconds
+
+Ordered by: cumulative time
+
+  ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      1    0.000    0.000    7.515    7.515 {built-in method builtins.exec}
+      1    0.000    0.000    7.515    7.515 test.py:1(&lt;module&gt;)
+      1    0.002    0.002    7.515    7.515 test.py:6(outer_loop)
+   1000    0.437    0.000    7.513    0.008 test.py:1(inner_loop)
+1000000    7.075    0.000    7.075    0.000 {built-in method builtins.print}
+   1001    0.001    0.000    0.001    0.000 {built-in method builtins.len}
+      1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+</code></pre>
+<p>Makes sense! What's really costing us time is not the loops per se, but all the <code>print</code> statements.</p>
+<h2 id="plotting-cprofile-with-snakeviz"><a class="header" href="#plotting-cprofile-with-snakeviz">Plotting cProfile with SnakeViz</a></h2>
+<p>Everyone loves some pretty pictures! SnakeViz is 'a viewer for Python profiling data that runs as a web application in your browser'. Let's get it from PyPI: <code>pip install snakeviz</code></p>
+<p>To use SnakeViz, you need to have generated an output file (<code>-o</code>) using <code>cProfile</code>. So let's try something like this:</p>
+<pre><code class="language-shell">python -m cProfile -o program.prof test.py
+snakeviz program.prof
+</code></pre>
+<p>... which will open up the SnakeViz page in your browser. At the top is a waterfall diagram. Here's my hovering over the middle bar, displaying information about the <code>outer_loop</code> function:</p>
+<p><img src="profiling/../assets/SnakeVizTop.png" alt="SnakeViz visualisation of Python script" /></p>
+<p>At the bottom is a filterable table, allowing you to interact with the conventional cProfile output:</p>
+<p><img src="profiling/../assets/SnakeVizBottom.png" alt="SnakeViz tabular representation of Python script" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-a-decorator-function"><a class="header" href="#adding-a-decorator-function">Adding a Decorator Function</a></h1>
+<p>Using <code>time.time()</code> and some <code>print</code> statements is a quick-and-dirty way to do some initial profiling. But it can get messy! Using a decorator is both neater and more extendable.</p>
+<p>Let's reuse our code from before, but add a decorator method!</p>
+<pre><code class="language-python">import random
+import time
+from functools import wraps # add this import, so that we can access the decorated functions
+
+# here's our profiler function
+def time_profiler(function): 
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = function(*args, **kwargs)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print(f"Function '{function.__name__}' took {execution_time:.6f} seconds to execute.")
+        return result
+    return wrapper
+
+@time_profiler # add our decoractor for profiling
+def print_all_pairs(numbers):
+    n = len(numbers)
+    for i in range(n):        
+        for j in range(n):    
+            print(numbers[i], numbers[j])
+
+def generate_random_numbers(length):
+    return [random.randint(1, 1000) for _ in range(length)]
+
+random_numbers = generate_random_numbers(1000)
+print_all_pairs(random_numbers)
+</code></pre>
+<p>Run this from your terminal and you'll get something like: <code>Function 'print_all_pairs' took 7.186900 seconds to execute.</code></p>
+<p>If we're wanting to profile multiple functions in a more complex piece of code, we can just add the <code>@time_profiler</code> decorator above any of the function names.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-granular-with-line-profiler"><a class="header" href="#getting-granular-with-line-profiler">Getting Granular with line-profiler</a></h1>
+<p>Now we're going to get even more granular, going from <code>script -&gt; function-by-function -&gt; line-by-line</code>! We can use the awesome little tool, <code>line-profiler</code>. It provides way more detail, at the cost of some overhead. We can get it from PyPI: <code>pip install line-profiler</code>.</p>
+<p>Let's go back to our original script, with the nested loops:</p>
+<pre><code class="language-python">import random
+
+def print_all_pairs(numbers):
+    n = len(numbers)
+    for i in range(n):        
+        for j in range(n):    
+            print(numbers[i], numbers[j])
+
+def generate_random_numbers(length):
+    return [random.randint(1, 1000) for _ in range(length)]
+
+random_numbers = generate_random_numbers(1000)
+print_all_pairs(random_numbers)
+</code></pre>
+<p>We need to add a decorator above our function:</p>
+<pre><code class="language-python">import random 
+
+@profile
+def print_all_pairs(numbers):
+    ... # same as before
+</code></pre>
+<p>To use <code>line-profiler</code>, we'll run the bundled <code>kernprof</code> CLI script. We include two flags: <code>-l</code> for "line-by-line" and <code>-v</code> for printing the output to the console.</p>
+<pre><code class="language-shell">python -m kernprof -lv test.py
+</code></pre>
+<p>And kernprof says...!</p>
+<pre><code class="language-shell">Wrote profile results to test.py.lprof
+Timer unit: 1e-06 s
+
+Total time: 6.6159 s
+File: test.py
+Function: print_all_pairs at line 3
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     3                                           @profile
+     4                                           def print_all_pairs(numbers):
+     5         1          2.0      2.0      0.0      n = len(numbers)
+     6      1001        423.0      0.4      0.0      for i in range(n):
+     7   1001000     423059.0      0.4      6.4          for j in range(n):
+     8   1000000    6192419.0      6.2     93.6              print(numbers[i], numbers[j])
+</code></pre>
+<p>I'm starting to think our problem might be all this <code>print</code>-ing 😅😅</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="profiling-memory-usage-with-memory_profiler"><a class="header" href="#profiling-memory-usage-with-memory_profiler">Profiling Memory Usage with memory_profiler</a></h1>
+<p>No surprises as to what this chapter is about! We'll be using the RAM equivalent of <code>line-profiler</code>, called <code>memory-profiler</code>. But what we want from memory usage is less clear than CPU usage, and a bit of a Goldilock's scenario:</p>
+<ul>
+<li>we may want to reduce RAM usage for greater efficiency</li>
+<li>we may want to increase RAM usage, to save the number of CPU cycles required</li>
+</ul>
+<p>I won't go into too much detail here, but in essence: memory allocation is expensive, so sometimes overallocating is better.</p>
+<p>Examining your code with <code>memory-profiler</code> adds quite a lot of overhead - to make it run faster, you'll also want to install <code>psutil</code>. For graphs, you'll need <code>matplotlib</code>. So, let's get them all from PyPI: <code>pip install memory-profiler psutil matplotlib</code></p>
+<p>We decorate our script as with <code>line-profiler</code>:</p>
+<pre><code class="language-python">import random
+
+@profile
+def print_all_pairs(numbers):
+    n = len(numbers)
+    for i in range(n):        
+        for j in range(n):    
+            print(numbers[i], numbers[j])
+
+def generate_random_numbers(length):
+    return [random.randint(1, 1000) for _ in range(length)]
+
+random_numbers = generate_random_numbers(1000)
+print_all_pairs(random_numbers)
+</code></pre>
+<p>To run it, we have two options:</p>
+<ol>
+<li><strong>Getting tabular output from the terminal</strong></li>
+</ol>
+<p>To do this, enter this (rather slow...) command:</p>
+<pre><code class="language-shell">python -m memory_profiler test.py
+</code></pre>
+<p>This will return a table showing how much RAM is added during the running of the script:</p>
+<pre><code class="language-shell">Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+     3   17.977 MiB   17.977 MiB           1   @profile
+     4                                         def print_all_pairs(numbers):
+     5   17.980 MiB    0.004 MiB           1       n = len(numbers)
+     6   17.984 MiB    0.000 MiB        1001       for i in range(n):
+     7   17.984 MiB    0.000 MiB     1001000           for j in range(n):
+     8   17.984 MiB    0.004 MiB     1000000               print(numbers[i], numbers[j])
+</code></pre>
+<ol start="2">
+<li><strong>Plotting a graph over time</strong></li>
+</ol>
+<p>You can use the bundled utility, <code>mprof</code>, for this:</p>
+<pre><code class="language-shell">mprof run test.py
+mprof plot
+</code></pre>
+<p>Which will plot a graph similar to this:</p>
+<p><img src="profiling/../assets/mprof.png" alt="memory_profiler graph" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="profiling-on-the-fly-with-py-spy"><a class="header" href="#profiling-on-the-fly-with-py-spy">Profiling on the Fly with Py-Spy</a></h1>
+<p><code>py-spy</code> is another neat little profiling tool to have in your kit. It's used for inspecting pre-spawned processes - so there's no need for running a special workflow. Instead, it's useful for profiling things <em>in production</em>, and it can do this safely because it runs in a separate process.</p>
+<p>There various ways to install <code>py-spy</code>. If you're on macOS, you can use Homebrew: <code>brew install py-spy</code>. If you have Rust (which <code>py-spy</code> is programmed in) already installed, you can do: <code>cargo install py-spy</code>. But for now, let's go with our classic: <code>pip install py-spy</code>.</p>
+<div class="warning">By the way, you need root access to use this profiling method. That means some "sudo" commands!</div>
+<p>Okay, let's give it a spin! <code>py-spy</code> has three subcommands: <code>record</code>, <code>top</code>, and <code>dump</code>. Let's explore the first two. We're going to go for our split loop function script again:</p>
+<pre><code class="language-python">def inner_loop(numbers, i):
+    n = len(numbers)
+    for j in range(n):
+        print(numbers[i], numbers[j])
+
+def outer_loop(numbers):
+    n = len(numbers)
+    for i in range(n):
+        inner_loop(numbers, i)
+
+numbers = list(range(1, 1001))  # List of numbers from 1 to 1000
+outer_loop(numbers)
+</code></pre>
+<p>If we're firing our program up from scratch, you can write something like the following:</p>
+<pre><code class="language-shell">py-spy record -o profile.svg -- python test.py
+</code></pre>
+<p>If you're dealing with a process that's in production, you'll need to figure out the <code>Process ID</code>. If you're on a Unix-based system, I recommend <code>pgrep python</code>. Otherwise check Task Manager. Alternatively, use <code>psutil</code> and include this snippet of code at the start of your file:</p>
+<pre><code class="language-python">import psutil
+
+for proc in psutil.process_iter(['pid', 'name']):
+    if 'python' in proc.info['name']:
+        print(proc.info['pid'])
+</code></pre>
+<p>This means you can capture the PID when the process first spawns. Then you'll want to use the <code>--pid</code> flag, as follows:</p>
+<pre><code class="language-shell">py-spy record -o profile.svg --pid 12345
+</code></pre>
+<p>These will create a 🔥 flame graph 🔥 showing CPU usage!</p>
+<p><img src="profiling/../assets/py-spy-flame-graph.png" alt="py-spy record output" /></p>
+<p>If you use <code>top</code>, you'll get a tabular output of how the process is doing: <code>py-spy top -- python test.py</code>:</p>
+<p><img src="profiling/../assets/py-spy-top.png" alt="py-spy top output" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="data-structures-and-types"><a class="header" href="#data-structures-and-types">Data Structures and Types</a></h1>
+<p>Python comes with several ways of creating, storing, moving, and transforming data:</p>
+<ul>
+<li>Lists</li>
+<li>Tuples</li>
+<li>Sets</li>
+<li>Dictionaries</li>
+</ul>
+<p>In addition, people have created libraries with their own data structures, typically for tackling maths/stats/physics data problems, e.g.</p>
+<ul>
+<li>Numpy</li>
+<li>Pandas</li>
+<li>Dask</li>
+<li>Polars</li>
+</ul>
+<p>In this section, we'll look at all their various advantages and disadvantages. Picking appropriate data structures for what you are trying to do is a major factor in writing high-performance code.</p>
+<p>A rule of thumb to remember throughout is that "generic" structures containing multiple data types will tend to incur greater overhead when being manipulated than those of a single type.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="arrays-tuples-static-and-lists-dynamic"><a class="header" href="#arrays-tuples-static-and-lists-dynamic">Arrays: Tuples (Static) and Lists (Dynamic)</a></h1>
+<p>An array is a class of data structure which stores elements in order and contiguously in memory, and provides constant-time access them. This means that, if we know an elements position in the index, we can find it super-quick in O(1). Python has two flavours of array: <code>tuples</code> and <code>lists</code>. We can recognise them by <code>[]</code> vs <code>()</code> respectively.</p>
+<p>When an array is created, the computer has to allocate a block of system memory to store it (hence, in some programming languages, arrays are fixed-size). This is "metaphorically" the <code>tuple</code>: a static array with immutable elements. But because <code>tuples</code> are static and immutable, Python can cache them, meaning it can skip out on <em>actually</em> speaking to the kernel for system memory. Python gives us the <code>list</code> as a helpful abstraction to make modifying arrays easier ... at a cost. We call them dynamic arrays.</p>
+<p>When to use a <code>tuple</code> vs a <code>list</code> is often dictated by the nature of your data: does it <em>need</em> to change, or is it <em>fixed</em>? But if performance is a concern, it's worth asking the question: can I use a <code>tuple</code> instead of a <code>list</code>? This is because the former require less memory and CPU overhead. Try the <a href="data_structures_and_types/../profiling/the_timeit_module.html">timeit</a> profiling method on the initialisation examples below!</p>
+<pre><code class="language-python"># Initializing a list
+example_list = [1, 2, 3, 4, 5]
+print("Example list:", example_list)
+
+# Initializing a tuple
+example_tuple = (1, 2, 3, 4, 5)
+print("Example tuple:", example_tuple)
+</code></pre>
+<h2 id="extending-arrays"><a class="header" href="#extending-arrays">Extending Arrays</a></h2>
+<p>Consider this operation:</p>
+<pre><code class="language-python">example_list = [1, 2, 3, 4, 5]
+example_list.append(6)
+</code></pre>
+<p>Under the hood, Python has to create a new array to hold the original elements of <code>example_list</code> PLUS the new element. Doing this often would be very expensive: allocating memory is <strong>expensive</strong>.</p>
+<p>In reality, Python sort-of knows this. Rather than creating an array of <code>len(example_list)+1</code>, CPython will assume that some more <code>.append</code> method calls are coming, so it will <em>overallocate</em> approximately 115% percent (following a growth pattern of 0, 4, 8, 16, 25, 35, 46, 58, 72, 88, ...), and then fill it up until it needs to resize again. Still, if you are constantly appending to a list, expect an ongoing memory cost. On the flipside, it's an O(1) operation.</p>
+<p>The <code>tuple</code> doesn't let you have this problem, by design! There's no <code>.append(x)</code> ... -ish. You can hack your way around it by <em>adding</em> two tuples together, to create a new tuple. Which is not a in-place operation, and also a slower O(n). 🤦🤦🤦</p>
+<h2 id="finding-things-sorting-and-searching"><a class="header" href="#finding-things-sorting-and-searching">Finding Things (Sorting and Searching)</a></h2>
+<p>This book has an interest in straightforward performant programming. We're not going to go into the depths of comparing sorting algorithms and time complexities. Instead, my recommendation is to make use of Python's built-in methods for lists. The Python team has spent time optimising these.</p>
+<p>For instance, <code>list.sort()</code> uses "Timsort", invented by Tim Peters (who also wrote the famous <a href="https://en.wikipedia.org/wiki/Zen_of_Python">Zen of Python</a>).</p>
+<pre><code class="language-python">import random
+
+random_numbers = [random.randint(1, 1000) for _ in range(100)]
+
+random_numbers.sort()
+
+print("Sorted list using sorted():", sorted_numbers)
+print("Sorted list using sort():", random_numbers)
+</code></pre>
+<p>Similarly, take the case of searching for an item, with the aim of returning the index. In Python, you can use the <code>.index()</code> method, which is highly optimised and has a worst case time complexity of O(n). It's only worth implementing something like binary search, which is O(log n), if the list is <em>already</em> sorted, as otherwise you'll be incurring the sorting cost too.</p>
+<pre><code class="language-python">import random
+
+random_numbers = [random.randint(1, 100) for _ in range(100)]
+
+try:
+    index = random_numbers.index(42)
+    print("There is a 42 at index", index)
+except ValueError:
+    print("42 is not in the list.")
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
