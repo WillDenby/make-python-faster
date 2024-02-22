@@ -4,6 +4,7 @@ https://makepythonfaster.com/introduction
 https://makepythonfaster.com/profiling
 https://makepythonfaster.com/when_to_optimise
 https://makepythonfaster.com/data_structures_and_types/arrays_lists_vs_tuples
+https://makepythonfaster.com/data_structures_and_types/sets_and_dictionaries
 https://makepythonfaster.com/profiling/adding_decorator_function
 https://makepythonfaster.com/profiling/function_calls_with_cprofile
 https://makepythonfaster.com/profiling/getting_granular_with_line_profiler

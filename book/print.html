@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="data_structures_and_types/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -576,6 +576,97 @@ try:
 except ValueError:
     print("42 is not in the list.")
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ready-sets-dictionaries"><a class="header" href="#ready-sets-dictionaries">Ready: Sets, Dictionaries</a></h1>
+<p>The order of elements was important in <code>lists</code> and <code>tuples</code>, but what if we don't care about that? As long as every element is unique (or at least the keys are), we can use another two native data structures in Python: <code>sets</code> and <code>dictionaries</code>. The relationship between them can be summarised as follows:</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Sets</th><th>Dictionaries</th></tr></thead><tbody>
+<tr><td><strong>Keys</strong></td><td>✅</td><td>✅</td></tr>
+<tr><td><strong>Values</strong></td><td>❌</td><td>✅</td></tr>
+</tbody></table>
+</div>
+<p>I.e. a <code>set</code> is a data structure containing unique elements; a <code>dictionary</code> is a data structure containing unique elements (it's keys), each of which have some associated data (their values).</p>
+<p>Let's summarise the pros and cons of <code>sets</code>/<code>dictionaries</code> vs <code>lists/tuples</code>, on average time complexities for operations and needs:</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Sets/Dictionaries</th><th>Lists/Tuples</th><th>Who Wins?</th></tr></thead><tbody>
+<tr><td><strong>Search</strong></td><td>O(1)</td><td>O(n)</td><td>Sets/Dictionaries</td></tr>
+<tr><td><strong>Membership (x in y)</strong></td><td>O(1)</td><td>O(n)</td><td>Sets/Dictionaries</td></tr>
+<tr><td><strong>Insertion</strong></td><td>O(1)</td><td>O(1)</td><td>Lists/Tuples (just)</td></tr>
+<tr><td><strong>Iteration</strong></td><td>O(n)</td><td>O(n)</td><td>Lists/Tuples (just)</td></tr>
+<tr><td><strong>Sorting</strong></td><td>N/A</td><td>O(n log n)</td><td>Lists/Tuples (obvs)</td></tr>
+<tr><td><strong>Deletion</strong></td><td>O(1)</td><td>O(n)</td><td>Sets/Dictionaries</td></tr>
+<tr><td><strong>Memory</strong></td><td>More (Hashing)</td><td>Less</td><td>Lists/Tuples</td></tr>
+</tbody></table>
+</div>
+<p>Why do sets/dictionaries use more memory? In simple terms, creating one requires an allocation of a block of memory. A hash function then enables the key to be used as an index, allowing for O(1) look-up - just as <code>list[index]</code> is O(1) too. Python does some further optimising under the hood by putting the keys/values into their own array. But still, hash tables are bigger because by nature they contain empty buckets. Also, when a hash table becomes more than 2/3rds full, there's a compute cost of expanding the table (to <code>3 * len(set)</code>).</p>
+<p>One other thing to note is that the O(1)s in the Sets/Dictionaries column can also disguise a potential constant factor - how quick the hashing algorithm is. But in general, sets and dictionaries outperform if you're just wanting to add, check, and delete unique elements from groups. Try running the code below to see what I mean!</p>
+<pre><code class="language-python">import time
+
+# Create our list and set
+unique_list = list(range(100000))
+unique_set = set(unique_list)
+
+# Let's iterate through the list and perform membership tests
+start_time = time.time()
+for i in unique_list:
+    _ = i in unique_list
+list_time = time.time() - start_time
+print("List lookup time:", list_time)
+
+# Compare this with the set
+start_time = time.time()
+for i in unique_set:
+    _ = i in unique_set
+set_time = time.time() - start_time
+print("Set lookup time:", set_time)
+</code></pre>
+<p>Here were my results 😲</p>
+<pre><code class="language-shell">List lookup time: 49.48573088645935
+Set lookup time: 0.010624885559082031
+</code></pre>
+<h2 id="a-note-about-imports-and-namespace-dictionary-look-ups"><a class="header" href="#a-note-about-imports-and-namespace-dictionary-look-ups">A Note about Imports and Namespace Dictionary Look-Ups</a></h2>
+<p>It's obvious to avoid unneccesary <code>import</code> statements in your script. It's also faster to be explicit with your imports, due to how Python finds things from its namespaces.</p>
+<p>It does dictionary look-ups to find things in this order: <code>locals() -&gt; globals() -&gt; __builtin__</code> - and stops when it finds what it's looking for.</p>
+<p>Hence the results of this code:</p>
+<pre><code class="language-python">import random
+from random import randint
+
+def func1(n):
+    result = 0
+    for _ in range(n):
+        result += random.randint(1, 100)
+    return result
+
+def func2(n):
+    result = 0
+    for _ in range(n):
+        result += randint(1, 100)
+    return result
+
+def func3(n, randint=random.randint):
+    result = 0
+    for _ in range(n):
+        result += randint(1, 100)
+    return result
+
+# Testing the functions
+print(func1(1000000))
+print(func2(1000000))
+print(func3(1000000))
+</code></pre>
+<p>Let's use our trusty friend <a href="data_structures_and_types/../profiling/function_calls_with_cprofile.html">cProfile</a>:</p>
+<pre><code class="language-python">python -m cProfile test.py
+</code></pre>
+<p>Here's the bit of the output we're interested in:</p>
+<div class="table-wrapper"><table><thead><tr><th>tottime</th><th>function</th></tr></thead><tbody>
+<tr><td>0.381</td><td>test.py:4(func1)</td></tr>
+<tr><td>0.358</td><td>test.py:10(func2)</td></tr>
+<tr><td>0.353</td><td>test.py:16(func3)</td></tr>
+</tbody></table>
+</div>
+<p>Why's this happened? Let's look at the code more closely:</p>
+<ul>
+<li>In func1, we explicitly ask to look at the <code>random</code> library, so Python has to go all the way to the <strong>builtin</strong> map to find what it needs. That requires the most dictionary look-ups, and takes the longest time.</li>
+<li>func2 leverages the <code>from random import randint</code> line so that it can now find the <code>randint</code> function in <code>globals()</code>. But it's still traversing the <code>locals()</code> map and doing a dictionary look-up.</li>
+<li>func3 brings <code>randint</code> into the <code>locals()</code> namespace, minimising Python's search. It looks clunky, but if you're writing code where every millisecond counts...</li>
+</ul>
 
                     </main>
 

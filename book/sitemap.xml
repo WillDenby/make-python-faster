@@ -2,58 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://makepythonfaster.com/</loc>
-        <lastmod>2024-02-21T23:19:26.574Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.009Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/data_structures_and_types</loc>
-        <lastmod>2024-02-21T23:19:26.584Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.018Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/introduction</loc>
-        <lastmod>2024-02-21T23:19:26.573Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.009Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling</loc>
-        <lastmod>2024-02-21T23:19:26.576Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.010Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/when_to_optimise</loc>
-        <lastmod>2024-02-21T23:19:26.575Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.010Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/data_structures_and_types/arrays_lists_vs_tuples</loc>
-        <lastmod>2024-02-21T23:19:26.585Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.019Z</lastmod>
+    </url>
+    <url>
+        <loc>https://makepythonfaster.com/data_structures_and_types/sets_and_dictionaries</loc>
+        <lastmod>2024-02-22T01:43:33.020Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/adding_decorator_function</loc>
-        <lastmod>2024-02-21T23:19:26.581Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.015Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/function_calls_with_cprofile</loc>
-        <lastmod>2024-02-21T23:19:26.580Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.015Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/getting_granular_with_line_profiler</loc>
-        <lastmod>2024-02-21T23:19:26.582Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.016Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/profiling_memory_usage</loc>
-        <lastmod>2024-02-21T23:19:26.582Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.017Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/profiling_on_the_fly</loc>
-        <lastmod>2024-02-21T23:19:26.583Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.017Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/the_simplest_method</loc>
-        <lastmod>2024-02-21T23:19:26.578Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.013Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/the_timeit_module</loc>
-        <lastmod>2024-02-21T23:19:26.580Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.014Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling/unix_time_command</loc>
-        <lastmod>2024-02-21T23:19:26.579Z</lastmod>
+        <lastmod>2024-02-22T01:43:33.013Z</lastmod>
     </url>
 </urlset>

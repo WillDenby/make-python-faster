@@ -13,3 +13,4 @@
   - [Profiling on the Fly with Py-Spy](./profiling/profiling_on_the_fly.md)
 - [🏛️ Data Structures and Types](./data_structures_and_types.md)
   - [Arrays (Lists vs Tuples)](./data_structures_and_types/arrays_lists_vs_tuples.md)
+  - [Ready: Sets, Dictionaries](./data_structures_and_types/sets_and_dictionaries.md)
