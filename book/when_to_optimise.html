@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item expanded "><a href="when_to_optimise.html" class="active"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="data_structures_and_types/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item expanded "><a href="when_to_optimise.html" class="active"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="data_structures_and_types/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li><li class="chapter-item "><a href="data_structures_and_types/generator_comprehension_iteration_and_evaluation.html"><strong aria-hidden="true">4.3.</strong> Let's Get Generating</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -221,6 +221,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="data_structures_and_types/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="data_structures_and_types/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li><li class="chapter-item "><a href="data_structures_and_types/generator_comprehension_iteration_and_evaluation.html"><strong aria-hidden="true">4.3.</strong> Let's Get Generating</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -180,6 +180,7 @@
 <ul>
 <li><a href="./when_to_optimise.html">❓ When to Optimise</a></li>
 <li><a href="./profiling.html">🔎 Profiling</a></li>
+<li><a href="./data_structures_and_types.html">🏛️ Data Structures and Types</a></li>
 </ul>
 <div class="footnote-definition" id="note"><sup class="footnote-definition-label">1</sup>
 <p><em>High Performance Python</em>, 2nd ed., by Micha Gorelick and Ian Ozsvald (O'Reilly). Copyright 202 Micha Gorelick and Ian Ozsvald, 978-1-492-05502-0.</p>
@@ -667,6 +668,18 @@ print(func3(1000000))
 <li>func2 leverages the <code>from random import randint</code> line so that it can now find the <code>randint</code> function in <code>globals()</code>. But it's still traversing the <code>locals()</code> map and doing a dictionary look-up.</li>
 <li>func3 brings <code>randint</code> into the <code>locals()</code> namespace, minimising Python's search. It looks clunky, but if you're writing code where every millisecond counts...</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lets-get-generating"><a class="header" href="#lets-get-generating">Let's Get Generating</a></h1>
+<p>In this chapter, we'll look at the comprehension, iteration, and evaluation of generators, as a way to lazily evluate and poll loops.</p>
+<p>Imagine we want to write a function that takes a integer <code>n</code> as input, and returns a <code>n</code> length list of square numbers, starting from 1<sup>2</sup>.</p>
+<p>Here's a naive implementation:</p>
+<pre><code class="language-python">def square_number_builder(n):
+    square_numbers = []
+    for _ in range(n):
+        square_numbers.append((_+1)**2)
+    return square_numbers
+</code></pre>
+<p>The issue is that when <code>n</code> gets big, so will the list <code>square_numbers</code>. We've seen how <code>list.append()</code> has compute overhead. We're also going to end up with a memory-ccoupying array at the end of it.</p>
+<p>If we're going to pass this list back to the function caller and then iterate over it, there's a better approach: using a generator function.</p>
 
                     </main>
 
@@ -685,6 +698,22 @@ print(func3(1000000))
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

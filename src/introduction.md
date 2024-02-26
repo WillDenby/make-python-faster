@@ -6,5 +6,6 @@ I wrote this book as a way to condense and summarise my learnings from *High Per
 
 - [❓ When to Optimise](./when_to_optimise.md)
 - [🔎 Profiling](./profiling.md)
+- [🏛️ Data Structures and Types](./data_structures_and_types.md)
 
 [^note]: *High Performance Python*, 2nd ed., by Micha Gorelick and Ian Ozsvald (O'Reilly). Copyright 202 Micha Gorelick and Ian Ozsvald, 978-1-492-05502-0.
