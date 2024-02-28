@@ -15,3 +15,5 @@
   - [Arrays (Lists vs Tuples)](./data_structures_and_types/arrays_lists_vs_tuples.md)
   - [Ready: Sets, Dictionaries](./data_structures_and_types/sets_and_dictionaries.md)
   - [Let's Get Generating](./data_structures_and_types/generator_comprehension_iteration_and_evaluation.md)
+  - [Computation with NumPy and Pandas](./data_structures_and_types/numpy_and_pandas.md)
+  - [Accelerating Pandas with GPUs](./data_structures_and_types/gpu_pandas.md)
