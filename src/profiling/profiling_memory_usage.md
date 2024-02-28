@@ -1,4 +1,4 @@
-# Profiling Memory Usage with memory_profiler
+# Profiling Memory Usage with memory-profiler
 
 No surprises as to what this chapter is about! We'll be using the RAM equivalent of `line-profiler`, called `memory-profiler`. But what we want from memory usage is less clear than CPU usage, and a bit of a Goldilock's scenario:
 

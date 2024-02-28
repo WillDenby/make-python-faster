@@ -63,4 +63,10 @@ Naive:  26.604732751846313
 Generator:  16.16110110282898
 ```
 
-That's about a 40% speed improvement. 
+That's about a 40% speed improvement. Rather than building a list and then iterating over it to do the actual work, we've just done the actual work by iteratively polling the generator. Such an algorithmic design is called *single pass* / *online*. 
+
+## When to use / not use generators
+
+On the face of it, generators seem great: more speed, less memory usage. But what if you wanted to access the list data more than once? In that case, accepting the one-off cost of creating a list is the better option. Otherwise, you'll be forced to continually re-run the generator, which takes time. 
+
+Of course, if you're in a memory-constrained environment, then you might want to disregard this!
