@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="../when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="../profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="../profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="../profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="../profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="../profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="../profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="../profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="../profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item expanded "><a href="../data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="../data_structures_and_types/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li><li class="chapter-item expanded "><a href="../data_structures_and_types/generator_comprehension_iteration_and_evaluation.html" class="active"><strong aria-hidden="true">4.3.</strong> Let's Get Generating</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="../when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="../profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="../profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="../profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="../profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="../profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="../profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="../profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="../profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item expanded "><a href="../data_structures_and_types.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../data_structures_and_types/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="../data_structures_and_types/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li><li class="chapter-item expanded "><a href="../data_structures_and_types/generator_comprehension_iteration_and_evaluation.html" class="active"><strong aria-hidden="true">4.3.</strong> Let's Get Generating</a></li><li class="chapter-item "><a href="../data_structures_and_types/numpy_and_pandas.html"><strong aria-hidden="true">4.4.</strong> Computation with NumPy and Pandas</a></li><li class="chapter-item "><a href="../data_structures_and_types/gpu_pandas.html"><strong aria-hidden="true">4.5.</strong> Accelerating Pandas with GPUs</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -177,14 +177,58 @@
 <p>In this chapter, we'll look at the comprehension, iteration, and evaluation of generators, as a way to lazily evluate and poll loops.</p>
 <p>Imagine we want to write a function that takes a integer <code>n</code> as input, and returns a <code>n</code> length list of square numbers, starting from 1<sup>2</sup>.</p>
 <p>Here's a naive implementation:</p>
-<pre><code class="language-python">def square_number_builder(n):
+<pre><code class="language-python">def naive_builder(n):
     square_numbers = []
     for _ in range(n):
         square_numbers.append((_+1)**2)
     return square_numbers
 </code></pre>
-<p>The issue is that when <code>n</code> gets big, so will the list <code>square_numbers</code>. We've seen how <code>list.append()</code> has compute overhead. We're also going to end up with a memory-ccoupying array at the end of it.</p>
-<p>If we're going to pass this list back to the function caller and then iterate over it, there's a better approach: using a generator function.</p>
+<p>The issue is that when <code>n</code> gets big, so will the list <code>square_numbers</code>. We've seen how <code>list.append()</code> has compute overhead as an operation. We're also then going to have a memory-hogging array at the end of it. Great...</p>
+<p>But if all we're going to do with this list is subsequently iterate over it, there's a better approach: using a generator function. In the following code, let's implement a naive builder and iterate over its list, and then a generator version. We'll do some time-profiling. Then we'll inspect more closely how the iterator version works.</p>
+<pre><code class="language-python">import math
+import time
+
+n = int(input("How many iterations? "))
+
+# This is the naive implementation again
+def naive_builder(n):
+    square_numbers = []
+    for _ in range(n):
+        square_numbers.append((_+1)**2)
+    return square_numbers
+
+# What's changed in our generator function?
+def generator_builder(n):
+    for _ in range(n):
+        yield (_+1)**2 
+        
+# Let's iterate over each and time it!
+naive_start_time = time.time()
+for number in naive_builder(n):
+    pass # do something
+naive_end_time = time.time() 
+
+gen_start_time = time.time() 
+for number in generator_builder(n):
+    pass # do something
+gen_end_time = time.time()
+
+# Calculate time taken
+naive_time_taken = naive_end_time - naive_start_time
+print("Naive: ", naive_time_taken) 
+
+gen_time_taken = gen_end_time - gen_start_time 
+print("Generator: ", gen_time_taken)
+</code></pre>
+<p>Here's what I got on my machine for running over 100m items - you'll see why generators are so good now!</p>
+<pre><code class="language-shell">How many iterations? 100000000
+Naive:  26.604732751846313
+Generator:  16.16110110282898
+</code></pre>
+<p>That's about a 40% speed improvement. Rather than building a list and then iterating over it to do the actual work, we've just done the actual work by iteratively polling the generator. Such an algorithmic design is called <em>single pass</em> / <em>online</em>.</p>
+<h2 id="when-to-use--not-use-generators"><a class="header" href="#when-to-use--not-use-generators">When to use / not use generators</a></h2>
+<p>On the face of it, generators seem great: more speed, less memory usage. But what if you wanted to access the list data more than once? In that case, accepting the one-off cost of creating a list is the better option. Otherwise, you'll be forced to continually re-run the generator, which takes time.</p>
+<p>Of course, if you're in a memory-constrained environment, then you might want to disregard this!</p>
 
                     </main>
 
@@ -194,6 +238,9 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next prefetch" href="../data_structures_and_types/numpy_and_pandas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -205,6 +252,9 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next prefetch" href="../data_structures_and_types/numpy_and_pandas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
