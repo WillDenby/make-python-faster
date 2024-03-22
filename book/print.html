@@ -842,8 +842,38 @@ import modin.pandas as pd
 <p>If you're using a Jupyter notebook, check out the magic extension: <code>%load_ext cudf.pandas</code>. You can get access to an NVIDIA GPU for free on Colab. It attempts to offload whatever it can onto a GPU, falling back to the CPU with minimal cost if it can't.</p>
 <p>Check out an example here: <a href="https://colab.research.google.com/drive/1XTKHiIcvyL5nuldx0HSL_dUa8yopzy_Y">https://colab.research.google.com/drive/1XTKHiIcvyL5nuldx0HSL_dUa8yopzy_Y</a></p>
 <h2 id="vaex"><a class="header" href="#vaex">Vaex</a></h2>
-<p>This lets you tackle bigger datasets (than your RAM can handle) by using lazy evaluation!</p>
+<p>This lets you tackle bigger datasets (than your RAM can handle) by using lazy evaluation: <a href="https://github.com/vaexio/vaex">https://github.com/vaexio/vaex</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dask-and-polars"><a class="header" href="#dask-and-polars">Dask and Polars</a></h1>
+<p>These are two libraries designed to address the shortcomings of Pandas.</p>
+<h2 id="dask"><a class="header" href="#dask">Dask</a></h2>
+<p>Dask is a flexible parallel computing library for analytics, enabling you to scale up to clusters or down to your laptop. It's particularly well-suited for working with large datasets that don't fit into memory, as it breaks down complex computations into manageable tasks, which are executed in parallel. Dask provides dynamic task scheduling optimized for computation. It's designed to integrate seamlessly with existing Python libraries like NumPy, Pandas, and Scikit-Learn, allowing you to scale those libraries' functionality across multiple cores or machines.</p>
+<p>Here's a simple example that demonstrates how to use Dask Array to perform a computation that is automatically parallelized:</p>
+<pre><code class="language-python">import dask.array as da
+
+# Create a large random dask array
+x = da.random.random((10000, 10000), chunks=(1000, 1000))
+
+# Compute the mean of the array
+mean_result = x.mean().compute()
+
+print(mean_result)
+</code></pre>
+<h2 id="polars"><a class="header" href="#polars">Polars</a></h2>
+<p>Polars is a fast DataFrames library implemented in Rust, designed for high performance and efficiency. It's capable of handling large datasets with ease and speed, focusing on lazy computations for optimal performance. Polars leverages Rust's memory safety and speed, bringing efficient data processing capabilities to Python. It's especially good for tasks involving large datasets that require high-speed manipulation, filtering, and aggregation.</p>
+<p>Polars operates with both eager and lazy evaluation. The lazy evaluation allows for more optimized computations by building a computation graph and optimizing it before execution, which can lead to significant performance improvements.</p>
+<p>It's largely recreated the Pandas API, for ease-of-transition:</p>
+<pre><code class="language-python">import polars as pl
+
+# Read a CSV file into a Polars DataFrame
+df = pl.read_csv("your_data.csv")
+
+# Select columns and compute the mean of a column
+mean_value = df.select([
+    pl.col("your_column_name").mean()
+])
+
+print(mean_value)
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-compiling-python"><a class="header" href="#-compiling-python">⚙️ Compiling Python</a></h1>
 
                     </main>

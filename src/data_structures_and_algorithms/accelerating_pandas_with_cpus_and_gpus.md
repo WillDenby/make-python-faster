@@ -25,5 +25,5 @@ Check out an example here: [https://colab.research.google.com/drive/1XTKHiIcvyL5
 
 ## Vaex
 
-This lets you tackle bigger datasets (than your RAM can handle) by using lazy evaluation!
+This lets you tackle bigger datasets (than your RAM can handle) by using lazy evaluation: [https://github.com/vaexio/vaex](https://github.com/vaexio/vaex)
 
