@@ -17,5 +17,4 @@
   - [Let's Get Generating](./data_structures_and_algorithms/generator_comprehension_iteration_and_evaluation.md)
   - [Sensible Loop Design](./data_structures_and_algorithms/sensible_loop_design.md)
   - [Numpy: the Solution to Lists](./data_structures_and_algorithms/numpy_the_solution_to_lists.md)
-  - [Computation with NumPy and Pandas](./data_structures_and_algorithms/numpy_and_pandas.md)
   - [Accelerating Pandas with GPUs](./data_structures_and_algorithms/gpu_pandas.md)
