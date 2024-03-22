@@ -15,9 +15,6 @@ def print_all_pairs(numbers):
 
 def generate_random_numbers(length):
     return [random.randint(1, 1000) for _ in range(length)]
-
-random_numbers = generate_random_numbers(1000)
-print_all_pairs(random_numbers)
 ```
 
 Then, in your terminal, you'll want to run the following:
