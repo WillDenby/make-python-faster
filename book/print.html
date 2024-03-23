@@ -175,7 +175,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-introduction"><a class="header" href="#-introduction">📖 Introduction</a></h1>
-<p>I wrote this book as a way to condense and summarise my learnings from <em>High Performance Python</em><sup class="footnote-reference"><a href="#note">1</a></sup>.</p>
+<p>These are my notes and examples based on my reading of <em>High Performance Python</em><sup class="footnote-reference"><a href="#note">1</a></sup>.</p>
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents:</a></h2>
 <ul>
 <li><a href="./when_to_optimise.html">❓ When to Optimise</a></li>
@@ -184,7 +184,7 @@
 <li><a href="./compiling_python.html">⚙️ Compiling Python</a></li>
 </ul>
 <div class="footnote-definition" id="note"><sup class="footnote-definition-label">1</sup>
-<p><em>High Performance Python</em>, 2nd ed., by Micha Gorelick and Ian Ozsvald (O'Reilly). Copyright 202 Micha Gorelick and Ian Ozsvald, 978-1-492-05502-0. If you want to explore any of the topics in greater depth, you can find that book <a href="https://www.oreilly.com/library/view/high-performance-python/9781492055013/">here</a>.</p>
+<p><em>High Performance Python</em>, 2nd ed., by Micha Gorelick and Ian Ozsvald (O'Reilly). Copyright 2020 Micha Gorelick and Ian Ozsvald, 978-1-492-05502-0. If you want to explore any of the topics in greater depth, you can find that book <a href="https://www.oreilly.com/library/view/high-performance-python/9781492055013/">here</a>.</p>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-when-to-optimise-your-code"><a class="header" href="#-when-to-optimise-your-code">❓ When to Optimise your Code</a></h1>
 <p>In most organisations, programmers live under the paradigm: <code>overall team velocity &gt; individual code optimisation</code></p>
@@ -893,6 +893,43 @@ print(mean_value)
 <p>Why is Python "slow"? One reason is that it's dynamically-typed and interpreted. The virtual machine incurs overhead, because it has to be prepared for the datatypes to potentially change. It also has to wrap up low-level types with higher-level functions like hashing and printing. This is why compilation can help for code that has lots of loops making lots of calls.</p>
 <p>In order to take advantage of compilation, you need to be more careful with specifying your datatypes (ints, floats, strings), so that you can remove the need for the flexibility of the interpreter.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cython-pure-c-based-compiling"><a class="header" href="#cython-pure-c-based-compiling">Cython: Pure C-based Compiling</a></h1>
+<p>Cython serves as an extension of Python, designed to give C-like performance with code that is written mostly in Python. It is a powerful tool for optimizing and speeding up Python code, especially in areas where performance is critical, such as scientific computing, data analysis, and machine learning. Cython achieves this by allowing the inclusion of static type declarations, which can then be compiled into C or C++ code. This compiled code can be executed much faster than the equivalent Python code. Additionally, Cython can be used to wrap C and C++ libraries, making it possible to use them from Python code.</p>
+<p>Here's a simple overview of how Cython works:</p>
+<p>Type Annotations: Unlike Python, Cython allows you to add C-style static type definitions to your Python code. These type definitions are optional but can significantly increase the speed of your code by reducing the overhead of Python's dynamic typing.
+Compilation: The Cython compiler translates the annotated Cython code into C or C++ code. This code is then compiled by a C/C++ compiler to produce a shared library that can be imported into Python.
+Integration: The compiled Cython module can now be used from Python, just like any Python module. This allows for seamless integration of performance-critical code with higher-level Python scripts.</p>
+<h2 id="using-cython"><a class="header" href="#using-cython">Using Cython</a></h2>
+<p>Cython, as an AOT compilation method, requires a bit of fiddly set-up.</p>
+<p>You need to <code>pip install cython</code> to begin.</p>
+<p>Cython files end in <code>.pyx</code>. Here's <code>sum_squares.pyx</code> as an example function:</p>
+<pre><code class="language-python"># Defining a function with Cython type annotations for C-level speed.
+def sum_of_squares(int n):
+    # Declaring a C int type for the loop variable.
+    cdef int i
+    cdef int sum = 0
+    for i in range(n):
+        sum += i * i
+    return sum
+</code></pre>
+<p>Next, you need to create a <code>setup.py</code> file to compile the Cython module:</p>
+<pre><code class="language-python">from setuptools import setup
+from Cython.Build import cythonize
+
+setup(
+    ext_modules=cythonize("sum_squares.pyx", annotate=True)
+)
+</code></pre>
+<p>Compile the Cython module by running:</p>
+<pre><code class="language-shell">python setup.py build_ext --in-place
+</code></pre>
+<p>Finally, you can use the compiled module in Python:</p>
+<pre><code class="language-python"># Import the compiled Cython module
+import sum_squares
+
+# Call the Cython function
+print(sum_squares.sum_of_squares(10))  # Output: 285
+</code></pre>
+<p>The key takeaway is that you need to add type annotations!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="numba-llvm-based-compiling"><a class="header" href="#numba-llvm-based-compiling">Numba: LLVM-based Compiling</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pypy-replacement-virtual-machine"><a class="header" href="#pypy-replacement-virtual-machine">PyPy: Replacement Virtual Machine</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="foreign-function-interfaces"><a class="header" href="#foreign-function-interfaces">Foreign Function Interfaces</a></h1>
