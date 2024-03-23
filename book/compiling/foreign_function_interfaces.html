@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The Unix time Command - Make Python Faster: a Practical Guide to Accelerating your Code</title>
+        <title>Foreign Function Interfaces - Make Python Faster: a Practical Guide to Accelerating your Code</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="../when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item expanded "><a href="../profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item expanded "><a href="../profiling/unix_time_command.html" class="active"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="../profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="../profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="../profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="../profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="../profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="../profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="../data_structures_and_algorithms.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Algorithms</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../data_structures_and_algorithms/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/generator_comprehension_iteration_and_evaluation.html"><strong aria-hidden="true">4.3.</strong> Let's Get Generating</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/sensible_loop_design.html"><strong aria-hidden="true">4.4.</strong> Sensible Loop Design</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/numpy_the_solution_to_lists.html"><strong aria-hidden="true">4.5.</strong> Numpy: the Solution to Lists</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/accelerating_pandas_with_cpus_and_gpus.html"><strong aria-hidden="true">4.6.</strong> Accelerating Pandas with CPUs and GPUs</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/dask_and_polars.html"><strong aria-hidden="true">4.7.</strong> Dask and Polars</a></li></ol></li><li class="chapter-item "><a href="../compiling_python.html"><strong aria-hidden="true">5.</strong> ⚙️ Compiling Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiling/cython_pure_c_based_compiling.html"><strong aria-hidden="true">5.1.</strong> Cython: Pure C-based Compiling</a></li><li class="chapter-item "><a href="../compiling/numba_llvm_based_compiling.html"><strong aria-hidden="true">5.2.</strong> Numba: LLVM-based Compiling</a></li><li class="chapter-item "><a href="../compiling/pypy_replacement_virtual_machine.html"><strong aria-hidden="true">5.3.</strong> PyPy: Replacement Virtual Machine</a></li><li class="chapter-item "><a href="../compiling/foreign_function_interfaces.html"><strong aria-hidden="true">5.4.</strong> Foreign Function Interfaces</a></li></ol></li><li class="chapter-item "><a href="../async_methods.html"><strong aria-hidden="true">6.</strong> ⏳ Async Methods</a></li><li class="chapter-item "><a href="../multiprocessing_in_python.html"><strong aria-hidden="true">7.</strong> 🏭 Multiprocessing in Python</a></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 📖 Introduction and ToC</a></li><li class="chapter-item "><a href="../when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="../profiling.html"><strong aria-hidden="true">3.</strong> 🔎 Profiling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../profiling/the_simplest_method.html"><strong aria-hidden="true">3.1.</strong> time.time() + print</a></li><li class="chapter-item "><a href="../profiling/unix_time_command.html"><strong aria-hidden="true">3.2.</strong> The Unix time Command</a></li><li class="chapter-item "><a href="../profiling/the_timeit_module.html"><strong aria-hidden="true">3.3.</strong> The timeit Module</a></li><li class="chapter-item "><a href="../profiling/function_calls_with_cprofile.html"><strong aria-hidden="true">3.4.</strong> Splitting Function Calls with cProfile</a></li><li class="chapter-item "><a href="../profiling/adding_decorator_function.html"><strong aria-hidden="true">3.5.</strong> Adding a Decorator Function</a></li><li class="chapter-item "><a href="../profiling/getting_granular_with_line_profiler.html"><strong aria-hidden="true">3.6.</strong> Getting Granular with line-profiler</a></li><li class="chapter-item "><a href="../profiling/profiling_memory_usage.html"><strong aria-hidden="true">3.7.</strong> Profiling Memory Usage</a></li><li class="chapter-item "><a href="../profiling/profiling_on_the_fly.html"><strong aria-hidden="true">3.8.</strong> Profiling on the Fly with Py-Spy</a></li></ol></li><li class="chapter-item "><a href="../data_structures_and_algorithms.html"><strong aria-hidden="true">4.</strong> 🏛️ Data Structures and Algorithms</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../data_structures_and_algorithms/arrays_lists_vs_tuples.html"><strong aria-hidden="true">4.1.</strong> Arrays (Lists vs Tuples)</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/sets_and_dictionaries.html"><strong aria-hidden="true">4.2.</strong> Ready: Sets, Dictionaries</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/generator_comprehension_iteration_and_evaluation.html"><strong aria-hidden="true">4.3.</strong> Let's Get Generating</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/sensible_loop_design.html"><strong aria-hidden="true">4.4.</strong> Sensible Loop Design</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/numpy_the_solution_to_lists.html"><strong aria-hidden="true">4.5.</strong> Numpy: the Solution to Lists</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/accelerating_pandas_with_cpus_and_gpus.html"><strong aria-hidden="true">4.6.</strong> Accelerating Pandas with CPUs and GPUs</a></li><li class="chapter-item "><a href="../data_structures_and_algorithms/dask_and_polars.html"><strong aria-hidden="true">4.7.</strong> Dask and Polars</a></li></ol></li><li class="chapter-item expanded "><a href="../compiling_python.html"><strong aria-hidden="true">5.</strong> ⚙️ Compiling Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../compiling/cython_pure_c_based_compiling.html"><strong aria-hidden="true">5.1.</strong> Cython: Pure C-based Compiling</a></li><li class="chapter-item "><a href="../compiling/numba_llvm_based_compiling.html"><strong aria-hidden="true">5.2.</strong> Numba: LLVM-based Compiling</a></li><li class="chapter-item "><a href="../compiling/pypy_replacement_virtual_machine.html"><strong aria-hidden="true">5.3.</strong> PyPy: Replacement Virtual Machine</a></li><li class="chapter-item expanded "><a href="../compiling/foreign_function_interfaces.html" class="active"><strong aria-hidden="true">5.4.</strong> Foreign Function Interfaces</a></li></ol></li><li class="chapter-item "><a href="../async_methods.html"><strong aria-hidden="true">6.</strong> ⏳ Async Methods</a></li><li class="chapter-item "><a href="../multiprocessing_in_python.html"><strong aria-hidden="true">7.</strong> 🏭 Multiprocessing in Python</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -173,43 +173,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="the-unix-time-command"><a class="header" href="#the-unix-time-command">The Unix time Command</a></h1>
-<p>If you're on a Unix-like system, you can use the <code>time</code> command! This has several benefits, which we'll explore below.</p>
-<p>Now there are actually two possible commands: a shell version (accessed through <code>time</code>) and a system command (accessed through <code>/usr/bin/time</code>). We want the latter.</p>
-<p>Again, let's take our original, simplest script, saved as <code>test.py</code>:</p>
-<pre><code class="language-python">import random
-
-def print_all_pairs(numbers):
-    n = len(numbers)
-    for i in range(n):        
-        for j in range(n):    
-            print(numbers[i], numbers[j])
-
-def generate_random_numbers(length):
-    return [random.randint(1, 1000) for _ in range(length)]
-
-random_numbers = generate_random_numbers(1000)
-print_all_pairs(random_numbers)
-</code></pre>
-<p>Run it from the command line like this: <code>/usr/bin/time -p --verbose python test.py</code></p>
-<p>The <code>-p</code> flag puts our results on separate lines, which is prettier. You'll get something like this:</p>
-<pre><code class="language-shell">real 9.86 # this represents the total time taken
-user 2.64 # this is how much time the CPU spent outside kernel functions
-sys 1.09 # this is how much time spent on kernel functions
-</code></pre>
-<p><code>real</code> - <code>user</code> - <code>sys</code> = time spent on IO tasks + any other system tasks.</p>
-<p>We can see the advantage of using the Unix <code>time</code> command now: it allows us to strip away "background noise"; it also includes the time taken to load the Python executable, which may be relevant if you're profiling code that spawns lots of processes.</p>
-<p>Try adding <code>-l</code> on MacOS or <code>--verbose</code> on Linux for more info. <code>Page faults</code> are worth keeping an eye on - they suggest that you're using RAM and the kernel is resorting to disk access.</p>
+                        <h1 id="foreign-function-interfaces"><a class="header" href="#foreign-function-interfaces">Foreign Function Interfaces</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../profiling/the_simplest_method.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../compiling/pypy_replacement_virtual_machine.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../profiling/the_timeit_module.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../async_methods.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -219,11 +193,11 @@ sys 1.09 # this is how much time spent on kernel functions
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../profiling/the_simplest_method.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../compiling/pypy_replacement_virtual_machine.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../profiling/the_timeit_module.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../async_methods.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
