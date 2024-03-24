@@ -174,6 +174,65 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="foreign-function-interfaces"><a class="header" href="#foreign-function-interfaces">Foreign Function Interfaces</a></h1>
+<p>Foreign Function Interfaces (FFIs) in Python allow Python code to call C libraries directly. This capability is essential for situations where Python developers need to access and use legacy C code, optimize performance-critical sections of an application, or use hardware-accelerated or system-level functionality not directly available in Python. The most common tools for working with FFIs in Python are <code>ctypes</code> and <code>cffi</code>.</p>
+<h2 id="ctypes"><a class="header" href="#ctypes">ctypes</a></h2>
+<p><code>ctypes</code> is a foreign function library for Python that provides C compatible data types and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.</p>
+<p>Here's a simple example that uses <code>ctypes</code> to call the time function from the C standard library, which returns the current time in seconds since the Epoch (1970-01-01 00:00:00 +0000 (UTC)).</p>
+<pre><code class="language-python">import ctypes
+# Load the C standard library
+libc = ctypes.CDLL(None)
+# Define the return type of the function we are going to call
+libc.time.argtypes = [ctypes.POINTER(ctypes.c_long)]
+libc.time.restype = ctypes.c_long
+
+t = libc.time(None)
+print(f"The current time is {t} seconds since the Epoch.")
+</code></pre>
+<h2 id="cffi"><a class="header" href="#cffi">cffi</a></h2>
+<p><code>cffi</code> (C Foreign Function Interface) is another library for calling C code from Python. Compared to ctypes, cffi provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.</p>
+<p>Below is an example of using <code>cffi</code> to achieve the same functionality as the <code>ctypes</code> example, calling the time function from the C library.</p>
+<p>First, you need to install cffi: <code>pip install cffi</code></p>
+<p>Then, you can use <code>cffi</code> like this:</p>
+<pre><code class="language-python">from cffi import FFI
+ffi = FFI()
+# Define the external C function
+ffi.cdef("long time(long *t);")
+# Load the C standard library
+C = ffi.dlopen(None)
+t = ffi.new("long *")
+print(f"The current time is {C.time(t)} seconds since the Epoch.")
+</code></pre>
+<h2 id="when-to-use-which"><a class="header" href="#when-to-use-which">When to Use Which</a></h2>
+<p><code>ctypes</code> is part of the standard Python library, so it doesn't require any additional installations. It's straightforward for simple use cases but can become cumbersome for complex C libraries or where callback functions are involved.</p>
+<p><code>cffi</code> requires installation but offers a more flexible and powerful interface for working with C code. It supports both ABI (Application Binary Interface) level and API (Application Programming Interface) level interfaces, making it suitable for more complex integration scenarios.</p>
+<p>Both <code>ctypes</code> and <code>cffi</code> are powerful tools for integrating C libraries with Python, each with its own strengths. The choice between them depends on the specific requirements of the project, such as the complexity of the C code being interfaced and the performance requirements.</p>
+<h2 id="what-about-fortran"><a class="header" href="#what-about-fortran">What About Fortran?</a></h2>
+<p>If you have some legacy scientific code, the most common way to bridge Python and Fortran is through the use of <code>f2py</code> and <code>numpy</code>'s Fortran integration facilities.</p>
+<p><code>f2py</code> is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. f2py generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.</p>
+<p>Suppose you have a simple Fortran subroutine that calculates the sum of two arrays:</p>
+<pre><code class="language-fortran">subroutine add_arrays(a, b, c, n)
+    integer, intent(in) :: n
+    double precision, intent(in) :: a(n), b(n)
+    double precision, intent(out) :: c(n)
+    integer :: i
+    do i = 1, n
+        c(i) = a(i) + b(i)
+    end do
+end subroutine add_arrays
+</code></pre>
+<p>You can compile this Fortran code into a Python module using f2py:</p>
+<pre><code class="language-shell">f2py -c -m addarrays addarrays.f90
+</code></pre>
+<p>This command creates a Python module named addarrays. You can then import this module in Python and call the add_arrays function:</p>
+<pre><code class="language-python">import addarrays
+import numpy as np
+
+a = np.array([1.0, 2.0, 3.0], dtype=np.float64)
+b = np.array([4.0, 5.0, 6.0], dtype=np.float64)
+c = addarrays.add_arrays(a, b)
+
+print(c)
+</code></pre>
 
                     </main>
 

@@ -936,8 +936,119 @@ print(sum_squares.sum_of_squares(10))  # Output: 285
 </code></pre>
 <p>The key takeaway is that you need to add type annotations!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="numba-llvm-based-compiling"><a class="header" href="#numba-llvm-based-compiling">Numba: LLVM-based Compiling</a></h1>
+<p>Numba is an open-source just-in-time (JIT) compiler that translates a subset of Python and NumPy code into fast machine code. Numba is designed to help you speed up your Python applications with minimal effort and to achieve significant performance improvements with simple decorators and a few code modifications. It works by decorating Python functions to indicate that they should be JIT-compiled. This makes Numba particularly useful for numerical and scientific computing.</p>
+<p>Here's a quick overview of its key features:</p>
+<ul>
+<li>Easy to Use: You can accelerate your functions by simply adding a decorator to your Python code.</li>
+<li>Performance Boost: Numba translates your Python functions to optimized machine code at runtime using the industry-standard LLVM compiler library. This can lead to massive speed improvements.</li>
+<li>Python and NumPy Support: Numba understands Python loops, Python typing, and NumPy functions, allowing you to use and compile a wide range of Python code.</li>
+<li>Cross-platform: Numba works on Windows, macOS, and Linux, and can generate code for x86, x86_64, and ARM CPUs.</li>
+</ul>
+<h2 id="using-numba"><a class="header" href="#using-numba">Using Numba</a></h2>
+<p>Let's say you want to speed up a simple function that calculates the sum of squares of each element in an array. Here's how you could use Numba to do this:</p>
+<pre><code class="language-python">from numba import jit
+import numpy as np
+
+# Define a function to compute the sum of squares.
+@jit(nopython=True)  # The decorator tells Numba to compile this function using the "nopython" mode for best performance.
+def sum_of_squares(arr):
+    total = 0
+    for i in range(arr.size):
+        total += arr[i] ** 2
+    return total
+
+# Generate a large array of random numbers.
+arr = np.random.rand(1000000)
+
+# Call the JIT-compiled function.
+result = sum_of_squares(arr)
+
+print(result)
+</code></pre>
+<p>In this example, the <code>@jit(nopython=True)</code> decorator tells Numba to compile the sum_of_squares function into machine code that does not rely on the Python runtime for execution. The nopython mode requires that the function can be fully compiled (so that it doesn't have to call back into the Python runtime), which is generally the mode that gives the best performance.</p>
+<p>When you run this code, Numba compiles the sum_of_squares function the first time it's called, transforming it into fast machine code. Subsequent calls to this function are much faster, as they bypass the Python interpreter and execute the compiled machine code directly. This can lead to significant performance improvements, especially for computational-heavy tasks.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pypy-replacement-virtual-machine"><a class="header" href="#pypy-replacement-virtual-machine">PyPy: Replacement Virtual Machine</a></h1>
+<p>PyPy is an alternative implementation of Python, designed to be faster and more efficient than the default CPython interpreter. It accomplishes this primarily through the use of a Just-In-Time (JIT) compiler, which translates Python code into machine code at runtime. The JIT compiler can significantly speed up the execution of Python code, especially for long-running applications where the overhead of JIT compilation can be amortized over time.</p>
+<p>Key features of PyPy:</p>
+<ul>
+<li>Performance: PyPy often runs faster than CPython due to its JIT compiler. The performance gain varies by task but can be substantial for CPU-intensive tasks.</li>
+<li>Compatibility: PyPy aims to be fully compatible with CPython, meaning it should run any Python code written for CPython. However, there might be edge cases or reliance on CPython-specific extensions that do not work out of the box.</li>
+<li>Memory Usage: PyPy can use less memory than CPython, thanks to its more efficient garbage collector.</li>
+<li>Stackless Python Support: PyPy supports Stackless Python, an enhanced version of Python aimed at concurrency and micro-threads.</li>
+</ul>
+<p>However, PyPy is not always the best choice. For instance, code that relies heavily on C extensions not specifically optimized for PyPy may not see performance improvements and could even run slower. Moreover, the initial JIT compilation adds overhead, making PyPy less suited for scripts that run quickly and terminate.</p>
+<h2 id="using-pypy"><a class="header" href="#using-pypy">Using PyPy</a></h2>
+<p>You can download PyPy here: <a href="https://www.pypy.org/index.html">https://www.pypy.org/index.html</a></p>
+<p>Let's consider a simple example to demonstrate Python code that can benefit from PyPy's JIT compilation. We'll calculate the sum of the squares of numbers from 1 to 1,000,000. This is a CPU-bound task that should run faster on PyPy for large calculations.</p>
+<pre><code class="language-python">def sum_of_squares(n):
+    return sum(x*x for x in range(1, n+1))
+
+print(sum_of_squares(1000000))
+</code></pre>
+<p>To run this code in PyPy, save it to a file (e.g., sum_squares.py) and then execute it using the PyPy interpreter instead of the standard Python interpreter:</p>
+<pre><code class="language-shell">pypy sum_squares.py
+</code></pre>
+<p>For more complex applications, especially those involving heavy computation, PyPy can often provide a significant speedup.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="foreign-function-interfaces"><a class="header" href="#foreign-function-interfaces">Foreign Function Interfaces</a></h1>
+<p>Foreign Function Interfaces (FFIs) in Python allow Python code to call C libraries directly. This capability is essential for situations where Python developers need to access and use legacy C code, optimize performance-critical sections of an application, or use hardware-accelerated or system-level functionality not directly available in Python. The most common tools for working with FFIs in Python are <code>ctypes</code> and <code>cffi</code>.</p>
+<h2 id="ctypes"><a class="header" href="#ctypes">ctypes</a></h2>
+<p><code>ctypes</code> is a foreign function library for Python that provides C compatible data types and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.</p>
+<p>Here's a simple example that uses <code>ctypes</code> to call the time function from the C standard library, which returns the current time in seconds since the Epoch (1970-01-01 00:00:00 +0000 (UTC)).</p>
+<pre><code class="language-python">import ctypes
+# Load the C standard library
+libc = ctypes.CDLL(None)
+# Define the return type of the function we are going to call
+libc.time.argtypes = [ctypes.POINTER(ctypes.c_long)]
+libc.time.restype = ctypes.c_long
+
+t = libc.time(None)
+print(f"The current time is {t} seconds since the Epoch.")
+</code></pre>
+<h2 id="cffi"><a class="header" href="#cffi">cffi</a></h2>
+<p><code>cffi</code> (C Foreign Function Interface) is another library for calling C code from Python. Compared to ctypes, cffi provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.</p>
+<p>Below is an example of using <code>cffi</code> to achieve the same functionality as the <code>ctypes</code> example, calling the time function from the C library.</p>
+<p>First, you need to install cffi: <code>pip install cffi</code></p>
+<p>Then, you can use <code>cffi</code> like this:</p>
+<pre><code class="language-python">from cffi import FFI
+ffi = FFI()
+# Define the external C function
+ffi.cdef("long time(long *t);")
+# Load the C standard library
+C = ffi.dlopen(None)
+t = ffi.new("long *")
+print(f"The current time is {C.time(t)} seconds since the Epoch.")
+</code></pre>
+<h2 id="when-to-use-which"><a class="header" href="#when-to-use-which">When to Use Which</a></h2>
+<p><code>ctypes</code> is part of the standard Python library, so it doesn't require any additional installations. It's straightforward for simple use cases but can become cumbersome for complex C libraries or where callback functions are involved.</p>
+<p><code>cffi</code> requires installation but offers a more flexible and powerful interface for working with C code. It supports both ABI (Application Binary Interface) level and API (Application Programming Interface) level interfaces, making it suitable for more complex integration scenarios.</p>
+<p>Both <code>ctypes</code> and <code>cffi</code> are powerful tools for integrating C libraries with Python, each with its own strengths. The choice between them depends on the specific requirements of the project, such as the complexity of the C code being interfaced and the performance requirements.</p>
+<h2 id="what-about-fortran"><a class="header" href="#what-about-fortran">What About Fortran?</a></h2>
+<p>If you have some legacy scientific code, the most common way to bridge Python and Fortran is through the use of <code>f2py</code> and <code>numpy</code>'s Fortran integration facilities.</p>
+<p><code>f2py</code> is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. f2py generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.</p>
+<p>Suppose you have a simple Fortran subroutine that calculates the sum of two arrays:</p>
+<pre><code class="language-fortran">subroutine add_arrays(a, b, c, n)
+    integer, intent(in) :: n
+    double precision, intent(in) :: a(n), b(n)
+    double precision, intent(out) :: c(n)
+    integer :: i
+    do i = 1, n
+        c(i) = a(i) + b(i)
+    end do
+end subroutine add_arrays
+</code></pre>
+<p>You can compile this Fortran code into a Python module using f2py:</p>
+<pre><code class="language-shell">f2py -c -m addarrays addarrays.f90
+</code></pre>
+<p>This command creates a Python module named addarrays. You can then import this module in Python and call the add_arrays function:</p>
+<pre><code class="language-python">import addarrays
+import numpy as np
+
+a = np.array([1.0, 2.0, 3.0], dtype=np.float64)
+b = np.array([4.0, 5.0, 6.0], dtype=np.float64)
+c = addarrays.add_arrays(a, b)
+
+print(c)
+</code></pre>
 
                     </main>
 
