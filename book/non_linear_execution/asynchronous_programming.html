@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>⏰ Asynchronous Programming - Make Python Faster: a Practical Guide to Accelerating your Code</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../table_of_contents.html"><strong aria-hidden="true">1.</strong> 📖 Table of Contents</a></li><li class="chapter-item "><a href="../when_to_optimise.html"><strong aria-hidden="true">2.</strong> ❓ When to Optimise</a></li><li class="chapter-item "><a href="../quickstart_easy_optimisations.html"><strong aria-hidden="true">3.</strong> 💯 Quickstart: Easy Optimisations</a></li><li class="chapter-item "><a href="../pythons_execution_model.html"><strong aria-hidden="true">4.</strong> 🐍 Python's Execution Model</a></li><li class="chapter-item "><a href="../algorithm_complexity.html"><strong aria-hidden="true">5.</strong> 🧠 Algorithm Complexity</a></li><li class="chapter-item "><a href="../profiling_tools.html"><strong aria-hidden="true">6.</strong> 🔎 Profiling Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../profiling_tools/time_time.html"><strong aria-hidden="true">6.1.</strong> 🕒 time.time()</a></li><li class="chapter-item "><a href="../profiling_tools/timeit.html"><strong aria-hidden="true">6.2.</strong> ⏱️ timeit</a></li><li class="chapter-item "><a href="../profiling_tools/unixs_time_command.html"><strong aria-hidden="true">6.3.</strong> ⏲️ Unix's time Command</a></li><li class="chapter-item "><a href="../profiling_tools/cprofile.html"><strong aria-hidden="true">6.4.</strong> 📊 cProfile</a></li><li class="chapter-item "><a href="../profiling_tools/snakeviz.html"><strong aria-hidden="true">6.5.</strong> 🐲 Snakeviz</a></li><li class="chapter-item "><a href="../profiling_tools/line_profiler.html"><strong aria-hidden="true">6.6.</strong> 📈 line_profiler</a></li><li class="chapter-item "><a href="../profiling_tools/memory_profiler.html"><strong aria-hidden="true">6.7.</strong> 🧠 memory_profiler</a></li><li class="chapter-item "><a href="../profiling_tools/py_spy.html"><strong aria-hidden="true">6.8.</strong> 🕵️‍♂️ Py-Spy</a></li></ol></li><li class="chapter-item "><a href="../built_in_data_structures.html"><strong aria-hidden="true">7.</strong> 🏗️ Built-in Data Structures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../built_in_data_structures/lists.html"><strong aria-hidden="true">7.1.</strong> 📝 Lists</a></li><li class="chapter-item "><a href="../built_in_data_structures/tuples.html"><strong aria-hidden="true">7.2.</strong> 🎁 Tuples</a></li><li class="chapter-item "><a href="../built_in_data_structures/dictionaries.html"><strong aria-hidden="true">7.3.</strong> 🗝️ Dictionaries</a></li><li class="chapter-item "><a href="../built_in_data_structures/sets.html"><strong aria-hidden="true">7.4.</strong> 🎯 Sets</a></li><li class="chapter-item "><a href="../built_in_data_structures/the_collections_module.html"><strong aria-hidden="true">7.5.</strong> 📦 The Collections Module</a></li></ol></li><li class="chapter-item "><a href="../numpy_pandas_and_more.html"><strong aria-hidden="true">8.</strong> ⚙️ NumPy, Pandas, and More</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../numpy_pandas_and_more/efficient_numerical_computations.html"><strong aria-hidden="true">8.1.</strong> ⚡ Efficient Numerical Computations</a></li><li class="chapter-item "><a href="../numpy_pandas_and_more/using_numexpr.html"><strong aria-hidden="true">8.2.</strong> 🔢 Using numexpr</a></li><li class="chapter-item "><a href="../numpy_pandas_and_more/optimising_data_manipulation.html"><strong aria-hidden="true">8.3.</strong> 🐼 Optimising Data Manipulation</a></li><li class="chapter-item "><a href="../numpy_pandas_and_more/dask_and_polars.html"><strong aria-hidden="true">8.4.</strong> 🐻‍❄️ Dask and Polars</a></li></ol></li><li class="chapter-item expanded "><a href="../non_linear_execution.html"><strong aria-hidden="true">9.</strong> 😵‍💫 Non-Linear Execution</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../non_linear_execution/the_global_interpreter_lock.html"><strong aria-hidden="true">9.1.</strong> 🔒 The Global Interpreter Lock</a></li><li class="chapter-item "><a href="../non_linear_execution/threading_and_multiprocessing.html"><strong aria-hidden="true">9.2.</strong> 🧵 Threading and Multiprocessing</a></li><li class="chapter-item expanded "><a href="../non_linear_execution/asynchronous_programming.html" class="active"><strong aria-hidden="true">9.3.</strong> ⏰ Asynchronous Programming</a></li><li class="chapter-item "><a href="../non_linear_execution/concurrent_futures.html"><strong aria-hidden="true">9.4.</strong> 🪢 concurrent.futures</a></li></ol></li><li class="chapter-item "><a href="../alternative_python_interpreters.html"><strong aria-hidden="true">10.</strong> 🚀 Alternative Python Interpreters</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../alternative_python_interpreters/pypy.html"><strong aria-hidden="true">10.1.</strong> 🏎️ PyPy</a></li><li class="chapter-item "><a href="../alternative_python_interpreters/ironpython.html"><strong aria-hidden="true">10.2.</strong> 🔗 IronPython</a></li><li class="chapter-item "><a href="../alternative_python_interpreters/jython.html"><strong aria-hidden="true">10.3.</strong> ☕ Jython</a></li><li class="chapter-item "><a href="../alternative_python_interpreters/graalpython.html"><strong aria-hidden="true">10.4.</strong> 🌌 GraalPython</a></li><li class="chapter-item "><a href="../alternative_python_interpreters/cinder.html"><strong aria-hidden="true">10.5.</strong> 🔥 Cinder</a></li><li class="chapter-item "><a href="../alternative_python_interpreters/micropython.html"><strong aria-hidden="true">10.6.</strong> 🤖 MicroPython</a></li></ol></li><li class="chapter-item "><a href="../moving_away_from_interpretation.html"><strong aria-hidden="true">11.</strong> 🏃 Moving Away from Interpretation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../moving_away_from_interpretation/c_extensions_for_python.html"><strong aria-hidden="true">11.1.</strong> 🇨 C Extensions for Python</a></li><li class="chapter-item "><a href="../moving_away_from_interpretation/compiling_with_cython.html"><strong aria-hidden="true">11.2.</strong> 💨 Compiling with Cython</a></li><li class="chapter-item "><a href="../moving_away_from_interpretation/just_in_time_with_numba.html"><strong aria-hidden="true">11.3.</strong> ⚡ Just-in-Time with Numba</a></li><li class="chapter-item "><a href="../moving_away_from_interpretation/foreign_function_interfaces.html"><strong aria-hidden="true">11.4.</strong> 🌉 Foreign Function Interfaces</a></li></ol></li><li class="chapter-item "><a href="../memory_management.html"><strong aria-hidden="true">12.</strong> Memory Management</a></li><li class="chapter-item "><a href="../reducing_footprint_and_avoiding_leaks.html"><strong aria-hidden="true">13.</strong> Reducing Footprint and Avoiding Leaks</a></li><li class="chapter-item "><a href="../performant_web_applications.html"><strong aria-hidden="true">14.</strong> Performant Web Applications</a></li><li class="chapter-item "><a href="../caching_strategies.html"><strong aria-hidden="true">15.</strong> Caching Strategies</a></li><li class="chapter-item "><a href="../general_best_practices.html"><strong aria-hidden="true">16.</strong> General Best Practices</a></li><li class="chapter-item "><a href="../common_performance_anti_patterns.html"><strong aria-hidden="true">17.</strong> Common Performance Anti-Patterns</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Make Python Faster: a Practical Guide to Accelerating your Code</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-asynchronous-programming"><a class="header" href="#-asynchronous-programming">⏰ Asynchronous Programming</a></h1>
+<p>AsyncIO is a Python library used for writing concurrent code using the async/await syntax. It's designed to handle asynchronous IO tasks, such as network and file I/O, which can significantly improve the performance of your program by making better use of I/O wait times. Here's an overview covering the key concepts, how the event loop works, and some practical applications:</p>
+<h2 id="key-concepts"><a class="header" href="#key-concepts">Key Concepts</a></h2>
+<ul>
+<li>
+<p><strong>Asynchronous Programming</strong>: Asynchronous programming allows tasks to run concurrently, improving the performance of applications that perform a lot of I/O operations. It enables the program to start a task and move on to another one before the first one finishes.</p>
+</li>
+<li>
+<p><strong>Coroutines</strong>: Coroutines are special functions that work asynchronously. They are defined with async def and are used to pause and resume execution using the await keyword.</p>
+</li>
+<li>
+<p><strong>Task</strong>: A Task is used to schedule coroutines concurrently. When a coroutine is wrapped into a Task with functions like asyncio.create_task(), it's scheduled to run on the event loop.</p>
+</li>
+<li>
+<p><strong>Event Loop</strong>: The event loop is the core of every asyncio application. It runs in a loop, executing asynchronous tasks and callbacks. It handles all the switching between tasks, essentially enabling the concurrency in your application.</p>
+</li>
+</ul>
+<h2 id="event-loop-workflow"><a class="header" href="#event-loop-workflow">Event Loop Workflow</a></h2>
+<ol>
+<li>Start the Event Loop: The event loop is started using asyncio.run() or manually with loop = asyncio.get_event_loop() and loop.run_until_complete().</li>
+<li>Schedule Tasks: Tasks are scheduled to run on the event loop. They can be coroutines or other future-like objects.</li>
+<li>Execute Tasks: The event loop runs the tasks. While a task waits for an I/O operation (like a network operation), the event loop can switch and execute other tasks.</li>
+<li>Close the Event Loop: Once all tasks are completed, the event loop is stopped and closed.</li>
+</ol>
+<h2 id="practical-applications"><a class="header" href="#practical-applications">Practical Applications</a></h2>
+<p>AsyncIO is ideal for I/O-bound and high-level structured network code. Examples include:</p>
+<ul>
+<li>Web scraping</li>
+<li>Web servers and client applications</li>
+<li>Database query handling</li>
+<li>Network servers and clients</li>
+<li>File I/O operations</li>
+</ul>
+<h2 id="code-examples"><a class="header" href="#code-examples">Code Examples</a></h2>
+<p><strong>Basic Coroutine</strong></p>
+<pre><code class="language-python">import asyncio
+
+async def hello_world():
+    print("Hello")
+    await asyncio.sleep(1)  # Simulate I/O operation
+    print("World")
+
+asyncio.run(hello_world())
+</code></pre>
+<p><strong>Running Multiple Coroutines</strong></p>
+<pre><code class="language-python">import asyncio
+
+async def fetch_data():
+    print("Fetching data...")
+    await asyncio.sleep(2)
+    print("Data fetched")
+    return {'data': 1}
+
+async def print_numbers():
+    for i in range(10):
+        print(i)
+        await asyncio.sleep(0.5)
+
+async def main():
+    task1 = asyncio.create_task(fetch_data())
+    task2 = asyncio.create_task(print_numbers())
+
+    # Wait for all tasks to complete
+    await task1
+    await task2
+
+asyncio.run(main())
+</code></pre>
+<p><strong>Using Event Loop Directly (less common in modern asyncio code)</strong></p>
+<pre><code class="language-python">import asyncio
+
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
+
+async def main():
+    loop = asyncio.get_event_loop()
+    task = loop.create_task(say_after(1, 'hello'))
+    await task
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
+loop.close()
+</code></pre>
+<p>These examples illustrate the basic usage of AsyncIO for concurrent programming in Python. AsyncIO's power lies in its ability to handle many tasks simultaneously, making it a valuable tool for any I/O-bound application.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../non_linear_execution/threading_and_multiprocessing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../non_linear_execution/concurrent_futures.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../non_linear_execution/threading_and_multiprocessing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../non_linear_execution/concurrent_futures.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

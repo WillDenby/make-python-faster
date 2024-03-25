@@ -2,7 +2,7 @@
 
 PyPy is an alternative implementation of Python, designed to be faster and more efficient than the default CPython interpreter. It accomplishes this primarily through the use of a Just-In-Time (JIT) compiler, which translates Python code into machine code at runtime. The JIT compiler can significantly speed up the execution of Python code, especially for long-running applications where the overhead of JIT compilation can be amortized over time.
 
-Key features of PyPy:
+**Key features of PyPy:**
 
 - Performance: PyPy often runs faster than CPython due to its JIT compiler. The performance gain varies by task but can be substantial for CPU-intensive tasks.
 - Compatibility: PyPy aims to be fully compatible with CPython, meaning it should run any Python code written for CPython. However, there might be edge cases or reliance on CPython-specific extensions that do not work out of the box.

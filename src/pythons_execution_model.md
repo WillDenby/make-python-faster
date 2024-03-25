@@ -1,6 +1,6 @@
 # 🐍 Python's Execution Model
 
-Before we start considering how to make our code faster, it's worth recapping how Python programs typically work. 
+Before we dive into how to make our code faster, it's worth recapping how Python works. 
 
 CPython is the default and most widely used implementation of the Python programming language. It is written in C and Python, providing a foundation for executing Python programs. CPython compiles Python code into bytecode, which is then executed by the Python virtual machine. The execution model of CPython involves several key components and processes, including parsing, compilation, and interpretation. 
 
@@ -56,6 +56,4 @@ The execution model of CPython can be summarized as follows:
 
 The efficiency and performance of CPython can be affected by factors such as the complexity of the Python code, the use of built-in functions (which are typically optimized C functions), and the interaction with external modules and libraries.
 
-It's also worth noting that while CPython is the standard and most commonly used Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) and Jython (which runs on the Java platform). Each implementation has its execution model, optimized for different use cases and performance characteristics.
-
-We'll explore more of these things in subsequent chapters. 
+It's also worth noting that while CPython is the standard and most commonly used Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) and Jython (which runs on the Java platform). Each implementation has its execution model, optimized for different use cases and performance characteristics. We'll see these later on. 

@@ -14,6 +14,8 @@ IronPython is ideal for Python developers working in a .NET environment or needi
 
 **Code Example:**
 
+Download IronPython first: [https://ironpython.net](https://ironpython.net)
+
 Running a Python script with IronPython is similar to using the standard Python interpreter, but you use the `ipy` command instead.
 
 ```shell

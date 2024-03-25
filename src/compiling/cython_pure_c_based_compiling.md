@@ -4,9 +4,9 @@ Cython serves as an extension of Python, designed to give C-like performance wit
 
 Here's a simple overview of how Cython works:
 
-Type Annotations: Unlike Python, Cython allows you to add C-style static type definitions to your Python code. These type definitions are optional but can significantly increase the speed of your code by reducing the overhead of Python's dynamic typing.
-Compilation: The Cython compiler translates the annotated Cython code into C or C++ code. This code is then compiled by a C/C++ compiler to produce a shared library that can be imported into Python.
-Integration: The compiled Cython module can now be used from Python, just like any Python module. This allows for seamless integration of performance-critical code with higher-level Python scripts.
+- Type Annotations: Unlike Python, Cython allows you to add C-style static type definitions to your Python code. These type definitions are optional but can significantly increase the speed of your code by reducing the overhead of Python's dynamic typing.
+- Compilation: The Cython compiler translates the annotated Cython code into C or C++ code. This code is then compiled by a C/C++ compiler to produce a shared library that can be imported into Python.
+- Integration: The compiled Cython module can now be used from Python, just like any Python module. This allows for seamless integration of performance-critical code with higher-level Python scripts.
 
 ## Using Cython
 
