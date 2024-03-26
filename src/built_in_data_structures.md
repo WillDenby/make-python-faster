@@ -2,9 +2,9 @@
 
 Python provides several built-in data structures that are highly versatile and powerful, enabling developers to store and manipulate data efficiently. These data structures include lists, tuples, dictionaries, and sets, each with its unique features and performance characteristics. They are, in general, lower-level and hence faster than custom data structures.
 
-Choosing the right data structure depends on the specific requirements of your application, including the types of operations you need to perform and their frequency.
+Choosing the right data structure depends on the specific requirements of your application, including the types of operations you need to perform and their frequency. A rule of thumb to remember throughout is that "generic" structures containing multiple data types will tend to incur greater overhead when being manipulated than those of a single type. 
 
-Before we dive into them, here are some useful tips:
+Before we dive into them, here are some other useful tips:
 
 ## General Tips
 

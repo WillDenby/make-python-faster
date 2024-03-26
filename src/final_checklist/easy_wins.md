@@ -1,8 +1,4 @@
-# 💯 Quickstart: Easy Optimisations
-
-Optimizing common algorithms and data processing patterns in Python is essential for writing efficient and fast programs. Optimization in Python often revolves around improving time complexity, reducing memory usage, and leveraging Python's built-in features and libraries that are implemented in C for speed. 
-
-If you're only going to read one chapter, you can't really go wrong with the below:
+# 💯 Easy Wins
 
 ## Loop Optimization
 
@@ -67,7 +63,7 @@ def fibonacci(n, memo={}):
     return memo[n]
 ```
 
-## Built-in Functions and Libraries
+## Built-in Functions and Libraries (Or Not)
 
 Python's standard library and third-party libraries like NumPy and Pandas are written in C, making them much faster than custom, pure Python code for certain operations, especially numerical computations and data processing.
 
@@ -102,6 +98,7 @@ cProfile.run('my_function()')
 ```
 
 ## Avoiding Global Variables
+
 Access to global variables is slower than local variable access. If you're using global variables within a loop or a frequently called function, consider passing them as arguments or using them as local variables.
 
 ## String Concatenation

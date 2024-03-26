@@ -1,1 +1,0 @@
-# Common Performance Anti-Patterns

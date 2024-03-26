@@ -7,6 +7,8 @@ PyPy stands out as the most popular alternative Python interpreter, known for it
 - JIT compilation for faster execution.
 - Compatibility with Python 2.7 and 3.10 (at time of writing).
 - Supports most of the Python standard library and many third-party modules.
+- Memory Usage: PyPy can use less memory than CPython, thanks to its more efficient garbage collector.
+- Stackless Python Support: PyPy supports Stackless Python, an enhanced version of Python aimed at concurrency and micro-threads.
 
 **When to Use:**
 

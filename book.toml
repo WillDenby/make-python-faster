@@ -3,7 +3,7 @@ authors = ["Will Denby"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Make Python Faster: a Practical Guide to Accelerating your Code"
+title = "Make Python Faster: a Practical Guide"
 
 [output.html.fold]
 enable = true

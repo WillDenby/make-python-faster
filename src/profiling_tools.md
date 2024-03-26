@@ -1,8 +1,15 @@
 # 🔎 Profiling Tools
 
-Profiling Python code is crucial for identifying performance bottlenecks and optimizing the execution time of your applications. 
+It's tempting to just dive into your code and start refactoring at once! But you might end up spending lots of time eeking out tiny performance gains on parts of your code that are already pretty efficient - and completely missing the real bottlenecks. That's why we start with profiling. 
 
-Good benchmarking involves measuring the execution time of your code under specific conditions. Here are some best practices:
+Figure out **where** the problems are - and **how bad** they are. That way, you can make an evidence-based request for more time from management to spend on improving the code. Here are resources you might want to profile in terms of usage:
+
+- CPU
+- Memory
+- Network bandwidth
+- Disk IO
+
+Here are some best practices:
 
 1. **Isolate the Code You Want to Benchmark** - Make sure that the code you're benchmarking is isolated from setup and teardown operations that you don't intend to measure. 
 2. **Choose the Right Tool for the Job** - As we'll see, `timeit` is great for micro-benchmarks, while `cProfile` and `line_profiler` can help with more detailed profiling.
@@ -10,5 +17,7 @@ Good benchmarking involves measuring the execution time of your code under speci
 4. **Run Benchmarks Multiple Times** - To get a more accurate measure, run your benchmarks multiple times and consider using the average time. This approach helps smooth out any irregularities caused by background processes or other anomalies.
 5. **Consider Systematic Variations** - Be aware of external factors that can affect benchmark results, such as other running processes, system load, and hardware differences. Try to minimize these variations when benchmarking.
 6. **Benchmark with Realistic Data** - Test your code with data that closely resembles what you expect in production. The performance can greatly differ based on the type, size, and complexity of the input data.
+
+One thing to always remember is that profiling can add to the computer workload, and slow things down.
 
 There are several tools and techniques available for profiling, each with its own strengths and use cases. In the next few pages we'll check out some of the most commonly used profiling tools and methods, along with code examples.
