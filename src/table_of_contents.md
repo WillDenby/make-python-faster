@@ -11,4 +11,4 @@
 - [🏃 Leaving Interpretation](./leaving_interpretation.md)
 - [🧩 Memory Management](./memory_management.md)
 - [🌐 Performant Web Applications](./performant_web_applications.md)
-- [Final Checklist](./final_checklist.md)
+- [✅ Final Checklist](./final_checklist.md)
