@@ -1,6 +1,6 @@
 # 📖 Table of Contents
 
-© 2024 Will Denby. All rights reserved.
+**© 2024 Will Denby. All rights reserved.**
 
 - [❓ When to Optimise](./when_to_optimise.md)
 - [🐍 Python's Execution Model](./pythons_execution_model.md)
