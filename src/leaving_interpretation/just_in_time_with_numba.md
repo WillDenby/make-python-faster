@@ -1,6 +1,6 @@
 # ⚡ Just-in-Time with Numba
 
-Just-In-Time (JIT) compilation is a way to enhance the performance of Python, especially with libraries such as NumPy, by dynamically compiling Python bytecode into machine code at runtime. This process is particularly beneficial for numerical computations where execution speed is critical. The JIT compiler translates Python code into a form that can be executed more quickly, bypassing some of the overhead that comes with Python's dynamic nature.
+Just-In-Time (JIT) compilation is a way to enhance the performance of Python, especially with libraries such as `NumPy`, by dynamically compiling Python bytecode into machine code at runtime. This process is particularly beneficial for numerical computations where execution speed is critical. The JIT compiler translates Python code into a form that can be executed more quickly, bypassing some of the overhead that comes with Python's dynamic nature.
 
 One of the most popular JIT compilers for Python is Numba. Numba allows Python functions to be decorated with a special marker that indicates they should be JIT compiled. When a decorated function is called, Numba compiles it to machine code "just in time" for execution. This compiled code is directly executed by the CPU, leading to significant performance improvements for computational tasks.
 
@@ -52,7 +52,7 @@ sum_array_numba(arr)
 print("Numba JIT:", time() - start_time, "seconds")
 ```
 
-In this example, @jit(nopython=True) is used to ensure that the function runs in "nopython mode," which avoids the use of Python objects and functions, leading to faster execution. The performance gain with JIT compilation can be significant, especially for larger datasets or more complex numerical computations.
+In this example, `@jit(nopython=True)` is used to ensure that the function runs in "nopython mode," which avoids the use of Python objects and functions, leading to faster execution. The performance gain with JIT compilation can be significant, especially for larger datasets or more complex numerical computations.
 
 ## Advantages of JIT Compilation
 

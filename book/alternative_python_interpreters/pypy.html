@@ -184,7 +184,7 @@
 <li>Stackless Python Support: PyPy supports Stackless Python, an enhanced version of Python aimed at concurrency and micro-threads.</li>
 </ul>
 <p><strong>When to Use:</strong></p>
-<p>PyPy is best suited for long-running applications where the overhead of JIT compilation can be amortized over time. It's particularly beneficial for applications with heavy numerical computations or extensive use of loops (but you may not need it if using NumPy!).</p>
+<p>PyPy is best suited for long-running applications where the overhead of JIT compilation can be amortized over time. It's particularly beneficial for applications with heavy numerical computations or extensive use of loops (but you may not need it if using <code>NumPy</code>!).</p>
 <p><strong>Code Example:</strong></p>
 <p>The usage of PyPy is straightforward because it's a drop-in replacement for CPython. First, download it from <a href="https://www.pypy.org/">https://www.pypy.org/</a></p>
 <p>You can run your Python script using PyPy just by using the <code>pypy</code> command instead of <code>python</code>:</p>
@@ -220,6 +220,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

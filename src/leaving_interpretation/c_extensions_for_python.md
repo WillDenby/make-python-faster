@@ -49,7 +49,7 @@ PyMODINIT_FUNC PyInit_fastadd(void) {
 
 ## Compiling the Extension
 
-To compile the extension, you'll need to create a setup.py file for your module. This file uses setuptools to compile your C code into a Python extension module.
+To compile the extension, you'll need to create a `setup.py` file for your module. This file uses `setuptools` to compile your C code into a Python extension module.
 
 ```python
 from setuptools import setup, Extension
@@ -63,7 +63,7 @@ setup(name = 'FastAddPackage',
       ext_modules = [module1])
 ```
 
-After creating the setup.py file, you can build the module by running the following command in your terminal:
+After creating the `setup.py` file, you can build the module by running the following command in your terminal:
 
 ```shell
 python setup.py build_ext --inplace

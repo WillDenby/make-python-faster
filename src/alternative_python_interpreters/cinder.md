@@ -1,12 +1,12 @@
 # 🔥 Cinder
 
-Cinder is Meta's (formerly Facebook's) performance-oriented fork of CPython 3.8. It incorporates several enhancements aimed at improving the performance of Python code, notably in highly concurrent server environments. Cinder is not a standalone interpreter but has contributed some of its features back to the main Python branch, showcasing its influence on the Python ecosystem.
+Cinder is Meta's performance-oriented fork of CPython 3.8. It incorporates several enhancements aimed at improving the performance of Python code, notably in highly concurrent server environments. Cinder is not a standalone interpreter but has contributed some of its features back to the main Python branch, showcasing its influence on the Python ecosystem.
 
 **Features:**
 
-- Static Python: An experimental, opt-in type system that allows for compiling Python to more efficient code, improving performance.
-- Strict Modules: Provides a way to declare modules with stricter performance characteristics, allowing Cinder to optimize these modules more aggressively.
-- Performance Enhancements: Includes various optimizations for faster execution of Python code, particularly in the context of web and server applications.
+- **Static Python**: An experimental, opt-in type system that allows for compiling Python to more efficient code, improving performance.
+- **Strict Modules**: Provides a way to declare modules with stricter performance characteristics, allowing Cinder to optimize these modules more aggressively.
+- **Performance Enhancements**: Includes various optimizations for faster execution of Python code, particularly in the context of web and server applications.
 
 **When to Use:**
 

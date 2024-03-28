@@ -32,7 +32,7 @@ del b
 print(sys.getrefcount(a) - 1)
 ```
 
-In this example, we create a list a, and the reference count increases as we create more references to it (e.g., b = a). When a reference is removed (e.g., del b), the reference count decreases. The sys.getrefcount() function returns the current reference count for the object.
+In this example, we create a list a, and the reference count increases as we create more references to it (e.g., `b = a`). When a reference is removed (e.g., `del b`), the reference count decreases. The `sys.getrefcount()` function returns the current reference count for the object.
 
 ## Garbage Collection
 
@@ -64,27 +64,26 @@ del b
 gc.collect()  # This triggers the deletion of both MyClass instances
 ```
 
-In this example, a and b reference each other, creating a cycle. Deleting the variables a and b doesn't actually free the memory because of the cycle. Calling gc.collect() forces the garbage collector to run, detecting and cleaning up the cycle, which leads to the deletion of MyClass instances.
+In this example, `a` and `b` reference each other, creating a cycle. Deleting the variables `a` and `b` doesn't actually free the memory because of the cycle. Calling `gc.collect()` forces the garbage collector to run, detecting and cleaning up the cycle, which leads to the deletion of `MyClass` instances.
 
 Python’s memory management uses reference counting for immediate deallocation of objects when they are no longer needed, complemented by a garbage collector to handle reference cycles. This dual approach helps automate memory management, but understanding it can be beneficial for optimizing your Python programs, especially for long-running or memory-intensive applications.
 
 ## Potential Issues
 
-
 **Overhead of Reference Counting**
 
-- Increment/Decrement Operations: Each time an object is referenced or dereferenced, Python performs increment and decrement operations on the reference count. In performance-critical sections of code, this can introduce a non-negligible overhead.
-- Delayed Deallocation: Reference counting immediately deallocates memory once an object's reference count drops to zero. While generally efficient, this process can cause unpredictable delays in a program's execution, especially if the object being destroyed has a complex __del__() method.
+- **Increment/Decrement Operations**: Each time an object is referenced or dereferenced, Python performs increment and decrement operations on the reference count. In performance-critical sections of code, this can introduce a non-negligible overhead.
+- **Delayed Deallocation**: Reference counting immediately deallocates memory once an object's reference count drops to zero. While generally efficient, this process can cause unpredictable delays in a program's execution, especially if the object being destroyed has a complex `__del__()` method.
 
 **Garbage Collection Pauses**
 
-- Stop-the-world: The garbage collection process can introduce latency, as it may pause the execution of a program to inspect and collect unreachable objects. This is particularly problematic in real-time systems where consistent performance is critical.
-- Unpredictable Execution Timing: Garbage collection runs at intervals that may not be predictable. This can lead to sporadic performance degradation, especially in long-running applications where accumulated garbage suddenly triggers a collection.
+- **Stop-the-world**: The garbage collection process can introduce latency, as it may pause the execution of a program to inspect and collect unreachable objects. This is particularly problematic in real-time systems where consistent performance is critical.
+- **Unpredictable Execution Timing**: Garbage collection runs at intervals that may not be predictable. This can lead to sporadic performance degradation, especially in long-running applications where accumulated garbage suddenly triggers a collection.
 
 **Memory Fragmentation**
 
-- Dynamic Allocation: Python's dynamic nature means objects are frequently allocated and deallocated. This can lead to memory fragmentation, where free memory is split into small, non-contiguous blocks, making it difficult to allocate large objects and potentially leading to inefficient use of memory.
+- **Dynamic Allocation**: Python's dynamic nature means objects are frequently allocated and deallocated. This can lead to memory fragmentation, where free memory is split into small, non-contiguous blocks, making it difficult to allocate large objects and potentially leading to inefficient use of memory.
 
 **Reference Cycles**
 
-- Leaked Memory: While Python's garbage collector can detect objects in a reference cycle that are no longer reachable, the presence of reference cycles can still lead to memory leaks if the collector doesn't run frequently or if objects modify their __del__ methods in ways that prevent garbage collection.
+- **Leaked Memory**: While Python's garbage collector can detect objects in a reference cycle that are no longer reachable, the presence of reference cycles can still lead to memory leaks if the collector doesn't run frequently or if objects modify their `__del__` methods in ways that prevent garbage collection.

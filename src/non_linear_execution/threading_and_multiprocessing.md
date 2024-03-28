@@ -8,12 +8,12 @@ Threading is the practice of running multiple threads (lighter-weight processes)
 
 **When to Use:**
 
-- I/O-Bound Processes: When your program spends a significant amount of time waiting for external events.
-- UI Applications: To keep the UI responsive while performing background tasks.
+- **I/O-Bound Processes**: When your program spends a significant amount of time waiting for external events.
+- **UI Applications**: To keep the UI responsive while performing background tasks.
 
 **How to Use:**
 
-Python provides the threading module to implement threading in your programs. Here's a simple example of using threading to perform a task in the background:
+Python provides the `threading` module to implement threading in your programs. Here's a simple example of using threading to perform a task in the background:
 
 ```python
 import threading
@@ -42,12 +42,12 @@ Multiprocessing involves running multiple processes concurrently, each with its 
 
 **When to Use:**
 
-- CPU-Bound Processes: When your program requires heavy computation and can be parallelized to take advantage of multiple CPUs.
-- Parallel Processing of Data: To perform operations on large datasets concurrently.
+- **CPU-Bound Processes**: When your program requires heavy computation and can be parallelized to take advantage of multiple CPUs.
+- **Parallel Processing of Data**: To perform operations on large datasets concurrently.
 
 **How to Use:**
 
-The multiprocessing module in Python allows you to create and manage separate processes. Here's an example of using multiprocessing to perform a computationally heavy task:
+The `multiprocessing` module in Python allows you to create and manage separate processes. Here's an example of using `multiprocessing` to perform a computationally heavy task:
 
 ```python
 from multiprocessing import Process, current_process
@@ -76,9 +76,9 @@ if __name__ == '__main__':
 
 ## Key Differences and Considerations
 
-- Global Interpreter Lock (GIL): Python's GIL means that even if you're using multiple threads, only one thread can execute Python bytecode at a time. This limitation doesn't apply to I/O operations but does limit the effectiveness of threads for CPU-bound tasks.
-- Memory Usage: Multiprocessing can lead to significant memory overhead, as each process has its own Python interpreter and memory space.
-- Overhead: Creating and managing processes is heavier than threads. Therefore, multiprocessing is usually not beneficial for light tasks or tasks that are too quick to execute.
+- **Global Interpreter Lock (GIL)**: Python's GIL means that even if you're using multiple threads, only one thread can execute Python bytecode at a time. This limitation doesn't apply to I/O operations but does limit the effectiveness of threads for CPU-bound tasks.
+- **Memory Usage**: Multiprocessing can lead to significant memory overhead, as each process has its own Python interpreter and memory space.
+- **Overhead**: Creating and managing processes is heavier than threads. Therefore, multiprocessing is usually not beneficial for light tasks or tasks that are too quick to execute.
 
 **Choosing Between Threading and Multiprocessing:**
 

@@ -174,21 +174,21 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-using-numexpr"><a class="header" href="#-using-numexpr">🔢 Using numexpr</a></h1>
-<p>Numexpr is a Python library that provides a way to evaluate numerical expressions on arrays at a faster rate than NumPy can, in some cases. It achieves this speedup by using a faster evaluator that utilizes the capabilities of modern CPUs more efficiently, including their vector units and multiple cores. Numexpr compiles the array expressions you give it into optimized, intermediate code that it then executes more efficiently than NumPy's default methods. This can lead to significant performance improvements, especially on operations that involve large arrays.</p>
+<p><code>Numexpr</code> is a Python library that provides a way to evaluate numerical expressions on arrays at a faster rate than <code>NumPy</code> can, in some cases. It achieves this speedup by using a faster evaluator that utilizes the capabilities of modern CPUs more efficiently, including their vector units and multiple cores. <code>Numexpr</code> compiles the array expressions you give it into optimized, intermediate code that it then executes more efficiently than <code>NumPy</code>'s default methods. This can lead to significant performance improvements, especially on operations that involve large arrays.</p>
 <h2 id="how-numexpr-works"><a class="header" href="#how-numexpr-works">How Numexpr Works</a></h2>
-<p>Numexpr takes a string expression describing a numerical operation and evaluates it much faster than if you were to directly use NumPy for two main reasons:</p>
+<p><code>Numexpr</code> takes a string expression describing a numerical operation and evaluates it much faster than if you were to directly use <code>NumPy</code> for two main reasons:</p>
 <ul>
 <li><strong>Efficient Use of Memory</strong>: It avoids allocating full temporary arrays that result from intermediate calculations in complex expressions. This means it can handle larger arrays and use less memory, which is particularly useful when working with large datasets that don't fit into your computer's RAM.</li>
-<li><strong>Utilization of CPU Features</strong>: Numexpr is designed to make efficient use of CPU features, such as multiple cores and vector operations (SIMD - Single Instruction, Multiple Data). This allows it to perform calculations faster than NumPy, which does not parallelize operations at the level Numexpr does.</li>
+<li><strong>Utilization of CPU Features</strong>: <code>Numexpr</code> is designed to make efficient use of CPU features, such as multiple cores and vector operations (SIMD - Single Instruction, Multiple Data). This allows it to perform calculations faster than <code>NumPy</code>, which does not parallelize operations at the level <code>Numexpr</code> does.</li>
 </ul>
 <p><strong>Why Use Numexpr:</strong></p>
 <ul>
-<li><strong>Performance</strong>: For complex expressions, especially those involving large arrays, Numexpr can significantly outperform NumPy in terms of speed by utilizing CPU features more efficiently and reducing memory usage.</li>
-<li><strong>Handling Large Data</strong>: By minimizing memory consumption through avoiding temporary arrays, Numexpr can work with larger datasets more effectively than NumPy alone.</li>
+<li><strong>Performance</strong>: For complex expressions, especially those involving large arrays, <code>Numexpr</code> can significantly outperform <code>NumPy</code> in terms of speed by utilizing CPU features more efficiently and reducing memory usage.</li>
+<li><strong>Handling Large Data</strong>: By minimizing memory consumption through avoiding temporary arrays, <code>Numexpr</code> can work with larger datasets more effectively than <code>NumPy</code> alone.</li>
 </ul>
 <p><strong>Example Usage</strong></p>
-<p>Let's compare a NumPy operation with its Numexpr counterpart to illustrate the usage and performance difference:</p>
-<p>NumPy:</p>
+<p>Let's compare a <code>NumPy</code> operation with its <code>Numexpr</code> counterpart to illustrate the usage and performance difference:</p>
+<p><code>NumPy</code>:</p>
 <pre><code class="language-python">import numpy as np
 
 a = np.random.rand(1000000)
@@ -197,7 +197,7 @@ b = np.random.rand(1000000)
 # Using NumPy
 c = 2*a + 3*b + 1
 </code></pre>
-<p>Numexpr:</p>
+<p><code>Numexpr</code>:</p>
 <pre><code class="language-python">import numexpr as ne
 import numpy as np
 
@@ -207,7 +207,7 @@ b = np.random.rand(1000000)
 # Using Numexpr
 c = ne.evaluate('2*a + 3*b + 1')
 </code></pre>
-<p>In the example above, both snippets achieve the same result, but numexpr can execute the operation faster on large arrays due to its efficient memory use and parallel computation capabilities.</p>
+<p>In the example above, both snippets achieve the same result, but <code>numexpr</code> can execute the operation faster on large arrays due to its efficient memory use and parallel computation capabilities.</p>
 
                     </main>
 
@@ -238,6 +238,22 @@ c = ne.evaluate('2*a + 3*b + 1')
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

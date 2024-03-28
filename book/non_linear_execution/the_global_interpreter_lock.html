@@ -178,9 +178,9 @@
 <h2 id="implications-for-multi-threaded-applications"><a class="header" href="#implications-for-multi-threaded-applications">Implications for Multi-threaded Applications</a></h2>
 <p>The existence of the GIL has significant implications for developers writing multi-threaded applications in Python:</p>
 <ol>
-<li>Concurrency vs. Parallelism: While the GIL allows for concurrency (multiple threads can be created and managed), it does not allow for true parallelism (multiple threads executing simultaneously) in a single Python process. This means that multi-threaded programs that are CPU-bound may not see a performance improvement; in fact, they might run slower than if they were executed in a single thread due to overhead.</li>
-<li>I/O-bound Applications: For I/O-bound applications (waiting for input/output operations to complete), the GIL has less impact. The GIL is released while waiting for I/O, allowing other threads to run. Therefore, Python's threading module can be an excellent choice for I/O-bound applications.</li>
-<li>Alternative Approaches: To achieve true parallelism, Python developers often use multiprocessing instead of multithreading. The multiprocessing module creates separate Python processes for each task, each with its own Python interpreter and, by extension, its own GIL. This allows tasks to run in parallel on multiple cores.</li>
+<li><strong>Concurrency vs. Parallelism</strong>: While the GIL allows for concurrency (multiple threads can be created and managed), it does not allow for true parallelism (multiple threads executing simultaneously) in a single Python process. This means that multi-threaded programs that are CPU-bound may not see a performance improvement; in fact, they might run slower than if they were executed in a single thread due to overhead.</li>
+<li><strong>I/O-bound Applications</strong>: For I/O-bound applications (waiting for input/output operations to complete), the GIL has less impact. The GIL is released while waiting for I/O, allowing other threads to run. Therefore, Python's threading module can be an excellent choice for I/O-bound applications.</li>
+<li><strong>Alternative Approaches</strong>: To achieve true parallelism, Python developers often use multiprocessing instead of multithreading. The <code>multiprocessing</code> module creates separate Python processes for each task, each with its own Python interpreter and, by extension, its own GIL. This allows tasks to run in parallel on multiple cores.</li>
 </ol>
 <h2 id="some-examples-to-try"><a class="header" href="#some-examples-to-try">Some Examples to Try</a></h2>
 <p><strong>Example 1: Demonstrating the GIL's Impact on CPU-bound Operations</strong></p>
@@ -262,6 +262,22 @@ print(f"Duration with threads: {end_time - start_time} seconds")
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

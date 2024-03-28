@@ -174,12 +174,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-performant-web-applications"><a class="header" href="#-performant-web-applications">🌐 Performant Web Applications</a></h1>
-<p>Optimizing Django, Flask, and FastAPI applications for better performance involves a multifaceted approach, including optimizing database queries, caching, asynchronous processing, and more. Here's a concise overview of optimization strategies for each framework, along with relevant code examples where applicable.</p>
+<p>Optimizing <code>Django</code>, <code>Flask</code>, and <code>FastAPI</code> applications for better performance involves a multifaceted approach, including optimizing database queries, caching, asynchronous processing, and more. Here's a concise overview of optimization strategies for each framework, along with relevant code examples where applicable.</p>
 <h2 id="django-optimization"><a class="header" href="#django-optimization">Django Optimization</a></h2>
 <p><strong>Database Queries Optimization and Indexing:</strong></p>
 <ul>
-<li>Use select_related() for forward ForeignKey relationships to reduce the number of database queries.</li>
-<li>Use prefetch_related() for many-to-many and reverse ForeignKey relationships.</li>
+<li>Use <code>select_related()</code> for forward <code>ForeignKey</code> relationships to reduce the number of database queries.</li>
+<li>Use <code>prefetch_related()</code> for many-to-many and reverse <code>ForeignKey</code> relationships.</li>
 </ul>
 <pre><code class="language-python"># Without optimization
 books = Book.objects.all()
@@ -199,7 +199,7 @@ for book in books:
 </code></pre>
 <p><strong>Caching:</strong></p>
 <ul>
-<li>Use Django’s cache framework to cache views, querysets, or template fragments.</li>
+<li>Use <code>Django</code>’s cache framework to cache views, querysets, or template fragments.</li>
 </ul>
 <pre><code class="language-python">from django.core.cache import cache
 
@@ -212,7 +212,7 @@ def my_view(request):
         return result
 </code></pre>
 <ul>
-<li>Use template fragment caching: Cache parts of templates that are expensive to render.</li>
+<li>Use template fragment caching - cache parts of templates that are expensive to render.</li>
 </ul>
 <pre><code class="language-python">{% load cache %}
 {% cache 600 sidebar %}
@@ -222,14 +222,14 @@ def my_view(request):
 <p><strong>Middleware, Query, and Static File Optimization:</strong></p>
 <ul>
 <li>Reduce middleware classes that are not necessary for your project.</li>
-<li>Use Django Debug Toolbar to identify and optimize slow queries.</li>
-<li>Use GZipMiddleware: Compresses responses for browsers that support gzip.</li>
-<li>Serve static files efficiently: Use WhiteNoise or a similar tool to serve static files directly from WSGI and apply cache control headers.</li>
+<li>Use <code>Django Debug Toolbar</code> to identify and optimize slow queries.</li>
+<li>Use <code>GZipMiddleware</code>: Compresses responses for browsers that support gzip.</li>
+<li>Serve static files efficiently: Use <code>WhiteNoise</code> or a similar tool to serve static files directly from WSGI and apply cache control headers.</li>
 </ul>
 <h2 id="flask-optimization"><a class="header" href="#flask-optimization">Flask Optimization</a></h2>
 <p><strong>Database Queries Optimization:</strong></p>
 <ul>
-<li>Use SQLAlchemy or another ORM and apply similar strategies as Django for query optimization.</li>
+<li>Use <code>SQLAlchemy</code> or another ORM and apply similar strategies as <code>Django</code> for query optimization.</li>
 <li>Optimize queries by joining tables only when necessary and filtering queries as much as possible.</li>
 </ul>
 <pre><code class="language-python">from myapp import db
@@ -239,7 +239,7 @@ posts = Post.query.join(User).filter(Post.user_id == User.id).all()
 </code></pre>
 <p><strong>Caching:</strong></p>
 <ul>
-<li>Use Flask-Caching to cache views or data.</li>
+<li>Use <code>Flask-Caching</code> to cache views or data.</li>
 </ul>
 <pre><code class="language-python">from flask_caching import Cache
 
@@ -254,7 +254,7 @@ def index():
 </code></pre>
 <p><strong>Asynchronous Views:</strong></p>
 <ul>
-<li>Use Flask’s support for async views to handle I/O-bound operations efficiently.</li>
+<li>Use <code>Flask</code>’s support for async views to handle I/O-bound operations efficiently.</li>
 </ul>
 <pre><code class="language-python">@app.route('/async')
 async def async_view():
@@ -263,16 +263,16 @@ async def async_view():
 </code></pre>
 <p><strong>Profiling and Monitoring</strong></p>
 <ul>
-<li>Use Flask extensions like Flask-DebugToolbar to monitor performance bottlenecks.</li>
+<li>Use <code>Flask</code> extensions like <code>Flask-DebugToolbar</code> to monitor performance bottlenecks.</li>
 </ul>
 <p><strong>Use Efficient WSGI Servers</strong></p>
 <ul>
-<li>Deploy Flask applications using efficient WSGI servers like Gunicorn or uWSGI instead of the built-in Flask server for production environments.</li>
+<li>Deploy <code>Flask</code> applications using efficient WSGI servers like <code>Gunicorn</code> or <code>uWSGI</code> instead of the built-in <code>Flask</code> server for production environments.</li>
 </ul>
 <h2 id="fastapi-optimization"><a class="header" href="#fastapi-optimization">FastAPI Optimization</a></h2>
 <p><strong>Asynchronous and Concurrent Handling:</strong></p>
 <ul>
-<li>FastAPI is built to be asynchronous. Use async and await for I/O-bound operations, including database operations.</li>
+<li><code>FastAPI</code> is built to be asynchronous. Use async and await for I/O-bound operations, including database operations.</li>
 </ul>
 <pre><code class="language-python">from fastapi import FastAPI
 import httpx
@@ -287,24 +287,24 @@ async def read_async():
 </code></pre>
 <p><strong>Database Queries Optimization:</strong></p>
 <ul>
-<li>Use databases like Tortoise ORM or SQLAlchemy with async support to optimize database interactions.</li>
-<li>Implement strategies similar to Django for prefetching and selecting related data asynchronously.</li>
+<li>Use databases like <code>Tortoise ORM</code> or <code>SQLAlchemy</code> with async support to optimize database interactions.</li>
+<li>Implement strategies similar to <code>Django</code> for prefetching and selecting related data asynchronously.</li>
 </ul>
 <p><strong>Dependency Injection for Caching:</strong></p>
 <ul>
-<li>Use FastAPI's dependency injection system for efficient caching mechanisms across your app.</li>
+<li>Use <code>FastAPI</code>'s dependency injection system for efficient caching mechanisms across your app.</li>
 <li>Implement background tasks for operations that can be processed asynchronously.</li>
 </ul>
 <h2 id="general-optimization-tips"><a class="header" href="#general-optimization-tips">General Optimization Tips</a></h2>
 <ul>
-<li>Profile your application to identify bottlenecks using tools like cProfile for Python.</li>
-<li>Serve static files efficiently using a web server like Nginx or a CDN.</li>
+<li>Profile your application to identify bottlenecks using tools like <code>cProfile</code> for Python.</li>
+<li>Serve static files efficiently using a web server like <code>Nginx</code> or a CDN.</li>
 <li>Optimize front-end assets (minify CSS/JS, image compression) to reduce load times.</li>
 <li>Implement HTTP/2 where possible.</li>
-<li>Asynchronous Tasks: Use Celery for background tasks to prevent blocking web requests for operations like sending emails or processing large data.</li>
+<li>Asynchronous Tasks: Use <code>Celery</code> for background tasks to prevent blocking web requests for operations like sending emails or processing large data.</li>
 <li>Database Connections: Use persistent database connections and connection pooling.</li>
 </ul>
-<p>By employing these optimization techniques, you can significantly improve the performance of Django, Flask, and FastAPI applications, enhancing user experience and resource utilization.</p>
+<p>By employing these optimization techniques, you can significantly improve the performance of <code>Django</code>, <code>Flask</code>, and <code>FastAPI</code> applications, enhancing user experience and resource utilization.</p>
 
                     </main>
 
@@ -335,6 +335,22 @@ async def read_async():
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

@@ -174,19 +174,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-built-in-data-structures"><a class="header" href="#-built-in-data-structures">🏗️ Built-in Data Structures</a></h1>
-<p>Python provides several built-in data structures that are highly versatile and powerful, enabling developers to store and manipulate data efficiently. These data structures include lists, tuples, dictionaries, and sets, each with its unique features and performance characteristics. They are, in general, lower-level and hence faster than custom data structures.</p>
-<p>Choosing the right data structure depends on the specific requirements of your application, including the types of operations you need to perform and their frequency. A rule of thumb to remember throughout is that "generic" structures containing multiple data types will tend to incur greater overhead when being manipulated than those of a single type.</p>
-<p>Before we dive into them, here are some other useful tips:</p>
+<p>Python provides several built-in data structures that are highly versatile, enabling you to store and manipulate data efficiently. These data structures include lists, tuples, dictionaries, and sets, each with their own unique features and performance characteristics. They are, in general, lower-level and hence faster than custom data structures. Choosing the right one depends on the specific requirements of your algorithm, including the types of operations you need to perform and their frequency.</p>
+<p>A rule of thumb to remember is that "generic" structures containing multiple data types will tend to incur greater overhead when being manipulated than those of a single type. Before we dive into them in more detail, here are some other useful tips:</p>
 <h2 id="general-tips"><a class="header" href="#general-tips">General Tips</a></h2>
 <ul>
-<li>Lists and Tuples: Good for ordered collections of items. Lists are mutable, whereas tuples are immutable.</li>
-<li>Dictionaries: Ideal for associative arrays where key-value pair mappings are needed.</li>
-<li>Sets: Useful for storing unique elements and performing set operations.</li>
+<li><strong>Lists</strong> and <strong>Tuples</strong>: Good for ordered collections of items. Lists are mutable, whereas tuples are immutable.</li>
+<li><strong>Dictionaries</strong>: Ideal for associative arrays where key-value pair mappings are needed.</li>
+<li><strong>Sets</strong>: Useful for storing unique elements and performing set operations.</li>
 </ul>
 <h2 id="memory-efficiency-tips"><a class="header" href="#memory-efficiency-tips">Memory Efficiency Tips</a></h2>
 <ul>
 <li>Use tuples instead of lists for fixed-size collections because tuples have a smaller memory overhead.</li>
-<li>Consider using <strong>slots</strong> for classes if you're creating many instances of a class. This can significantly reduce the memory overhead by preventing the creation of a <strong>dict</strong> for each instance, at the cost of flexibility.</li>
+<li>Consider using <code>__slots__</code> for classes if you're creating many instances of a class. This can significantly reduce the memory overhead by preventing the creation of a <code>__dict__</code> for each instance, at the cost of flexibility.</li>
 <li>Be mindful of container size and cleanup. Large collections can consume a lot of memory. Removing references to unneeded objects or using data structures with smaller overheads can help manage memory usage.</li>
 <li>Consider using specialized libraries or data structures for large datasets, such as arrays from the array module for homogeneous data or third-party libraries like NumPy, which can be more memory-efficient for certain tasks.</li>
 </ul>
@@ -220,6 +219,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

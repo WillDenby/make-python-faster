@@ -174,7 +174,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-table-of-contents"><a class="header" href="#-table-of-contents">📖 Table of Contents:</a></h1>
+                        <h1 id="-table-of-contents"><a class="header" href="#-table-of-contents">📖 Table of Contents</a></h1>
+<p>© 2024 Will Denby. All rights reserved.</p>
 <ul>
 <li><a href="./when_to_optimise.html">❓ When to Optimise</a></li>
 <li><a href="./pythons_execution_model.html">🐍 Python's Execution Model</a></li>
@@ -190,29 +191,29 @@
 <li><a href="./final_checklist.html">✅ Final Checklist</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-when-to-optimise-your-code"><a class="header" href="#-when-to-optimise-your-code">❓ When to Optimise your Code</a></h1>
-<p>In most organisations, programmers live under the paradigm: <code>overall team velocity &gt; individual code optimisation</code></p>
-<p>Some of the tips in this book are general best practice (e.g. avoid pointless iterations in your loops); others require more of a time investment. So before considering any implementation of the latter, ask yourself the following three questions;</p>
+<p>In most organisations, programmers live under the following paradigm:</p>
+<blockquote>
+<p>Overall Team Velocity &gt; Individual Code Optimisation</p>
+</blockquote>
+<p>Some things in this book are quick wins/best practice. Other things require more of a time investment. Before considering any implementation of the latter, ask yourself the following questions:</p>
 <ol>
-<li><strong>Does the code achieve its objectives?</strong></li>
-</ol>
-<p>Can you build a prototype to demonstrate proof-of-concept? Is the code useful? Does it do what it's meant to do? If not, figure this bit out first!</p>
-<ol start="2">
+<li><strong>Does the code work?</strong></li>
+<li><strong>Does the code conform to team standards?</strong></li>
 <li><strong>Is the code robust?</strong></li>
+<li><strong>Does it really need optimisation?</strong></li>
 </ol>
-<p>Have you documented what you're doing? Does your code conform to organisational standards? Can other developers easily build on top of it?</p>
-<ol start="3">
-<li><strong>Is it worth further development?</strong></li>
-</ol>
-<p>Is this a mission-critical piece of code? Or is it only being run occasionally? Remember the famous quote from Tony Hoare/Donald Knuth: <code>Premature optimisation is the root of all evil</code></p>
-<p>We code to make the world more efficient. But consult this xkcd graphic if in doubt:</p>
+<p>We code to make the world more efficient, but some problems just aren't worth worrying about. Consult this xkcd graphic if in doubt:</p>
 <p><img src="https://imgs.xkcd.com/comics/is_it_worth_the_time.png" alt="A matrix about time saved vs time invested" /></p>
-<p>Some problems just aren't worth worrying about!</p>
+<p>And remember the now infamous quote from Tony Hoare/Donald Knuth:</p>
+<blockquote>
+<p>Premature optimisation is the root of all evil!</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-pythons-execution-model"><a class="header" href="#-pythons-execution-model">🐍 Python's Execution Model</a></h1>
-<p>Before we dive into how to make our code faster, it's worth recapping how Python works.</p>
-<p>CPython is the default and most widely used implementation of the Python programming language. It is written in C and Python, providing a foundation for executing Python programs. CPython compiles Python code into bytecode, which is then executed by the Python virtual machine. The execution model of CPython involves several key components and processes, including parsing, compilation, and interpretation.</p>
+<p>Let's have a quick look at how Python works, under the hood. We'll touch on several important concepts that will crop up later in the book.</p>
+<p>CPython is the default and most widely used implementation of the Python programming language. It is written in C and Python, and provides a foundation for executing Python programs. CPython compiles Python code into bytecode, which is then executed by its Python virtual machine (PVM). So the execution model of CPython involves several key components and processes, including parsing, compilation, and interpretation.</p>
 <h2 id="parsing"><a class="header" href="#parsing">Parsing</a></h2>
 <p>The Python interpreter first reads your Python code. This stage involves parsing the code into an Abstract Syntax Tree (AST). The AST represents the code's structure in a tree-like form, making it easier for the compiler to understand and manipulate.</p>
-<p>Try running the following code, which uses the ast module to parse a simple function into an AST, illustrating what happens at the beginning of the Python code execution process:</p>
+<p>Try running the following code, which uses the <code>ast</code> module to parse a simple function into an AST, illustrating what happens at the beginning of the Python code execution process:</p>
 <pre><code class="language-python">import ast
 
 code = """
@@ -239,31 +240,24 @@ dis.dis(compiled_code)
 </code></pre>
 <h2 id="python-virtual-machine-pvm"><a class="header" href="#python-virtual-machine-pvm">Python Virtual Machine (PVM)</a></h2>
 <p>The Python virtual machine is the runtime engine of CPython. It executes the bytecode produced during the compilation stage. The PVM is an interpreter for the bytecode, going through the instructions one by one and performing the specified operations.</p>
-<h3 id="in-conclusion"><a class="header" href="#in-conclusion">In Conclusion</a></h3>
+<h3 id="in-summary"><a class="header" href="#in-summary">In Summary</a></h3>
 <p>The execution model of CPython can be summarized as follows:</p>
 <ol>
-<li>Source Code: The Python source code (.py files) is written by the programmer.</li>
-<li>AST: The source code is parsed into an Abstract Syntax Tree, representing the syntactical structure.</li>
-<li>Bytecode Compilation: The AST is compiled into bytecode, a lower-level, platform-independent code.</li>
-<li>PVM Execution: The Python virtual machine executes the bytecode, performing operations as specified.</li>
+<li><strong>Source Code</strong>: The Python source code (<code>.py</code> files) is written by the programmer.</li>
+<li><strong>AST</strong>: The source code is parsed into an Abstract Syntax Tree, representing the syntactical structure.</li>
+<li><strong>Bytecode Compilation</strong>: The AST is compiled into bytecode, a lower-level, platform-independent code.</li>
+<li><strong>PVM Execution</strong>: The Python virtual machine executes the bytecode, performing operations as specified.</li>
 </ol>
 <p>The efficiency and performance of CPython can be affected by factors such as the complexity of the Python code, the use of built-in functions (which are typically optimized C functions), and the interaction with external modules and libraries.</p>
-<p>It's also worth noting that while CPython is the standard and most commonly used Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) and Jython (which runs on the Java platform). Each implementation has its execution model, optimized for different use cases and performance characteristics. We'll see these later on.</p>
+<p>It's also worth noting that while CPython is the standard and most commonly used Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) and Jython (which runs on the Java platform). Each implementation has an execution model, optimized for different use cases and performance characteristics. We'll explore these later on in the <a href="./alternative_python_interpreters.html">Alternative Python Interpreters</a> chapter.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-algorithm-complexity"><a class="header" href="#-algorithm-complexity">🧠 Algorithm Complexity</a></h1>
-<p>We should also briefly recap algorithm complexity.</p>
+<p>We'll occasionally make reference to algorithm complexity in this book - so let's have a quick review of this too.</p>
 <p>Algorithm complexity encompasses both time complexity and space complexity. I.e. it measures the efficiency of an algorithm in terms of the time it takes to run (time complexity) and the amount of memory it consumes (space complexity) as a function of the size of the input data.</p>
-<p>Understanding algorithm complexity is essential for writing efficient code, especially in languages like Python, where execution speed and resource management can be vital considerations in the development of scalable and performant applications.</p>
+<p>Understanding algorithm complexity is essential for writing efficient code, especially in languages like Python, whose interpreted nature means that suboptimal algorithm choice/design can incur significant performance costs.</p>
 <h2 id="time-complexity"><a class="header" href="#time-complexity">Time Complexity</a></h2>
 <p>Time complexity measures how the runtime of an algorithm changes as the size of the input data increases. It's often expressed using Big O notation, which provides an upper bound on the growth rate of the algorithm's runtime, helping to understand its worst-case scenario.</p>
-<p><strong>Constant Time (O(1))</strong>: The execution time remains constant regardless of the input size. For example, accessing any element in an array by index.</p>
-<p><strong>Linear Time (O(n))</strong>: The execution time increases linearly with the size of the input. For example, searching for an element in an unsorted list.</p>
-<pre><code class="language-python">def find_element(lst, key):
-    for item in lst:
-        if item == key:
-            return True
-    return False
-</code></pre>
-<p><strong>Logarithmic Time (O(log n))</strong>: The execution time grows logarithmically with the size of the input. Binary search is a classic example.</p>
+<p><strong>Constant Time - O(1)</strong>: The execution time remains constant regardless of the input size. For example, accessing any element in an array by index.</p>
+<p><strong>Logarithmic Time - O(log n)</strong>: The execution time grows logarithmically with the size of the input. Binary search is a classic example.</p>
 <pre><code class="language-python">def binary_search(arr, low, high, key):
     if high &gt;= low:
         mid = (high + low) // 2
@@ -276,7 +270,14 @@ dis.dis(compiled_code)
     else:
         return -1
 </code></pre>
-<p><strong>Quadratic Time (O(n^2))</strong>: The execution time grows quadratically with the input size. A common example is the bubble sort algorithm.</p>
+<p><strong>Linear Time - O(n)</strong>: The execution time increases linearly with the size of the input. For example, searching for an element in an unsorted list.</p>
+<pre><code class="language-python">def find_element(lst, key):
+    for item in lst:
+        if item == key:
+            return True
+    return False
+</code></pre>
+<p><strong>Quadratic Time - O(n^2)</strong>: The execution time grows quadratically with the input size. A common example is the bubble sort algorithm.</p>
 <pre><code class="language-python">def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -286,23 +287,24 @@ dis.dis(compiled_code)
 </code></pre>
 <h2 id="space-complexity"><a class="header" href="#space-complexity">Space Complexity</a></h2>
 <p>Space complexity measures the total amount of memory that an algorithm needs to run as a function of the size of the input data. Like time complexity, it's often expressed in Big O notation.</p>
-<p><strong>Constant Space (O(1))</strong>: The algorithm requires a fixed amount of memory space regardless of the input size.</p>
-<p><strong>Linear Space (O(n))</strong>: The space required by the algorithm increases linearly with the size of the input data.</p>
+<p><strong>Constant Space - O(1)</strong>: The algorithm requires a fixed amount of memory space regardless of the input size.</p>
+<p><strong>Linear Space - O(n)</strong>: The space required by the algorithm increases linearly with the size of the input data.</p>
 <p>For example, merging two lists requires additional space proportional to the sum of both lists' sizes, making its space complexity O(n).</p>
 <pre><code class="language-python">def merge_lists(lst1, lst2):
     return lst1 + lst2  # Creates a new list with elements of lst1 followed by elements of lst2
 </code></pre>
 <p>Understanding and optimizing the complexity of algorithms can significantly impact the performance of Python applications. Lower complexity often translates to faster execution times and lower resource consumption, which is particularly important in resource-constrained environments or applications that handle large volumes of data.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-profiling-tools"><a class="header" href="#-profiling-tools">🔎 Profiling Tools</a></h1>
-<p>It's tempting to just dive into your code and start refactoring at once! But you might end up spending lots of time eeking out tiny performance gains on parts of your code that are already pretty efficient - and completely missing the real bottlenecks. That's why we start with profiling.</p>
-<p>Figure out <strong>where</strong> the problems are - and <strong>how bad</strong> they are. That way, you can make an evidence-based request for more time from management to spend on improving the code. Here are resources you might want to profile in terms of usage:</p>
+<p>It's tempting to just dive into your code and start refactoring immediately! But you might end up spending lots of time eeking out tiny performance gains on parts of your code that are already pretty efficient - and completely missing the real bottlenecks. That's why we start with profiling.</p>
+<p>Figure out <strong>where</strong> and <strong>how bad</strong> the problems are. Then, you can make an evidence-based request for more time from your manager.</p>
+<p>Here are resources you might want to profile in terms of usage:</p>
 <ul>
 <li>CPU</li>
 <li>Memory</li>
 <li>Network bandwidth</li>
 <li>Disk IO</li>
 </ul>
-<p>Here are some best practices:</p>
+<p>And here are some best practices:</p>
 <ol>
 <li><strong>Isolate the Code You Want to Benchmark</strong> - Make sure that the code you're benchmarking is isolated from setup and teardown operations that you don't intend to measure.</li>
 <li><strong>Choose the Right Tool for the Job</strong> - As we'll see, <code>timeit</code> is great for micro-benchmarks, while <code>cProfile</code> and <code>line_profiler</code> can help with more detailed profiling.</li>
@@ -311,8 +313,8 @@ dis.dis(compiled_code)
 <li><strong>Consider Systematic Variations</strong> - Be aware of external factors that can affect benchmark results, such as other running processes, system load, and hardware differences. Try to minimize these variations when benchmarking.</li>
 <li><strong>Benchmark with Realistic Data</strong> - Test your code with data that closely resembles what you expect in production. The performance can greatly differ based on the type, size, and complexity of the input data.</li>
 </ol>
-<p>One thing to always remember is that profiling can add to the computer workload, and slow things down.</p>
-<p>There are several tools and techniques available for profiling, each with its own strengths and use cases. In the next few pages we'll check out some of the most commonly used profiling tools and methods, along with code examples.</p>
+<p>One thing to always remember is that profiling can add to the computer workload, and hence slow things down artificially.</p>
+<p>There are many tools and techniques available for profiling, each with their own strengths and use cases. In the next few pages we'll check out some of the most commonly used ones, along with code examples.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-timetime"><a class="header" href="#-timetime">🕒 time.time()</a></h1>
 <p>The <code>time.time()</code> function from the Python standard library is a straightforward way to measure the elapsed time during code execution. It returns the current time in seconds since the Epoch (January 1, 1970, 00:00:00 UTC). You can use it to calculate how long a piece of code takes to execute by recording the time before and after the execution and then finding the difference.</p>
 <p><strong>Usage Example:</strong></p>
@@ -329,7 +331,7 @@ print(f"Elapsed time: {elapsed_time} seconds")
 </code></pre>
 <p>This method is very basic and is useful for quick-and-dirty timing without needing to install or use more complex profiling tools.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-timeit"><a class="header" href="#-timeit">⏱️ timeit</a></h1>
-<p><code>timeit</code> is a Python module designed to allow Python developers to time small bits of Python code with a minimal influence from the timing mechanism itself. It provides a more accurate timing mechanism than time.time() for small code snippets by taking into account setup code and running the code multiple times to calculate an average time.</p>
+<p><code>timeit</code> is a Python module designed to allow Python developers to time small bits of Python code with a minimal influence from the timing mechanism itself. It provides a more accurate timing mechanism than time.time() for small code snippets by taking into account setup code and by running the code multiple times to calculate an average time.</p>
 <p><strong>Usage Example:</strong></p>
 <pre><code class="language-python">import timeit
 
@@ -342,11 +344,11 @@ c = a + b
 elapsed_time = timeit.timeit(stmt=code_to_test, number=100000)
 print(f"Elapsed time: {elapsed_time} seconds")
 </code></pre>
-<p>The function runs the code snippet specified by the stmt parameter number times and returns the total time taken.</p>
+<p>The function runs the code snippet specified by the <code>stmt</code> parameter a <code>number</code> of times, and returns the average time taken.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-unixs-time-command"><a class="header" href="#-unixs-time-command">⏲️ Unix's time Command</a></h1>
 <p>The Unix <code>time</code> command is used to measure the time taken by a program to execute, providing a simple way to time the execution duration of command-line programs and scripts. This is not a Python-specific tool but can be used with Python scripts or any other executable program.</p>
 <p><strong>Usage Example:</strong></p>
-<p>To time a Python script named script.py, you would use the time command like so:</p>
+<p>To time a Python script named <code>script.py</code>, you would use the time command like so:</p>
 <pre><code class="language-shell">time python script.py
 </code></pre>
 <p>This will output something similar to:</p>
@@ -361,7 +363,7 @@ sys     0m0.036s
 </ul>
 <p>Using the time command is beneficial for getting a quick overview of the time taken by an entire program or script, including any Python scripts you might be running.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-cprofile"><a class="header" href="#-cprofile">📊 cProfile</a></h1>
-<p>cProfile is a built-in profiler that provides a detailed breakdown of how much time your program spends in each function. It's great for getting an overview of which functions are the most time-consuming.</p>
+<p><code>cProfile</code> is a built-in profiler that provides a detailed breakdown of how much time your program spends in each function. It's great for getting an overview of which functions are the most time-consuming.</p>
 <p><strong>Usage Example:</strong></p>
 <pre><code class="language-python">import cProfile
 import re
@@ -374,14 +376,14 @@ if __name__ == "__main__":
 </code></pre>
 <p>This will output statistics about the time spent in each function, allowing you to identify which parts of your code are the slowest.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-snakeviz"><a class="header" href="#-snakeviz">🐲 Snakeviz</a></h1>
-<p>Snakeviz is a browser-based graphical viewer for the output of Python’s cProfile module.</p>
+<p><code>Snakeviz</code> is a browser-based graphical viewer for the output of Python’s <code>cProfile</code> module.</p>
 <p><strong>Usage Example:</strong></p>
 <p>Install it with: <code>pip install snakeviz</code></p>
-<p>First, generate a profile file using cProfile:</p>
+<p>First, generate a profile file using <code>cProfile</code>:</p>
 <pre><code class="language-python">import cProfile
 cProfile.run('example_function()', 'profile_output')
 </code></pre>
-<p>Then, visualize it with Snakeviz:</p>
+<p>Then, visualize it with <code>Snakeviz</code>:</p>
 <pre><code class="language-shell">snakeviz profile_output
 </code></pre>
 <p>This will open up a browser tab with an interactive visualization of your profiling data.</p>
@@ -419,7 +421,7 @@ if __name__ == '__main__':
 </code></pre>
 <p>This decorates a function to profile its memory usage line by line.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-py-spy"><a class="header" href="#-py-spy">🕵️‍♂️ Py-Spy</a></h1>
-<p>Py-Spy is a sampling profiler for Python programs that can profile running Python processes without modifying them or needing program restarts.</p>
+<p><code>Py-Spy</code> is a sampling profiler for Python programs that can profile running Python processes without modifying them or needing program restarts.</p>
 <p><strong>Usage Example:</strong></p>
 <p>Install it with: <code>pip install py-spy</code></p>
 <p>Run it in your terminal:</p>
@@ -429,19 +431,18 @@ if __name__ == '__main__':
 <pre><code class="language-shell">py-spy record --pid &lt;pid of your python program&gt; --output profile.svg
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-built-in-data-structures"><a class="header" href="#-built-in-data-structures">🏗️ Built-in Data Structures</a></h1>
-<p>Python provides several built-in data structures that are highly versatile and powerful, enabling developers to store and manipulate data efficiently. These data structures include lists, tuples, dictionaries, and sets, each with its unique features and performance characteristics. They are, in general, lower-level and hence faster than custom data structures.</p>
-<p>Choosing the right data structure depends on the specific requirements of your application, including the types of operations you need to perform and their frequency. A rule of thumb to remember throughout is that "generic" structures containing multiple data types will tend to incur greater overhead when being manipulated than those of a single type.</p>
-<p>Before we dive into them, here are some other useful tips:</p>
+<p>Python provides several built-in data structures that are highly versatile, enabling you to store and manipulate data efficiently. These data structures include lists, tuples, dictionaries, and sets, each with their own unique features and performance characteristics. They are, in general, lower-level and hence faster than custom data structures. Choosing the right one depends on the specific requirements of your algorithm, including the types of operations you need to perform and their frequency.</p>
+<p>A rule of thumb to remember is that "generic" structures containing multiple data types will tend to incur greater overhead when being manipulated than those of a single type. Before we dive into them in more detail, here are some other useful tips:</p>
 <h2 id="general-tips"><a class="header" href="#general-tips">General Tips</a></h2>
 <ul>
-<li>Lists and Tuples: Good for ordered collections of items. Lists are mutable, whereas tuples are immutable.</li>
-<li>Dictionaries: Ideal for associative arrays where key-value pair mappings are needed.</li>
-<li>Sets: Useful for storing unique elements and performing set operations.</li>
+<li><strong>Lists</strong> and <strong>Tuples</strong>: Good for ordered collections of items. Lists are mutable, whereas tuples are immutable.</li>
+<li><strong>Dictionaries</strong>: Ideal for associative arrays where key-value pair mappings are needed.</li>
+<li><strong>Sets</strong>: Useful for storing unique elements and performing set operations.</li>
 </ul>
 <h2 id="memory-efficiency-tips"><a class="header" href="#memory-efficiency-tips">Memory Efficiency Tips</a></h2>
 <ul>
 <li>Use tuples instead of lists for fixed-size collections because tuples have a smaller memory overhead.</li>
-<li>Consider using <strong>slots</strong> for classes if you're creating many instances of a class. This can significantly reduce the memory overhead by preventing the creation of a <strong>dict</strong> for each instance, at the cost of flexibility.</li>
+<li>Consider using <code>__slots__</code> for classes if you're creating many instances of a class. This can significantly reduce the memory overhead by preventing the creation of a <code>__dict__</code> for each instance, at the cost of flexibility.</li>
 <li>Be mindful of container size and cleanup. Large collections can consume a lot of memory. Removing references to unneeded objects or using data structures with smaller overheads can help manage memory usage.</li>
 <li>Consider using specialized libraries or data structures for large datasets, such as arrays from the array module for homogeneous data or third-party libraries like NumPy, which can be more memory-efficient for certain tasks.</li>
 </ul>
@@ -512,8 +513,8 @@ print(my_set)    # Output: {1, 3, 4}
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-the-collections-module"><a class="header" href="#-the-collections-module">📦 The Collections Module</a></h1>
 <p>The collections module in Python provides specialized container datatypes that are alternatives to Python's general-purpose built-in containers like dict, list, set, and tuple. These specialized containers are designed to provide additional functionality and can often lead to more efficient and optimized code, both in terms of speed and memory usage. Here's an overview of some of the most useful collections, when to use them, and examples of their usage:</p>
 <h2 id="namedtuple"><a class="header" href="#namedtuple">namedtuple()</a></h2>
-<p>Use case: When you need to access elements by name to make the code more readable and self-documenting.</p>
-<p>Efficiency: Access is as fast as a tuple because namedtuple instances are just as lightweight as regular tuples.</p>
+<p><strong>Use case</strong>: When you need to access elements by name to make the code more readable and self-documenting.</p>
+<p><strong>Efficiency</strong>: Access is as fast as a tuple because namedtuple instances are just as lightweight as regular tuples.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from collections import namedtuple
 
@@ -522,8 +523,8 @@ pt = Point(1, 2)
 print(pt.x, pt.y)  # Output: 1 2
 </code></pre>
 <h2 id="deque"><a class="header" href="#deque">deque</a></h2>
-<p>Use case: When you need to add or pop elements from both ends of a collection efficiently.</p>
-<p>Efficiency: Provides faster appends and pops from the left end but is slower than lists in random access.</p>
+<p><strong>Use case</strong>: When you need to add or pop elements from both ends of a collection efficiently.</p>
+<p><strong>Efficiency</strong>: Provides faster appends and pops from the left end but is slower than lists in random access.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from collections import deque
 
@@ -533,8 +534,8 @@ dq.pop()  # Remove from the right
 print(dq)  # Output: deque([0, 1, 2])
 </code></pre>
 <h2 id="counter"><a class="header" href="#counter">Counter</a></h2>
-<p>Use case: When you need to count the occurrence of items in an iterable.</p>
-<p>Efficiency: Makes counting elements and element-wise operations more efficient than manually using a dictionary.</p>
+<p><strong>Use case</strong>: When you need to count the occurrence of items in an iterable.</p>
+<p><strong>Efficiency</strong>: Makes counting elements and element-wise operations more efficient than manually using a dictionary.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from collections import Counter
 
@@ -542,8 +543,8 @@ cnt = Counter('abracadabra')
 print(cnt)  # Output: Counter({'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1})
 </code></pre>
 <h2 id="ordereddict"><a class="header" href="#ordereddict">OrderedDict</a></h2>
-<p>Use case: Prior to Python 3.7, when you needed to keep the order of keys in a dictionary. From Python 3.7 onwards, the built-in dict maintains insertion order, making OrderedDict less critical.</p>
-<p>Efficiency: Useful in earlier Python versions for ordered operations.</p>
+<p><strong>Use case</strong>: Prior to Python 3.7, when you needed to keep the order of keys in a dictionary. From Python 3.7 onwards, the built-in dict maintains insertion order, making OrderedDict less critical.</p>
+<p><strong>Efficiency</strong>: Useful in earlier Python versions for ordered operations.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from collections import OrderedDict
 
@@ -552,8 +553,8 @@ od['d'] = 4
 print(od)  # Output: OrderedDict([('a', 1), ('b', 2), ('c', 3), ('d', 4)])
 </code></pre>
 <h2 id="defaultdict"><a class="header" href="#defaultdict">defaultdict</a></h2>
-<p>Use case: When you need a dictionary that automatically initializes non-existent keys with a default value.</p>
-<p>Efficiency: Simplifies code by eliminating the need for manual checks and assignments for missing keys.</p>
+<p><strong>Use case</strong>: When you need a dictionary that automatically initializes non-existent keys with a default value.</p>
+<p><strong>Efficiency</strong>: Simplifies code by eliminating the need for manual checks and assignments for missing keys.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from collections import defaultdict
 
@@ -563,8 +564,8 @@ for i in ['a', 'b', 'a']:
 print(dd)  # Output: defaultdict(&lt;class 'list'&gt;, {'a': [1, 1], 'b': [1]})
 </code></pre>
 <h2 id="chainmap"><a class="header" href="#chainmap">ChainMap</a></h2>
-<p>Use case: To combine multiple dictionaries or mappings into a single view.</p>
-<p>Efficiency: Convenient for scoping contexts like variable scopes in programming languages. Avoids merging dictionaries, which can be costly.</p>
+<p><strong>Use case</strong>: To combine multiple dictionaries or mappings into a single view.</p>
+<p><strong>Efficiency</strong>: Convenient for scoping contexts like variable scopes in programming languages. Avoids merging dictionaries, which can be costly.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from collections import ChainMap
 
@@ -576,17 +577,17 @@ print(cm['user'])  # Output: admin
 </code></pre>
 <p>Each of these specialized containers can lead to more elegant, readable, and efficient code by leveraging their unique properties for specific use cases.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-numpy-pandas-and-more"><a class="header" href="#-numpy-pandas-and-more">⚙️ NumPy, Pandas, and More</a></h1>
-<p>Numpy and Pandas are two widely used libraries in Python for data manipulation and analysis. They are Compared to built-in data structures, they offer more efficient storage and data operations, especially when dealing with large datasets or complex numerical computations. Later in this section, we'll also explore related libraries like Dask and Polars, which further extend these capabilities.</p>
+<p><code>Numpy</code> and <code>Pandas</code> are two widely used libraries in Python for data manipulation and analysis. Compared to built-in data structures, they offer more efficient storage and data operations, especially when dealing with large datasets or complex numerical computations. Later in this section, we'll also explore related libraries like Dask and Polars, which further extend these capabilities.</p>
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
 <p>Python's native list structure has a problem with vector operations and matrix manipulations. Lists don't actually hold the data - instead, they hold pointers to the data location. The advantage of this is that the contents of a list can be heterogenous. However, it introduces a fetch/look-up overhead, and if you are doing lots of operations, this adds up.</p>
 <p>What does this look like in hardware terms? In brief, there's a cost in moving data from memory to the CPU. Modern computers can have tiered architectures, with DRAM, SRAM, external caches, and on-chip caches. CPUs can also do things like branch prediction, speculation, overlapped instruction fetching, pipelining, and superscalar execution. If you want to get into the weeds, you can use the Linux perf tool to do some profiling, looking for <code>cache-misses</code> (memory bound) and <code>page-faults</code> (disk/network bound). But we might as well be sensible with how we do things.</p>
 <h3 id="the-array-module"><a class="header" href="#the-array-module">The Array Module?</a></h3>
-<p>Python offers an array module, that overcomes the memory fragementation issue by storing items sequentially. Iterating through an array therefore doesn't require multiple look-ups, as data can be cached (i.e. closer in terms of spatial and temporal locality to the CPU). But then we run into a different issue: Python, as a high-level interpreted language, isn't optimised for vector operations, and isn't good at dealing with the low-level implementation of array.</p>
+<p>Python offers an <code>array</code> module, that overcomes the memory fragementation issue by storing items sequentially. Iterating through an <code>array</code> therefore doesn't require multiple look-ups, as data can be cached (i.e. closer in terms of spatial and temporal locality to the CPU). But then we run into a different issue: Python, as a high-level interpreted language, isn't optimised for vector operations, and isn't good at dealing with the low-level implementation of <code>array</code>.</p>
 <h3 id="enter-numpy"><a class="header" href="#enter-numpy">Enter NumPy</a></h3>
-<p>Numpy is a library for numerical computing in Python. It introduces an array object (ndarray), which is a multidimensional container of items of the same type and size. Here's why you might use Numpy arrays over Python lists:</p>
-<p><strong>Efficiency</strong>: Numpy arrays are stored at one continuous place in memory unlike lists, so processes can access and manipulate them very efficiently. This is particularly beneficial for operations involving large data sets.</p>
-<p><strong>Convenience</strong>: Numpy offers comprehensive mathematical functions that can be applied on arrays without writing loops. This makes code cleaner and faster.</p>
-<p><strong>Functionality</strong>: Numpy supports an extensive range of operations including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation, and much more.</p>
+<p><code>Numpy</code> is a library for numerical computing in Python. It introduces an array object (ndarray), which is a multidimensional container of items of the same type and size. Here's why you might use Numpy arrays over Python lists:</p>
+<p><strong>Efficiency</strong>: <code>Numpy</code> arrays are stored at one continuous place in memory unlike lists, so processes can access and manipulate them very efficiently. This is particularly beneficial for operations involving large data sets.</p>
+<p><strong>Convenience</strong>: <code>Numpy</code> offers comprehensive mathematical functions that can be applied on arrays without writing loops. This makes code cleaner and faster.</p>
+<p><strong>Functionality</strong>: <code>Numpy</code> supports an extensive range of operations including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation, and much more.</p>
 <p><strong>Example: Summing Elements</strong></p>
 <pre><code class="language-python">import numpy as np
 
@@ -598,12 +599,12 @@ print(np.sum(numpy_array))  # Output: 10
 python_list = [1, 2, 3, 4]
 print(sum(python_list))  # Output: 10
 </code></pre>
-<p>The Numpy version is much faster and more efficient, especially with larger arrays.</p>
+<p>The <code>Numpy</code> version is much faster and more efficient, especially with larger arrays.</p>
 <h2 id="pandas"><a class="header" href="#pandas">Pandas</a></h2>
-<p>Pandas is built on top of Numpy and is crucial for data manipulation and analysis. It introduces two new data structures to Python: Series and DataFrame, which are built on Numpy arrays.</p>
-<p><strong>Data Representation</strong>: Pandas provides a fast, flexible, and expressive data structure designed to make working with "relational" or "labeled" data both easy and intuitive.</p>
+<p><code>Pandas</code> is built on top of <code>Numpy</code> and is crucial for data manipulation and analysis. It introduces two new data structures to Python: <code>Series</code> and <code>DataFrame</code>, which are built on <code>Numpy</code> arrays.</p>
+<p><strong>Data Representation</strong>: <code>Pandas</code> provides a fast, flexible, and expressive data structure designed to make working with "relational" or "labeled" data both easy and intuitive.</p>
 <p><strong>Functionality</strong>: It offers powerful, expressive, and flexible data operations for cleaning, transforming, merging, reshaping, aggregation, and selection of data.</p>
-<p><strong>Handling Missing Data</strong>: Pandas is designed to handle missing data using numpy.nan, making it incredibly versatile for data analysis tasks where missing data is a common issue.</p>
+<p><strong>Handling Missing Data</strong>: <code>Pandas</code> is designed to handle missing data using <code>numpy.nan</code>, making it incredibly versatile for data analysis tasks where missing data is a common issue.</p>
 <p><strong>Example: Handling CSV Files</strong></p>
 <pre><code class="language-python">import pandas as pd
 
@@ -614,13 +615,13 @@ print(data.head())  # Displays the first 5 rows of the file
 # The equivalent using built-in Python would require manually parsing the CSV file into lists or dictionaries,
 # handling the header separately, and not having the convenient data manipulation functions that Pandas offers.
 </code></pre>
-<p>Pandas abstracts away much of the complexity of handling tabular data, making it invaluable for data analysis.</p>
-<p>While Python's built-in data structures are incredibly powerful and useful for a wide range of programming tasks, Numpy and Pandas offer specialized features that are better suited for numerical computing and data analysis.</p>
+<p><code>Pandas</code> abstracts away much of the complexity of handling tabular data, making it invaluable for data analysis.</p>
+<p>While Python's built-in data structures are incredibly powerful and useful for a wide range of programming tasks, <code>Numpy</code> and <code>Pandas</code> offer specialized features that are better suited for numerical computing and data analysis.</p>
 <p>Let's explore them further!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-efficient-numerical-computations"><a class="header" href="#-efficient-numerical-computations">⚡ Efficient Numerical Computations</a></h1>
-<p>Here's an overview of how NumPy can be leveraged for efficient numerical computations, along with some code examples.</p>
+<p>Here's an overview of how <code>NumPy</code> can be leveraged for efficient numerical computations, along with some code examples.</p>
 <h2 id="basic-array-operations"><a class="header" href="#basic-array-operations">Basic Array Operations</a></h2>
-<p>NumPy arrays support a wide range of mathematical operations that can be performed efficiently and with concise syntax.</p>
+<p><code>NumPy</code> arrays support a wide range of mathematical operations that can be performed efficiently and with concise syntax.</p>
 <p><strong>Creating Arrays:</strong></p>
 <pre><code class="language-python">import numpy as np
 
@@ -657,9 +658,9 @@ print(x * y)
 print(x / y)
 </code></pre>
 <h2 id="advanced-array-operations"><a class="header" href="#advanced-array-operations">Advanced Array Operations</a></h2>
-<p>NumPy provides advanced functionalities, including broadcasting, vectorized operations, and complex slicing.</p>
+<p><code>NumPy</code> provides advanced functionalities, including broadcasting, vectorized operations, and complex slicing.</p>
 <p><strong>Broadcasting:</strong></p>
-<p>Broadcasting allows NumPy to work with arrays of different shapes during arithmetic operations.</p>
+<p>Broadcasting allows <code>NumPy</code> to work with arrays of different shapes during arithmetic operations.</p>
 <pre><code class="language-python">a = np.array([1, 2, 3])
 b = np.array([[0], [10], [20], [30]])
 
@@ -673,7 +674,7 @@ angles = np.array([0, np.pi/2, np.pi])
 print(np.sin(angles))
 </code></pre>
 <h2 id="linear-algebra"><a class="header" href="#linear-algebra">Linear Algebra</a></h2>
-<p>NumPy provides a set of functions for linear algebra operations, making it simple to perform tasks like matrix multiplication, finding determinants, solving linear systems, and more.</p>
+<p><code>NumPy</code> provides a set of functions for linear algebra operations, making it simple to perform tasks like matrix multiplication, finding determinants, solving linear systems, and more.</p>
 <pre><code class="language-python"># Matrix multiplication
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
@@ -688,7 +689,7 @@ x = np.linalg.solve(A, b)
 print(x)
 </code></pre>
 <h2 id="statistical-functions"><a class="header" href="#statistical-functions">Statistical Functions</a></h2>
-<p>NumPy also includes functions for performing statistical operations on arrays, such as finding the mean, median, standard deviation, etc.</p>
+<p><code>NumPy</code> also includes functions for performing statistical operations on arrays, such as finding the mean, median, standard deviation, etc.</p>
 <pre><code class="language-python">data = np.array([1, 2, 3, 4, 5])
 
 # Mean
@@ -701,21 +702,21 @@ print(np.median(data))
 print(np.std(data))
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-using-numexpr"><a class="header" href="#-using-numexpr">🔢 Using numexpr</a></h1>
-<p>Numexpr is a Python library that provides a way to evaluate numerical expressions on arrays at a faster rate than NumPy can, in some cases. It achieves this speedup by using a faster evaluator that utilizes the capabilities of modern CPUs more efficiently, including their vector units and multiple cores. Numexpr compiles the array expressions you give it into optimized, intermediate code that it then executes more efficiently than NumPy's default methods. This can lead to significant performance improvements, especially on operations that involve large arrays.</p>
+<p><code>Numexpr</code> is a Python library that provides a way to evaluate numerical expressions on arrays at a faster rate than <code>NumPy</code> can, in some cases. It achieves this speedup by using a faster evaluator that utilizes the capabilities of modern CPUs more efficiently, including their vector units and multiple cores. <code>Numexpr</code> compiles the array expressions you give it into optimized, intermediate code that it then executes more efficiently than <code>NumPy</code>'s default methods. This can lead to significant performance improvements, especially on operations that involve large arrays.</p>
 <h2 id="how-numexpr-works"><a class="header" href="#how-numexpr-works">How Numexpr Works</a></h2>
-<p>Numexpr takes a string expression describing a numerical operation and evaluates it much faster than if you were to directly use NumPy for two main reasons:</p>
+<p><code>Numexpr</code> takes a string expression describing a numerical operation and evaluates it much faster than if you were to directly use <code>NumPy</code> for two main reasons:</p>
 <ul>
 <li><strong>Efficient Use of Memory</strong>: It avoids allocating full temporary arrays that result from intermediate calculations in complex expressions. This means it can handle larger arrays and use less memory, which is particularly useful when working with large datasets that don't fit into your computer's RAM.</li>
-<li><strong>Utilization of CPU Features</strong>: Numexpr is designed to make efficient use of CPU features, such as multiple cores and vector operations (SIMD - Single Instruction, Multiple Data). This allows it to perform calculations faster than NumPy, which does not parallelize operations at the level Numexpr does.</li>
+<li><strong>Utilization of CPU Features</strong>: <code>Numexpr</code> is designed to make efficient use of CPU features, such as multiple cores and vector operations (SIMD - Single Instruction, Multiple Data). This allows it to perform calculations faster than <code>NumPy</code>, which does not parallelize operations at the level <code>Numexpr</code> does.</li>
 </ul>
 <p><strong>Why Use Numexpr:</strong></p>
 <ul>
-<li><strong>Performance</strong>: For complex expressions, especially those involving large arrays, Numexpr can significantly outperform NumPy in terms of speed by utilizing CPU features more efficiently and reducing memory usage.</li>
-<li><strong>Handling Large Data</strong>: By minimizing memory consumption through avoiding temporary arrays, Numexpr can work with larger datasets more effectively than NumPy alone.</li>
+<li><strong>Performance</strong>: For complex expressions, especially those involving large arrays, <code>Numexpr</code> can significantly outperform <code>NumPy</code> in terms of speed by utilizing CPU features more efficiently and reducing memory usage.</li>
+<li><strong>Handling Large Data</strong>: By minimizing memory consumption through avoiding temporary arrays, <code>Numexpr</code> can work with larger datasets more effectively than <code>NumPy</code> alone.</li>
 </ul>
 <p><strong>Example Usage</strong></p>
-<p>Let's compare a NumPy operation with its Numexpr counterpart to illustrate the usage and performance difference:</p>
-<p>NumPy:</p>
+<p>Let's compare a <code>NumPy</code> operation with its <code>Numexpr</code> counterpart to illustrate the usage and performance difference:</p>
+<p><code>NumPy</code>:</p>
 <pre><code class="language-python">import numpy as np
 
 a = np.random.rand(1000000)
@@ -724,7 +725,7 @@ b = np.random.rand(1000000)
 # Using NumPy
 c = 2*a + 3*b + 1
 </code></pre>
-<p>Numexpr:</p>
+<p><code>Numexpr</code>:</p>
 <pre><code class="language-python">import numexpr as ne
 import numpy as np
 
@@ -734,11 +735,11 @@ b = np.random.rand(1000000)
 # Using Numexpr
 c = ne.evaluate('2*a + 3*b + 1')
 </code></pre>
-<p>In the example above, both snippets achieve the same result, but numexpr can execute the operation faster on large arrays due to its efficient memory use and parallel computation capabilities.</p>
+<p>In the example above, both snippets achieve the same result, but <code>numexpr</code> can execute the operation faster on large arrays due to its efficient memory use and parallel computation capabilities.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-optimising-data-manipulation"><a class="header" href="#-optimising-data-manipulation">🐼 Optimising Data Manipulation</a></h1>
-<p>Optimizing data manipulation and analysis with Pandas is crucial for handling large datasets efficiently and effectively. Pandas, being one of the most popular libraries in Python for data analysis, provides numerous ways to optimize performance. Below, I'll highlight some key strategies and provide code examples where relevant.</p>
+<p>Optimizing data manipulation and analysis with <code>Pandas</code> is crucial for handling large datasets efficiently and effectively. Pandas, being one of the most popular libraries in Python for data analysis, provides numerous ways to optimize performance. Below, I'll highlight some key strategies and provide code examples where relevant.</p>
 <h2 id="choosing-the-right-data-types"><a class="header" href="#choosing-the-right-data-types">Choosing the Right Data Types</a></h2>
-<p>Pandas automatically assigns data types, but they might not always be the most memory-efficient. By converting columns to more appropriate data types, you can significantly reduce memory usage.</p>
+<p><code>Pandas</code> automatically assigns data types, but they might not always be the most memory-efficient. By converting columns to more appropriate data types, you can significantly reduce memory usage.</p>
 <p><strong>Example: Converting data types</strong></p>
 <pre><code class="language-python">import pandas as pd
 
@@ -758,7 +759,7 @@ for chunk in pd.read_csv('large_file.csv', chunksize=chunk_size):
     pass
 </code></pre>
 <h2 id="avoiding-loops-with-vectorization"><a class="header" href="#avoiding-loops-with-vectorization">Avoiding Loops with Vectorization</a></h2>
-<p>Loops in Python are slow. Pandas operations are optimized to use vectorized operations that are much faster than iterating through rows.</p>
+<p>Loops in Python are slow. <code>Pandas</code> operations are optimized to use vectorized operations that are much faster than iterating through rows.</p>
 <p><strong>Example: Vectorized operations</strong></p>
 <pre><code class="language-python"># Bad: Looping through DataFrame rows
 for index, row in df.iterrows():
@@ -768,7 +769,7 @@ for index, row in df.iterrows():
 df['new_column'] = df['column'] * 2
 </code></pre>
 <h2 id="using-efficient-functions"><a class="header" href="#using-efficient-functions">Using Efficient Functions</a></h2>
-<p>Pandas provides functions that are optimized for performance. For example, apply() is versatile but can be slower than using vectorized operations or specific functions like agg(), transform(), or groupby().</p>
+<p><code>Pandas</code> provides functions that are optimized for performance. For example, <code>apply()</code> is versatile but can be slower than using vectorized operations or specific functions like <code>agg()</code>, <code>transform()</code>, or <code>groupby()</code>.</p>
 <p><strong>Example: Efficient aggregation</strong></p>
 <pre><code class="language-python"># Using `apply()` - Less efficient
 df.groupby('group_column').apply(lambda x: x['column'].sum())
@@ -777,14 +778,14 @@ df.groupby('group_column').apply(lambda x: x['column'].sum())
 df.groupby('group_column')['column'].agg('sum')
 </code></pre>
 <h2 id="filtering-data-early"><a class="header" href="#filtering-data-early">Filtering Data Early</a></h2>
-<p>Filter out unnecessary data as early as possible in your pipeline to reduce the size of your DataFrame and speed up subsequent operations.</p>
+<p>Filter out unnecessary data as early as possible in your pipeline to reduce the size of your <code>DataFrame</code> and speed up subsequent operations.</p>
 <p><strong>Example: Early filtering</strong></p>
 <pre><code class="language-python"># Filter before performing other operations
 df_filtered = df[df['column'] &gt; 100]
 # Now work with df_filtered
 </code></pre>
 <h2 id="using-eval-and-query-for-compound-expressions"><a class="header" href="#using-eval-and-query-for-compound-expressions">Using eval() and query() for Compound Expressions</a></h2>
-<p>For complex operations, eval() and query() can be faster because they operate at a lower level and can avoid intermediate data structures.</p>
+<p>For complex operations, <code>eval()</code> and <code>query()</code> can be faster because they operate at a lower level and can avoid intermediate data structures.</p>
 <p><strong>Example: Using query()</strong></p>
 <pre><code class="language-python">result = df.query('column1 &gt; 200 &amp; column2 &lt; 300')
 </code></pre>
@@ -819,7 +820,7 @@ df = pd.read_parquet('data.parquet')
 <pre><code class="language-python">df['sparse_column'] = pd.arrays.SparseArray(df['sparse_column'])
 </code></pre>
 <h2 id="enhancing-performance-with-swifter"><a class="header" href="#enhancing-performance-with-swifter">Enhancing Performance with Swifter</a></h2>
-<p>For operations that are difficult to vectorize or when you're stuck with apply() for complex functions, consider using the swifter library. It automatically decides whether to use the original .apply() method, to vectorize the operation if possible, or to use parallel processing to speed up the computation.</p>
+<p>For operations that are difficult to vectorize or when you're stuck with <code>apply()</code> for complex functions, consider using the <code>swifter</code> library. It automatically decides whether to use the original <code>.apply()</code> method, to vectorize the operation if possible, or to use parallel processing to speed up the computation.</p>
 <p><strong>Example: Using swifter</strong></p>
 <pre><code class="language-python">import swifter
 
@@ -829,10 +830,10 @@ df['result'] = df['column'].swifter.apply(lambda x: complex_function(x))
 <p>Optimizing data manipulation and analysis in Pandas involves a combination of choosing the right data types, leveraging Pandas' powerful vectorized operations, and avoiding common pitfalls like unnecessary looping. By following these strategies, you can make your data processing pipelines more efficient and scalable.</p>
 <p>You can also use techniques like parallel processing explicitly - we'll cover these later, as they apply more broadly.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-dask-and-polars"><a class="header" href="#-dask-and-polars">🐻‍❄️ Dask and Polars</a></h1>
-<p>These are two libraries designed to address the shortcomings of Pandas.</p>
+<p>These are two libraries designed to address the shortcomings of <code>Pandas</code>.</p>
 <h2 id="dask"><a class="header" href="#dask">Dask</a></h2>
-<p>Dask is a flexible parallel computing library for analytics, enabling you to scale up to clusters or down to your laptop. It's particularly well-suited for working with large datasets that don't fit into memory, as it breaks down complex computations into manageable tasks, which are executed in parallel. Dask provides dynamic task scheduling optimized for computation. It's designed to integrate seamlessly with existing Python libraries like NumPy, Pandas, and Scikit-Learn, allowing you to scale those libraries' functionality across multiple cores or machines.</p>
-<p>Here's a simple example that demonstrates how to use Dask Array to perform a computation that is automatically parallelized:</p>
+<p><code>Dask</code> is a flexible parallel computing library for analytics, enabling you to scale up to clusters or down to your laptop. It's particularly well-suited for working with large datasets that don't fit into memory, as it breaks down complex computations into manageable tasks, which are executed in parallel. Dask provides dynamic task scheduling optimized for computation. It's designed to integrate seamlessly with existing Python libraries like <code>NumPy</code>, <code>Pandas</code>, and <code>Scikit-Learn</code>, allowing you to scale those libraries' functionality across multiple cores or machines.</p>
+<p>Here's a simple example that demonstrates how to use <code>Dask</code> <code>Array</code> to perform a computation that is automatically parallelized:</p>
 <pre><code class="language-python">import dask.array as da
 
 # Create a large random dask array
@@ -844,9 +845,9 @@ mean_result = x.mean().compute()
 print(mean_result)
 </code></pre>
 <h2 id="polars"><a class="header" href="#polars">Polars</a></h2>
-<p>Polars is a fast DataFrames library implemented in Rust, designed for high performance and efficiency. It's capable of handling large datasets with ease and speed, focusing on lazy computations for optimal performance. Polars leverages Rust's memory safety and speed, bringing efficient data processing capabilities to Python. It's especially good for tasks involving large datasets that require high-speed manipulation, filtering, and aggregation.</p>
-<p>Polars operates with both eager and lazy evaluation. The lazy evaluation allows for more optimized computations by building a computation graph and optimizing it before execution, which can lead to significant performance improvements.</p>
-<p>It's largely recreated the Pandas API, for ease-of-transition:</p>
+<p><code>Polars</code> is a fast <code>DataFrame</code> library implemented in Rust, designed for high performance and efficiency. It's capable of handling large datasets with ease and speed, focusing on lazy computations for optimal performance. <code>Polars</code> leverages Rust's memory safety and speed, bringing efficient data processing capabilities to Python. It's especially good for tasks involving large datasets that require high-speed manipulation, filtering, and aggregation.</p>
+<p><code>Polars</code> operates with both eager and lazy evaluation. The lazy evaluation allows for more optimized computations by building a computation graph and optimizing it before execution, which can lead to significant performance improvements.</p>
+<p>It's largely recreated the <code>Pandas</code> API, for ease-of-transition:</p>
 <pre><code class="language-python">import polars as pl
 
 # Read a CSV file into a Polars DataFrame
@@ -873,9 +874,9 @@ print(mean_value)
 <h2 id="implications-for-multi-threaded-applications"><a class="header" href="#implications-for-multi-threaded-applications">Implications for Multi-threaded Applications</a></h2>
 <p>The existence of the GIL has significant implications for developers writing multi-threaded applications in Python:</p>
 <ol>
-<li>Concurrency vs. Parallelism: While the GIL allows for concurrency (multiple threads can be created and managed), it does not allow for true parallelism (multiple threads executing simultaneously) in a single Python process. This means that multi-threaded programs that are CPU-bound may not see a performance improvement; in fact, they might run slower than if they were executed in a single thread due to overhead.</li>
-<li>I/O-bound Applications: For I/O-bound applications (waiting for input/output operations to complete), the GIL has less impact. The GIL is released while waiting for I/O, allowing other threads to run. Therefore, Python's threading module can be an excellent choice for I/O-bound applications.</li>
-<li>Alternative Approaches: To achieve true parallelism, Python developers often use multiprocessing instead of multithreading. The multiprocessing module creates separate Python processes for each task, each with its own Python interpreter and, by extension, its own GIL. This allows tasks to run in parallel on multiple cores.</li>
+<li><strong>Concurrency vs. Parallelism</strong>: While the GIL allows for concurrency (multiple threads can be created and managed), it does not allow for true parallelism (multiple threads executing simultaneously) in a single Python process. This means that multi-threaded programs that are CPU-bound may not see a performance improvement; in fact, they might run slower than if they were executed in a single thread due to overhead.</li>
+<li><strong>I/O-bound Applications</strong>: For I/O-bound applications (waiting for input/output operations to complete), the GIL has less impact. The GIL is released while waiting for I/O, allowing other threads to run. Therefore, Python's threading module can be an excellent choice for I/O-bound applications.</li>
+<li><strong>Alternative Approaches</strong>: To achieve true parallelism, Python developers often use multiprocessing instead of multithreading. The <code>multiprocessing</code> module creates separate Python processes for each task, each with its own Python interpreter and, by extension, its own GIL. This allows tasks to run in parallel on multiple cores.</li>
 </ol>
 <h2 id="some-examples-to-try"><a class="header" href="#some-examples-to-try">Some Examples to Try</a></h2>
 <p><strong>Example 1: Demonstrating the GIL's Impact on CPU-bound Operations</strong></p>
@@ -933,11 +934,11 @@ print(f"Duration with threads: {end_time - start_time} seconds")
 <p>Threading is the practice of running multiple threads (lighter-weight processes) concurrently in a single process. It's particularly useful for I/O-bound tasks, where the program spends a lot of time waiting for external events (e.g., file I/O, network operations).</p>
 <p><strong>When to Use:</strong></p>
 <ul>
-<li>I/O-Bound Processes: When your program spends a significant amount of time waiting for external events.</li>
-<li>UI Applications: To keep the UI responsive while performing background tasks.</li>
+<li><strong>I/O-Bound Processes</strong>: When your program spends a significant amount of time waiting for external events.</li>
+<li><strong>UI Applications</strong>: To keep the UI responsive while performing background tasks.</li>
 </ul>
 <p><strong>How to Use:</strong></p>
-<p>Python provides the threading module to implement threading in your programs. Here's a simple example of using threading to perform a task in the background:</p>
+<p>Python provides the <code>threading</code> module to implement threading in your programs. Here's a simple example of using threading to perform a task in the background:</p>
 <pre><code class="language-python">import threading
 import time
 
@@ -961,11 +962,11 @@ print("Done")
 <p>Multiprocessing involves running multiple processes concurrently, each with its own Python interpreter and memory space. It's ideal for CPU-bound tasks, where the program needs to perform extensive computations.</p>
 <p><strong>When to Use:</strong></p>
 <ul>
-<li>CPU-Bound Processes: When your program requires heavy computation and can be parallelized to take advantage of multiple CPUs.</li>
-<li>Parallel Processing of Data: To perform operations on large datasets concurrently.</li>
+<li><strong>CPU-Bound Processes</strong>: When your program requires heavy computation and can be parallelized to take advantage of multiple CPUs.</li>
+<li><strong>Parallel Processing of Data</strong>: To perform operations on large datasets concurrently.</li>
 </ul>
 <p><strong>How to Use:</strong></p>
-<p>The multiprocessing module in Python allows you to create and manage separate processes. Here's an example of using multiprocessing to perform a computationally heavy task:</p>
+<p>The <code>multiprocessing</code> module in Python allows you to create and manage separate processes. Here's an example of using <code>multiprocessing</code> to perform a computationally heavy task:</p>
 <pre><code class="language-python">from multiprocessing import Process, current_process
 import time
 
@@ -991,9 +992,9 @@ if __name__ == '__main__':
 </code></pre>
 <h2 id="key-differences-and-considerations"><a class="header" href="#key-differences-and-considerations">Key Differences and Considerations</a></h2>
 <ul>
-<li>Global Interpreter Lock (GIL): Python's GIL means that even if you're using multiple threads, only one thread can execute Python bytecode at a time. This limitation doesn't apply to I/O operations but does limit the effectiveness of threads for CPU-bound tasks.</li>
-<li>Memory Usage: Multiprocessing can lead to significant memory overhead, as each process has its own Python interpreter and memory space.</li>
-<li>Overhead: Creating and managing processes is heavier than threads. Therefore, multiprocessing is usually not beneficial for light tasks or tasks that are too quick to execute.</li>
+<li><strong>Global Interpreter Lock (GIL)</strong>: Python's GIL means that even if you're using multiple threads, only one thread can execute Python bytecode at a time. This limitation doesn't apply to I/O operations but does limit the effectiveness of threads for CPU-bound tasks.</li>
+<li><strong>Memory Usage</strong>: Multiprocessing can lead to significant memory overhead, as each process has its own Python interpreter and memory space.</li>
+<li><strong>Overhead</strong>: Creating and managing processes is heavier than threads. Therefore, multiprocessing is usually not beneficial for light tasks or tasks that are too quick to execute.</li>
 </ul>
 <p><strong>Choosing Between Threading and Multiprocessing:</strong></p>
 <ul>
@@ -1002,17 +1003,17 @@ if __name__ == '__main__':
 </ul>
 <p>Both approaches are powerful tools in Python for achieving parallelism and improving program performance, but choosing the right one depends on the nature of your tasks.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-asynchronous-programming"><a class="header" href="#-asynchronous-programming">⏰ Asynchronous Programming</a></h1>
-<p>AsyncIO is a Python library used for writing concurrent code using the async/await syntax. It's designed to handle asynchronous IO tasks, such as network and file I/O, which can significantly improve the performance of your program by making better use of I/O wait times. Here's an overview covering the key concepts, how the event loop works, and some practical applications:</p>
+<p><code>AsyncIO</code> is a Python library used for writing concurrent code using the async/await syntax. It's designed to handle asynchronous IO tasks, such as network and file I/O, which can significantly improve the performance of your program by making better use of I/O wait times. Here's an overview covering the key concepts, how the event loop works, and some practical applications:</p>
 <h2 id="key-concepts"><a class="header" href="#key-concepts">Key Concepts</a></h2>
 <ul>
 <li>
 <p><strong>Asynchronous Programming</strong>: Asynchronous programming allows tasks to run concurrently, improving the performance of applications that perform a lot of I/O operations. It enables the program to start a task and move on to another one before the first one finishes.</p>
 </li>
 <li>
-<p><strong>Coroutines</strong>: Coroutines are special functions that work asynchronously. They are defined with async def and are used to pause and resume execution using the await keyword.</p>
+<p><strong>Coroutines</strong>: Coroutines are special functions that work asynchronously. They are defined with <code>async def</code> and are used to pause and resume execution using the await keyword.</p>
 </li>
 <li>
-<p><strong>Task</strong>: A Task is used to schedule coroutines concurrently. When a coroutine is wrapped into a Task with functions like asyncio.create_task(), it's scheduled to run on the event loop.</p>
+<p><strong>Task</strong>: A Task is used to schedule coroutines concurrently. When a coroutine is wrapped into a Task with functions like <code>asyncio.create_task()</code>, it's scheduled to run on the event loop.</p>
 </li>
 <li>
 <p><strong>Event Loop</strong>: The event loop is the core of every asyncio application. It runs in a loop, executing asynchronous tasks and callbacks. It handles all the switching between tasks, essentially enabling the concurrency in your application.</p>
@@ -1020,13 +1021,13 @@ if __name__ == '__main__':
 </ul>
 <h2 id="event-loop-workflow"><a class="header" href="#event-loop-workflow">Event Loop Workflow</a></h2>
 <ol>
-<li>Start the Event Loop: The event loop is started using asyncio.run() or manually with loop = asyncio.get_event_loop() and loop.run_until_complete().</li>
-<li>Schedule Tasks: Tasks are scheduled to run on the event loop. They can be coroutines or other future-like objects.</li>
-<li>Execute Tasks: The event loop runs the tasks. While a task waits for an I/O operation (like a network operation), the event loop can switch and execute other tasks.</li>
-<li>Close the Event Loop: Once all tasks are completed, the event loop is stopped and closed.</li>
+<li><strong>Start the Event Loop</strong>: The event loop is started using asyncio.run() or manually with loop = asyncio.get_event_loop() and loop.run_until_complete().</li>
+<li><strong>Schedule Tasks</strong>: Tasks are scheduled to run on the event loop. They can be coroutines or other future-like objects.</li>
+<li><strong>Execute Tasks</strong>: The event loop runs the tasks. While a task waits for an I/O operation (like a network operation), the event loop can switch and execute other tasks.</li>
+<li><strong>Close the Event Loop</strong>: Once all tasks are completed, the event loop is stopped and closed.</li>
 </ol>
 <h2 id="practical-applications"><a class="header" href="#practical-applications">Practical Applications</a></h2>
-<p>AsyncIO is ideal for I/O-bound and high-level structured network code. Examples include:</p>
+<p><code>AsyncIO</code> is ideal for I/O-bound and high-level structured network code. Examples include:</p>
 <ul>
 <li>Web scraping</li>
 <li>Web servers and client applications</li>
@@ -1085,12 +1086,12 @@ loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 loop.close()
 </code></pre>
-<p>These examples illustrate the basic usage of AsyncIO for concurrent programming in Python. AsyncIO's power lies in its ability to handle many tasks simultaneously, making it a valuable tool for any I/O-bound application.</p>
+<p>These examples illustrate the basic usage of AsyncIO for concurrent programming in Python. <code>AsyncIO</code>'s power lies in its ability to handle many tasks simultaneously, making it a valuable tool for any I/O-bound application.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-concurrentfutures"><a class="header" href="#-concurrentfutures">🪢 concurrent.futures</a></h1>
-<p>The concurrent.futures module in Python provides a high-level interface for asynchronously executing callables. It simplifies the execution of tasks in parallel, abstracting away many of the lower-level details of thread or process management. The module offers two main executor classes - ThreadPoolExecutor and ProcessPoolExecutor. The former is used for executing tasks in separate threads, making it ideal for I/O-bound tasks. The latter runs each task in a separate process, circumventing the Global Interpreter Lock (GIL) and is more suitable for CPU-bound tasks.</p>
+<p>The <code>concurrent.futures</code> module in Python provides a high-level interface for asynchronously executing callables. It simplifies the execution of tasks in parallel, abstracting away many of the lower-level details of thread or process management. The module offers two main executor classes - <code>ThreadPoolExecutor</code> and <code>ProcessPoolExecutor</code>. The former is used for executing tasks in separate threads, making it ideal for I/O-bound tasks. The latter runs each task in a separate process, circumventing the Global Interpreter Lock (GIL) and is more suitable for CPU-bound tasks.</p>
 <h2 id="basic-usage"><a class="header" href="#basic-usage">Basic Usage</a></h2>
 <p><strong>Submitting Tasks</strong></p>
-<p>Tasks can be submitted for execution using the submit() method, which schedules the callable to be executed and returns a Future object. A Future represents the eventual result of a computation.</p>
+<p>Tasks can be submitted for execution using the <code>submit()</code> method, which schedules the callable to be executed and returns a <code>Future</code> object. A <code>Future</code> represents the eventual result of a computation.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 
 def task(n):
@@ -1102,7 +1103,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
     print(future.result())  # Prints: 25
 </code></pre>
 <p><strong>Using map()</strong></p>
-<p>The map() function is similar to the built-in map, but it executes the function across multiple threads or processes in parallel. It returns an iterator that yields the results of the function calls.</p>
+<p>The <code>map()</code> function is similar to the built-in <code>map</code>, but it executes the function across multiple threads or processes in parallel. It returns an iterator that yields the results of the function calls.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 
 def task(n):
@@ -1115,7 +1116,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
         print(result)  # Prints the squares of the numbers
 </code></pre>
 <h2 id="handling-future-results"><a class="header" href="#handling-future-results">Handling Future Results</a></h2>
-<p>The Future object allows you to check if the task has completed (done()), wait for its completion (result()), and even cancel the task (cancel()). It encapsulates the asynchronous execution of a callable and provides methods to check its status and retrieve its result.</p>
+<p>The <code>Future</code> object allows you to check if the task has completed (done()), wait for its completion (<code>result()</code>), and even cancel the task (<code>cancel()</code>). It encapsulates the asynchronous execution of a callable and provides methods to check its status and retrieve its result.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 import time
 
@@ -1131,7 +1132,7 @@ with ThreadPoolExecutor(max_workers=1) as executor:
     print(future.result())  # "Task completed"
 </code></pre>
 <h2 id="exception-handling"><a class="header" href="#exception-handling">Exception Handling</a></h2>
-<p>When the callable raises an exception, the Future object catches it. The exception will be re-raised when you call result().</p>
+<p>When the callable raises an exception, the <code>Future</code> object catches it. The exception will be re-raised when you call <code>result()</code>.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 
 def task():
@@ -1146,10 +1147,10 @@ with ThreadPoolExecutor(max_workers=1) as executor:
 </code></pre>
 <h2 id="choosing-between-threadpoolexecutor-and-processpoolexecutor"><a class="header" href="#choosing-between-threadpoolexecutor-and-processpoolexecutor">Choosing Between ThreadPoolExecutor and ProcessPoolExecutor</a></h2>
 <ul>
-<li>Use ThreadPoolExecutor for I/O-bound tasks or when executing a large number of small tasks.</li>
-<li>Use ProcessPoolExecutor for CPU-bound tasks to take advantage of multiple CPU cores.</li>
+<li>Use <code>ThreadPoolExecutor</code> for I/O-bound tasks or when executing a large number of small tasks.</li>
+<li>Use <code>ProcessPoolExecutor</code> for CPU-bound tasks to take advantage of multiple CPU cores.</li>
 </ul>
-<p>The concurrent.futures module abstracts the complexity of thread and process management, providing an easy-to-use interface for executing tasks concurrently. This allows you to write more efficient, readable code, especially for I/O-bound or CPU-intensive tasks.</p>
+<p>The <code>concurrent.futures</code> module abstracts the complexity of thread and process management, providing an easy-to-use interface for executing tasks concurrently. This allows you to write more efficient, readable code, especially for I/O-bound or CPU-intensive tasks.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-alternative-python-interpreters"><a class="header" href="#-alternative-python-interpreters">🚀 Alternative Python Interpreters</a></h1>
 <p>The standard Python interpreter (CPython) sometimes faces criticism for performance issues, especially in comparison to compiled languages. This has led to the development of alternative Python interpreters, each aiming to address specific performance bottlenecks or to integrate Python more seamlessly with different environments. Let's check some of them out!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-pypy"><a class="header" href="#-pypy">🏎️ PyPy</a></h1>
@@ -1163,7 +1164,7 @@ with ThreadPoolExecutor(max_workers=1) as executor:
 <li>Stackless Python Support: PyPy supports Stackless Python, an enhanced version of Python aimed at concurrency and micro-threads.</li>
 </ul>
 <p><strong>When to Use:</strong></p>
-<p>PyPy is best suited for long-running applications where the overhead of JIT compilation can be amortized over time. It's particularly beneficial for applications with heavy numerical computations or extensive use of loops (but you may not need it if using NumPy!).</p>
+<p>PyPy is best suited for long-running applications where the overhead of JIT compilation can be amortized over time. It's particularly beneficial for applications with heavy numerical computations or extensive use of loops (but you may not need it if using <code>NumPy</code>!).</p>
 <p><strong>Code Example:</strong></p>
 <p>The usage of PyPy is straightforward because it's a drop-in replacement for CPython. First, download it from <a href="https://www.pypy.org/">https://www.pypy.org/</a></p>
 <p>You can run your Python script using PyPy just by using the <code>pypy</code> command instead of <code>python</code>:</p>
@@ -1227,12 +1228,12 @@ interpreter.exec("print('Hello from Jython')");
 context.eval("python", "print('Hello from GraalPython')");
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-cinder"><a class="header" href="#-cinder">🔥 Cinder</a></h1>
-<p>Cinder is Meta's (formerly Facebook's) performance-oriented fork of CPython 3.8. It incorporates several enhancements aimed at improving the performance of Python code, notably in highly concurrent server environments. Cinder is not a standalone interpreter but has contributed some of its features back to the main Python branch, showcasing its influence on the Python ecosystem.</p>
+<p>Cinder is Meta's performance-oriented fork of CPython 3.8. It incorporates several enhancements aimed at improving the performance of Python code, notably in highly concurrent server environments. Cinder is not a standalone interpreter but has contributed some of its features back to the main Python branch, showcasing its influence on the Python ecosystem.</p>
 <p><strong>Features:</strong></p>
 <ul>
-<li>Static Python: An experimental, opt-in type system that allows for compiling Python to more efficient code, improving performance.</li>
-<li>Strict Modules: Provides a way to declare modules with stricter performance characteristics, allowing Cinder to optimize these modules more aggressively.</li>
-<li>Performance Enhancements: Includes various optimizations for faster execution of Python code, particularly in the context of web and server applications.</li>
+<li><strong>Static Python</strong>: An experimental, opt-in type system that allows for compiling Python to more efficient code, improving performance.</li>
+<li><strong>Strict Modules</strong>: Provides a way to declare modules with stricter performance characteristics, allowing Cinder to optimize these modules more aggressively.</li>
+<li><strong>Performance Enhancements</strong>: Includes various optimizations for faster execution of Python code, particularly in the context of web and server applications.</li>
 </ul>
 <p><strong>When to Use:</strong></p>
 <p>Cinder is tailored for large-scale, performance-sensitive Python applications, especially those running in server environments. It's most beneficial for organizations that can invest in managing a custom Python interpreter to gain execution speed.</p>
@@ -1251,9 +1252,9 @@ def fib(n: int64) -&gt; int64:
 <p>MicroPython is a lean and efficient implementation of Python 3, designed to run on microcontrollers and in constrained environments. Its goal is to be as compatible with standard Python as possible given the hardware limitations, making Python programming accessible for embedded systems development.</p>
 <p><strong>Features:</strong></p>
 <ul>
-<li>Compact: Requires minimal resources, running in as little as 256KB of code space and 16KB of RAM.</li>
-<li>Peripheral Access: Includes libraries to access low-level hardware, such as digital and analog I/O, SPI, I2C, and more.</li>
-<li>Interactive Prompt: Offers a Python command line (REPL) on the device for interactive development and debugging.</li>
+<li><strong>Compact</strong>: Requires minimal resources, running in as little as 256KB of code space and 16KB of RAM.</li>
+<li><strong>Peripheral Access</strong>: Includes libraries to access low-level hardware, such as digital and analog I/O, SPI, I2C, and more.</li>
+<li><strong>Interactive Prompt</strong>: Offers a Python command line (REPL) on the device for interactive development and debugging.</li>
 </ul>
 <p><strong>When to Use:</strong></p>
 <p>MicroPython shines in embedded systems and IoT applications where resources are limited. It's ideal for developers looking to leverage Python's ease of use and readability in hardware projects, from hobbyist level to professional embedded systems.</p>
@@ -1280,7 +1281,7 @@ while True:
 <li>temporary object creation</li>
 </ul>
 <p>We've already seen how PyPy can help. But in this section, we'll be more explicit. This involves delving into the integration of C within Python environments and the compilation of Python code using other Ahead-Of-Time (AOT) and Just-In-Time (JIT) compilation methods. These techniques aim to enhance performance, efficiency, and the potential for Python applications by leveraging the strengths of compiled languages and dynamic compilation strategies.</p>
-<p>Having said this, compiling Python can add complexity, potentially slowing you down from a development perspective. Refer to the earlier section, <a href="./when_to_optimise.html">When to Optimise</a>. Also, if your code is slow because of other factors, such as lots of I/O, network, disk, database, or external library calls, then compiling might not add much. Also, if you've already used some of the libraries previously discussed (NumPy etc.), then you're already probably tapping into under-the-hood optimisations.</p>
+<p>Having said this, compiling Python can add complexity, potentially slowing you down from a development perspective. Refer to the earlier section, <a href="./when_to_optimise.html">When to Optimise</a>. Also, if your code is slow because of other factors, such as lots of I/O, network, disk, database, or external library calls, then compiling might not add much. Also, if you've already used some of the libraries previously discussed (<code>NumPy</code> etc.), then you're already probably tapping into under-the-hood optimisations.</p>
 <h2 id="thinking-in-types"><a class="header" href="#thinking-in-types">Thinking in Types</a></h2>
 <p>Why is Python "slow"? One reason is that it's dynamically-typed and interpreted. The virtual machine incurs overhead, because it has to be prepared for the datatypes to potentially change. It also has to wrap up low-level types with higher-level functions like hashing and printing. This is why compilation can help for code that has lots of loops making lots of calls.</p>
 <p>In order to take advantage of compilation, you need to be more careful with specifying your datatypes (ints, floats, strings), so that you can remove the need for the flexibility of the interpreter.</p>
@@ -1324,7 +1325,7 @@ PyMODINIT_FUNC PyInit_fastadd(void) {
 }
 </code></pre>
 <h2 id="compiling-the-extension"><a class="header" href="#compiling-the-extension">Compiling the Extension</a></h2>
-<p>To compile the extension, you'll need to create a setup.py file for your module. This file uses setuptools to compile your C code into a Python extension module.</p>
+<p>To compile the extension, you'll need to create a <code>setup.py</code> file for your module. This file uses <code>setuptools</code> to compile your C code into a Python extension module.</p>
 <pre><code class="language-python">from setuptools import setup, Extension
 
 module1 = Extension('fastadd',
@@ -1335,7 +1336,7 @@ setup(name = 'FastAddPackage',
       description = 'This is a demo package for adding two numbers.',
       ext_modules = [module1])
 </code></pre>
-<p>After creating the setup.py file, you can build the module by running the following command in your terminal:</p>
+<p>After creating the <code>setup.py</code> file, you can build the module by running the following command in your terminal:</p>
 <pre><code class="language-shell">python setup.py build_ext --inplace
 </code></pre>
 <h2 id="using-the-extension-in-python"><a class="header" href="#using-the-extension-in-python">Using the Extension in Python</a></h2>
@@ -1363,7 +1364,7 @@ print(result)  # Output: 15
         total += i ** 2
     return total
 </code></pre>
-<p>To optimize this with Cython, you'd create a .pyx file, say example_cy.pyx, and type the variables for C-level performance:</p>
+<p>To optimize this with Cython, you'd create a <code>.pyx</code> file, say <code>example_cy.pyx</code>, and type the variables for C-level performance:</p>
 <pre><code class="language-cython">def sum_of_squares(int n):
     cdef int total = 0
     cdef int i
@@ -1372,7 +1373,7 @@ print(result)  # Output: 15
     return total
 </code></pre>
 <h2 id="compilation-1"><a class="header" href="#compilation-1">Compilation</a></h2>
-<p>To compile the Cython code, you need a setup script, setup.py, containing:</p>
+<p>To compile the Cython code, you need a setup script, <code>setup.py</code>, containing:</p>
 <pre><code class="language-python">from distutils.core import setup
 from Cython.Build import cythonize
 
@@ -1381,9 +1382,9 @@ setup(ext_modules = cythonize("example_cy.pyx"))
 <p>Run the compilation process with:</p>
 <pre><code class="language-shell">python setup.py build_ext --inplace
 </code></pre>
-<p>This generates a shared object file (.so or .pyd, depending on the OS) that you can import in Python.</p>
+<p>This generates a shared object file (<code>.so</code> or <code>.pyd</code>, depending on the OS) that you can import in Python.</p>
 <h2 id="using-cython-in-jupyter-notebooks"><a class="header" href="#using-cython-in-jupyter-notebooks">Using Cython in Jupyter Notebooks</a></h2>
-<p>For quick experiments, Cython can be used directly in Jupyter notebooks with the %load_ext Cython magic command. Here’s how you can use it:</p>
+<p>For quick experiments, Cython can be used directly in Jupyter notebooks with the <code>%load_ext Cython</code> magic command. Here’s how you can use it:</p>
 <pre><code class="language-python">%load_ext Cython
 
 %%cython
@@ -1395,7 +1396,7 @@ def sum_of_squares(int n):
     return total
 </code></pre>
 <h2 id="profiling-and-annotating"><a class="header" href="#profiling-and-annotating">Profiling and Annotating</a></h2>
-<p>Cython can generate an HTML file showing which lines of code are converted to pure C and which ones invoke the Python C-API (potentially slowing down execution). Compile with the -a option in your setup script or use the %%cython -a magic command in Jupyter notebooks to generate this annotation. Lines highlighted in yellow indicate Python interactions, urging a closer look for potential optimization.</p>
+<p>Cython can generate an HTML file showing which lines of code are converted to pure C and which ones invoke the Python C-API (potentially slowing down execution). Compile with the -a option in your setup script or use the <code>%%cython -a</code> magic command in Jupyter notebooks to generate this annotation. Lines highlighted in yellow indicate Python interactions, urging a closer look for potential optimization.</p>
 <h2 id="tips-for-optimization"><a class="header" href="#tips-for-optimization">Tips for Optimization</a></h2>
 <ul>
 <li><strong>Typing Variables</strong>: Use cdef to declare C static types for variables.</li>
@@ -1405,7 +1406,7 @@ def sum_of_squares(int n):
 </ul>
 <p>Cython is a vast topic, and these examples just scratch the surface. For deeper computational tasks, integrating with C libraries, or further optimizations, the Cython documentation is an excellent resource.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-just-in-time-with-numba"><a class="header" href="#-just-in-time-with-numba">⚡ Just-in-Time with Numba</a></h1>
-<p>Just-In-Time (JIT) compilation is a way to enhance the performance of Python, especially with libraries such as NumPy, by dynamically compiling Python bytecode into machine code at runtime. This process is particularly beneficial for numerical computations where execution speed is critical. The JIT compiler translates Python code into a form that can be executed more quickly, bypassing some of the overhead that comes with Python's dynamic nature.</p>
+<p>Just-In-Time (JIT) compilation is a way to enhance the performance of Python, especially with libraries such as <code>NumPy</code>, by dynamically compiling Python bytecode into machine code at runtime. This process is particularly beneficial for numerical computations where execution speed is critical. The JIT compiler translates Python code into a form that can be executed more quickly, bypassing some of the overhead that comes with Python's dynamic nature.</p>
 <p>One of the most popular JIT compilers for Python is Numba. Numba allows Python functions to be decorated with a special marker that indicates they should be JIT compiled. When a decorated function is called, Numba compiles it to machine code "just in time" for execution. This compiled code is directly executed by the CPU, leading to significant performance improvements for computational tasks.</p>
 <p>Numba is particularly effective for functions that perform operations on NumPy arrays or for loops that can't be easily vectorized.</p>
 <h2 id="using-numba-for-jit-compilation"><a class="header" href="#using-numba-for-jit-compilation">Using Numba for JIT Compilation</a></h2>
@@ -1444,7 +1445,7 @@ start_time = time()
 sum_array_numba(arr)
 print("Numba JIT:", time() - start_time, "seconds")
 </code></pre>
-<p>In this example, @jit(nopython=True) is used to ensure that the function runs in "nopython mode," which avoids the use of Python objects and functions, leading to faster execution. The performance gain with JIT compilation can be significant, especially for larger datasets or more complex numerical computations.</p>
+<p>In this example, <code>@jit(nopython=True)</code> is used to ensure that the function runs in "nopython mode," which avoids the use of Python objects and functions, leading to faster execution. The performance gain with JIT compilation can be significant, especially for larger datasets or more complex numerical computations.</p>
 <h2 id="advantages-of-jit-compilation"><a class="header" href="#advantages-of-jit-compilation">Advantages of JIT Compilation</a></h2>
 <ul>
 <li><strong>Performance</strong>: JIT compilation can significantly speed up the execution time of Python code, especially for numerical and array operations.</li>
@@ -1474,7 +1475,7 @@ t = libc.time(None)
 print(f"The current time is {t} seconds since the Epoch.")
 </code></pre>
 <h2 id="cffi"><a class="header" href="#cffi">cffi</a></h2>
-<p><code>cffi</code> (C Foreign Function Interface) is another library for calling C code from Python. Compared to ctypes, cffi provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.</p>
+<p><code>cffi</code> (C Foreign Function Interface) is another library for calling C code from Python. Compared to <code>ctypes</code>, <code>cffi</code> provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.</p>
 <p>Below is an example of using <code>cffi</code> to achieve the same functionality as the <code>ctypes</code> example, calling the time function from the C library.</p>
 <p>First, you need to install cffi: <code>pip install cffi</code></p>
 <p>Then, you can use <code>cffi</code> like this:</p>
@@ -1493,7 +1494,7 @@ print(f"The current time is {C.time(t)} seconds since the Epoch.")
 <p>Both <code>ctypes</code> and <code>cffi</code> are powerful tools for integrating C libraries with Python, each with its own strengths. The choice between them depends on the specific requirements of the project, such as the complexity of the C code being interfaced and the performance requirements.</p>
 <h2 id="what-about-fortran"><a class="header" href="#what-about-fortran">What About Fortran?</a></h2>
 <p>If you have some legacy scientific code, the most common way to bridge Python and Fortran is through the use of <code>f2py</code> and <code>numpy</code>'s Fortran integration facilities.</p>
-<p><code>f2py</code> is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. f2py generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.</p>
+<p><code>f2py</code> is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. <code>f2py</code> generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.</p>
 <p>Suppose you have a simple Fortran subroutine that calculates the sum of two arrays:</p>
 <pre><code class="language-fortran">subroutine add_arrays(a, b, c, n)
     integer, intent(in) :: n
@@ -1505,10 +1506,10 @@ print(f"The current time is {C.time(t)} seconds since the Epoch.")
     end do
 end subroutine add_arrays
 </code></pre>
-<p>You can compile this Fortran code into a Python module using f2py:</p>
+<p>You can compile this Fortran code into a Python module using <code>f2py</code>:</p>
 <pre><code class="language-shell">f2py -c -m addarrays addarrays.f90
 </code></pre>
-<p>This command creates a Python module named addarrays. You can then import this module in Python and call the add_arrays function:</p>
+<p>This command creates a Python module named <code>addarrays</code>. You can then import this module in Python and call the <code>add_arrays</code> function:</p>
 <pre><code class="language-python">import addarrays
 import numpy as np
 
@@ -1544,7 +1545,7 @@ del b
 # Reference count back to 1
 print(sys.getrefcount(a) - 1)
 </code></pre>
-<p>In this example, we create a list a, and the reference count increases as we create more references to it (e.g., b = a). When a reference is removed (e.g., del b), the reference count decreases. The sys.getrefcount() function returns the current reference count for the object.</p>
+<p>In this example, we create a list a, and the reference count increases as we create more references to it (e.g., <code>b = a</code>). When a reference is removed (e.g., <code>del b</code>), the reference count decreases. The <code>sys.getrefcount()</code> function returns the current reference count for the object.</p>
 <h2 id="garbage-collection"><a class="header" href="#garbage-collection">Garbage Collection</a></h2>
 <p>While reference counting handles most memory management, it can't deal with reference cycles directly (where two or more objects reference each other, creating a loop). To solve this, Python has a garbage collector that can detect these cycles and collect objects that are unreachable.</p>
 <p>Python's garbage collection is based on the "generation" concept, where objects are classified into three generations depending on how many collection sweeps they have survived. New objects are placed in the first generation. Objects that survive the garbage collection process are moved into the next generation. Older generations are collected less frequently, making the garbage collection process efficient.</p>
@@ -1569,38 +1570,38 @@ del b
 # Force a garbage collection to clean up the cycle
 gc.collect()  # This triggers the deletion of both MyClass instances
 </code></pre>
-<p>In this example, a and b reference each other, creating a cycle. Deleting the variables a and b doesn't actually free the memory because of the cycle. Calling gc.collect() forces the garbage collector to run, detecting and cleaning up the cycle, which leads to the deletion of MyClass instances.</p>
+<p>In this example, <code>a</code> and <code>b</code> reference each other, creating a cycle. Deleting the variables <code>a</code> and <code>b</code> doesn't actually free the memory because of the cycle. Calling <code>gc.collect()</code> forces the garbage collector to run, detecting and cleaning up the cycle, which leads to the deletion of <code>MyClass</code> instances.</p>
 <p>Python’s memory management uses reference counting for immediate deallocation of objects when they are no longer needed, complemented by a garbage collector to handle reference cycles. This dual approach helps automate memory management, but understanding it can be beneficial for optimizing your Python programs, especially for long-running or memory-intensive applications.</p>
 <h2 id="potential-issues"><a class="header" href="#potential-issues">Potential Issues</a></h2>
 <p><strong>Overhead of Reference Counting</strong></p>
 <ul>
-<li>Increment/Decrement Operations: Each time an object is referenced or dereferenced, Python performs increment and decrement operations on the reference count. In performance-critical sections of code, this can introduce a non-negligible overhead.</li>
-<li>Delayed Deallocation: Reference counting immediately deallocates memory once an object's reference count drops to zero. While generally efficient, this process can cause unpredictable delays in a program's execution, especially if the object being destroyed has a complex <strong>del</strong>() method.</li>
+<li><strong>Increment/Decrement Operations</strong>: Each time an object is referenced or dereferenced, Python performs increment and decrement operations on the reference count. In performance-critical sections of code, this can introduce a non-negligible overhead.</li>
+<li><strong>Delayed Deallocation</strong>: Reference counting immediately deallocates memory once an object's reference count drops to zero. While generally efficient, this process can cause unpredictable delays in a program's execution, especially if the object being destroyed has a complex <code>__del__()</code> method.</li>
 </ul>
 <p><strong>Garbage Collection Pauses</strong></p>
 <ul>
-<li>Stop-the-world: The garbage collection process can introduce latency, as it may pause the execution of a program to inspect and collect unreachable objects. This is particularly problematic in real-time systems where consistent performance is critical.</li>
-<li>Unpredictable Execution Timing: Garbage collection runs at intervals that may not be predictable. This can lead to sporadic performance degradation, especially in long-running applications where accumulated garbage suddenly triggers a collection.</li>
+<li><strong>Stop-the-world</strong>: The garbage collection process can introduce latency, as it may pause the execution of a program to inspect and collect unreachable objects. This is particularly problematic in real-time systems where consistent performance is critical.</li>
+<li><strong>Unpredictable Execution Timing</strong>: Garbage collection runs at intervals that may not be predictable. This can lead to sporadic performance degradation, especially in long-running applications where accumulated garbage suddenly triggers a collection.</li>
 </ul>
 <p><strong>Memory Fragmentation</strong></p>
 <ul>
-<li>Dynamic Allocation: Python's dynamic nature means objects are frequently allocated and deallocated. This can lead to memory fragmentation, where free memory is split into small, non-contiguous blocks, making it difficult to allocate large objects and potentially leading to inefficient use of memory.</li>
+<li><strong>Dynamic Allocation</strong>: Python's dynamic nature means objects are frequently allocated and deallocated. This can lead to memory fragmentation, where free memory is split into small, non-contiguous blocks, making it difficult to allocate large objects and potentially leading to inefficient use of memory.</li>
 </ul>
 <p><strong>Reference Cycles</strong></p>
 <ul>
-<li>Leaked Memory: While Python's garbage collector can detect objects in a reference cycle that are no longer reachable, the presence of reference cycles can still lead to memory leaks if the collector doesn't run frequently or if objects modify their <strong>del</strong> methods in ways that prevent garbage collection.</li>
+<li><strong>Leaked Memory</strong>: While Python's garbage collector can detect objects in a reference cycle that are no longer reachable, the presence of reference cycles can still lead to memory leaks if the collector doesn't run frequently or if objects modify their <code>__del__</code> methods in ways that prevent garbage collection.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-reducing-footprint-and-avoiding-leaks"><a class="header" href="#-reducing-footprint-and-avoiding-leaks">♻️ Reducing Footprint and Avoiding Leaks</a></h1>
 <p>Reducing the memory footprint and avoiding memory leaks in Python are crucial for optimizing the performance and scalability of applications, especially when dealing with large datasets or running on limited-resource environments. Python, being a high-level language, abstracts away many memory management details, but there are still best practices and techniques you can apply to manage memory usage effectively.</p>
 <h2 id="efficient-data-types"><a class="header" href="#efficient-data-types">Efficient Data Types</a></h2>
-<p>Choosing the right data types can significantly reduce memory usage. For instance, using array.array for large arrays of numbers instead of lists, or <strong>slots</strong> to limit the attributes in a class.</p>
-<p><strong>Example with array.array:</strong></p>
+<p>Choosing the right data types can significantly reduce memory usage. For instance, using<code> array.array</code> for large arrays of numbers instead of lists, or <code>__slots__</code> to limit the attributes in a class.</p>
+<p><strong>Example with <code>array.array</code>:</strong></p>
 <pre><code class="language-python">import array
 
 # For a large array of integers
 int_array = array.array('i', range(1000000))
 </code></pre>
-<p><strong>Example with <strong>slots</strong>:</strong></p>
+<p><strong>Example with <code>__slots__</code>:</strong></p>
 <pre><code class="language-python">class SlotsBased:
     __slots__ = ['name', 'age']
 
@@ -1634,7 +1635,7 @@ for row in large_file_reader("large_file.txt"):
 </code></pre>
 <h2 id="weak-references"><a class="header" href="#weak-references">Weak References</a></h2>
 <p>Weak references allow the Python garbage collector to collect an object even if it has references, as long as they are weak. This is useful for caching or mapping large objects that you don't want to keep in memory indefinitely.</p>
-<p><strong>Example with weakref:</strong></p>
+<p><strong>Example with <code>weakref</code>:</strong></p>
 <pre><code class="language-python">import weakref
 
 class BigObject:
@@ -1646,8 +1647,8 @@ obj_weakref = weakref.ref(obj)
 # obj can be garbage collected even if obj_weakref exists
 </code></pre>
 <h2 id="monitoring-and-profiling-memory-usage"><a class="header" href="#monitoring-and-profiling-memory-usage">Monitoring and Profiling Memory Usage</a></h2>
-<p>Identifying and diagnosing memory issues requires monitoring and profiling. Tools like memory_profiler and objgraph can help identify memory leaks and high memory usage.</p>
-<p><strong>Example with memory_profiler:</strong></p>
+<p>Identifying and diagnosing memory issues requires monitoring and profiling. Tools like <code>memory_profiler</code> and <code>objgraph</code> can help identify memory leaks and high memory usage.</p>
+<p><strong>Example with <code>memory_profiler</code>:</strong></p>
 <pre><code class="language-python"># You need to install memory_profiler first (`pip install memory_profiler`)
 from memory_profiler import profile
 
@@ -1679,7 +1680,7 @@ for obj in gc.garbage:
 <p>Caching in Python is a technique used to store data in a temporary storage area (cache) so that future requests for that data can be served faster. This is particularly useful in situations where data retrieval or computation is resource-intensive. Python provides various strategies and tools for caching, which can be applied depending on the specific requirements of your application.</p>
 <h2 id="lru-least-recently-used-cache"><a class="header" href="#lru-least-recently-used-cache">LRU (Least Recently Used) Cache</a></h2>
 <p>The LRU caching strategy removes the least recently used items first. This is useful in applications where you want to cache a limited number of items and the likelihood of accessing recently used items is high.</p>
-<p>Python's functools module provides an @lru_cache decorator to implement LRU caching easily. It can be applied to any function whose output you want to cache.</p>
+<p>Python's functools module provides an <code>@lru_cache</code> decorator to implement LRU caching easily. It can be applied to any function whose output you want to cache.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from functools import lru_cache
 
@@ -1688,9 +1689,21 @@ def expensive_function(param):
     # Simulate an expensive operation
     return some_expensive_computation(param)
 </code></pre>
+<h2 id="memoization"><a class="header" href="#memoization">Memoization</a></h2>
+<p>Memoization is a specific form of caching that involves storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization is a form of LRU caching but is specifically applied to function calls.</p>
+<p>Python's functools module <code>@lru_cache</code> can also be used for memoization.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=None)  # No limit on cache size
+def fibonacci(n):
+    if n &lt; 2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+</code></pre>
 <h2 id="ttl-time-to-live-cache"><a class="header" href="#ttl-time-to-live-cache">TTL (Time To Live) Cache</a></h2>
 <p>TTL caching invalidates cache entries after a set period. This strategy is suitable when the data changes over time or if you want to ensure that data doesn't become stale.</p>
-<p>The cachetools library offers TTL caching capabilities.</p>
+<p>The <code>cachetools</code> library offers TTL caching capabilities.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from cachetools import TTLCache
 from cachetools.decorators import cached
@@ -1701,22 +1714,9 @@ ttl_cache = TTLCache(maxsize=100, ttl=300) # Cache up to 100 items, each for 300
 def get_data(key):
     # Fetch data that changes over time
     return fetch_some_data(key)
-
-## Memoization
-</code></pre>
-<p>Memoization is a specific form of caching that involves storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization is a form of LRU caching but is specifically applied to function calls.</p>
-<p>Python's functools module @lru_cache can also be used for memoization.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-python">from functools import lru_cache
-
-@lru_cache(maxsize=None)  # No limit on cache size
-def fibonacci(n):
-    if n &lt; 2:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
 </code></pre>
 <h2 id="disk-based-caching"><a class="header" href="#disk-based-caching">Disk-based Caching</a></h2>
-<p>When dealing with large amounts of data or needing to persist cache across program restarts, disk-based caching can be used. Libraries such as joblib provide mechanisms for storing cache data on disk.</p>
+<p>When dealing with large amounts of data or needing to persist cache across program restarts, disk-based caching can be used. Libraries such as <code>joblib</code> provide mechanisms for storing cache data on disk.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from joblib import Memory
 memory = Memory("./cachedir", verbose=0)
@@ -1735,12 +1735,12 @@ def expensive_function(param):
 </ul>
 <p>Implementing caching can significantly improve the performance of Python applications by reducing the need to recompute results or re-fetch data. However, it's important to choose the right caching strategy based on the application's requirements and the nature of the data being cached.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-performant-web-applications"><a class="header" href="#-performant-web-applications">🌐 Performant Web Applications</a></h1>
-<p>Optimizing Django, Flask, and FastAPI applications for better performance involves a multifaceted approach, including optimizing database queries, caching, asynchronous processing, and more. Here's a concise overview of optimization strategies for each framework, along with relevant code examples where applicable.</p>
+<p>Optimizing <code>Django</code>, <code>Flask</code>, and <code>FastAPI</code> applications for better performance involves a multifaceted approach, including optimizing database queries, caching, asynchronous processing, and more. Here's a concise overview of optimization strategies for each framework, along with relevant code examples where applicable.</p>
 <h2 id="django-optimization"><a class="header" href="#django-optimization">Django Optimization</a></h2>
 <p><strong>Database Queries Optimization and Indexing:</strong></p>
 <ul>
-<li>Use select_related() for forward ForeignKey relationships to reduce the number of database queries.</li>
-<li>Use prefetch_related() for many-to-many and reverse ForeignKey relationships.</li>
+<li>Use <code>select_related()</code> for forward <code>ForeignKey</code> relationships to reduce the number of database queries.</li>
+<li>Use <code>prefetch_related()</code> for many-to-many and reverse <code>ForeignKey</code> relationships.</li>
 </ul>
 <pre><code class="language-python"># Without optimization
 books = Book.objects.all()
@@ -1760,7 +1760,7 @@ for book in books:
 </code></pre>
 <p><strong>Caching:</strong></p>
 <ul>
-<li>Use Django’s cache framework to cache views, querysets, or template fragments.</li>
+<li>Use <code>Django</code>’s cache framework to cache views, querysets, or template fragments.</li>
 </ul>
 <pre><code class="language-python">from django.core.cache import cache
 
@@ -1773,7 +1773,7 @@ def my_view(request):
         return result
 </code></pre>
 <ul>
-<li>Use template fragment caching: Cache parts of templates that are expensive to render.</li>
+<li>Use template fragment caching - cache parts of templates that are expensive to render.</li>
 </ul>
 <pre><code class="language-python">{% load cache %}
 {% cache 600 sidebar %}
@@ -1783,14 +1783,14 @@ def my_view(request):
 <p><strong>Middleware, Query, and Static File Optimization:</strong></p>
 <ul>
 <li>Reduce middleware classes that are not necessary for your project.</li>
-<li>Use Django Debug Toolbar to identify and optimize slow queries.</li>
-<li>Use GZipMiddleware: Compresses responses for browsers that support gzip.</li>
-<li>Serve static files efficiently: Use WhiteNoise or a similar tool to serve static files directly from WSGI and apply cache control headers.</li>
+<li>Use <code>Django Debug Toolbar</code> to identify and optimize slow queries.</li>
+<li>Use <code>GZipMiddleware</code>: Compresses responses for browsers that support gzip.</li>
+<li>Serve static files efficiently: Use <code>WhiteNoise</code> or a similar tool to serve static files directly from WSGI and apply cache control headers.</li>
 </ul>
 <h2 id="flask-optimization"><a class="header" href="#flask-optimization">Flask Optimization</a></h2>
 <p><strong>Database Queries Optimization:</strong></p>
 <ul>
-<li>Use SQLAlchemy or another ORM and apply similar strategies as Django for query optimization.</li>
+<li>Use <code>SQLAlchemy</code> or another ORM and apply similar strategies as <code>Django</code> for query optimization.</li>
 <li>Optimize queries by joining tables only when necessary and filtering queries as much as possible.</li>
 </ul>
 <pre><code class="language-python">from myapp import db
@@ -1800,7 +1800,7 @@ posts = Post.query.join(User).filter(Post.user_id == User.id).all()
 </code></pre>
 <p><strong>Caching:</strong></p>
 <ul>
-<li>Use Flask-Caching to cache views or data.</li>
+<li>Use <code>Flask-Caching</code> to cache views or data.</li>
 </ul>
 <pre><code class="language-python">from flask_caching import Cache
 
@@ -1815,7 +1815,7 @@ def index():
 </code></pre>
 <p><strong>Asynchronous Views:</strong></p>
 <ul>
-<li>Use Flask’s support for async views to handle I/O-bound operations efficiently.</li>
+<li>Use <code>Flask</code>’s support for async views to handle I/O-bound operations efficiently.</li>
 </ul>
 <pre><code class="language-python">@app.route('/async')
 async def async_view():
@@ -1824,16 +1824,16 @@ async def async_view():
 </code></pre>
 <p><strong>Profiling and Monitoring</strong></p>
 <ul>
-<li>Use Flask extensions like Flask-DebugToolbar to monitor performance bottlenecks.</li>
+<li>Use <code>Flask</code> extensions like <code>Flask-DebugToolbar</code> to monitor performance bottlenecks.</li>
 </ul>
 <p><strong>Use Efficient WSGI Servers</strong></p>
 <ul>
-<li>Deploy Flask applications using efficient WSGI servers like Gunicorn or uWSGI instead of the built-in Flask server for production environments.</li>
+<li>Deploy <code>Flask</code> applications using efficient WSGI servers like <code>Gunicorn</code> or <code>uWSGI</code> instead of the built-in <code>Flask</code> server for production environments.</li>
 </ul>
 <h2 id="fastapi-optimization"><a class="header" href="#fastapi-optimization">FastAPI Optimization</a></h2>
 <p><strong>Asynchronous and Concurrent Handling:</strong></p>
 <ul>
-<li>FastAPI is built to be asynchronous. Use async and await for I/O-bound operations, including database operations.</li>
+<li><code>FastAPI</code> is built to be asynchronous. Use async and await for I/O-bound operations, including database operations.</li>
 </ul>
 <pre><code class="language-python">from fastapi import FastAPI
 import httpx
@@ -1848,24 +1848,24 @@ async def read_async():
 </code></pre>
 <p><strong>Database Queries Optimization:</strong></p>
 <ul>
-<li>Use databases like Tortoise ORM or SQLAlchemy with async support to optimize database interactions.</li>
-<li>Implement strategies similar to Django for prefetching and selecting related data asynchronously.</li>
+<li>Use databases like <code>Tortoise ORM</code> or <code>SQLAlchemy</code> with async support to optimize database interactions.</li>
+<li>Implement strategies similar to <code>Django</code> for prefetching and selecting related data asynchronously.</li>
 </ul>
 <p><strong>Dependency Injection for Caching:</strong></p>
 <ul>
-<li>Use FastAPI's dependency injection system for efficient caching mechanisms across your app.</li>
+<li>Use <code>FastAPI</code>'s dependency injection system for efficient caching mechanisms across your app.</li>
 <li>Implement background tasks for operations that can be processed asynchronously.</li>
 </ul>
 <h2 id="general-optimization-tips"><a class="header" href="#general-optimization-tips">General Optimization Tips</a></h2>
 <ul>
-<li>Profile your application to identify bottlenecks using tools like cProfile for Python.</li>
-<li>Serve static files efficiently using a web server like Nginx or a CDN.</li>
+<li>Profile your application to identify bottlenecks using tools like <code>cProfile</code> for Python.</li>
+<li>Serve static files efficiently using a web server like <code>Nginx</code> or a CDN.</li>
 <li>Optimize front-end assets (minify CSS/JS, image compression) to reduce load times.</li>
 <li>Implement HTTP/2 where possible.</li>
-<li>Asynchronous Tasks: Use Celery for background tasks to prevent blocking web requests for operations like sending emails or processing large data.</li>
+<li>Asynchronous Tasks: Use <code>Celery</code> for background tasks to prevent blocking web requests for operations like sending emails or processing large data.</li>
 <li>Database Connections: Use persistent database connections and connection pooling.</li>
 </ul>
-<p>By employing these optimization techniques, you can significantly improve the performance of Django, Flask, and FastAPI applications, enhancing user experience and resource utilization.</p>
+<p>By employing these optimization techniques, you can significantly improve the performance of <code>Django</code>, <code>Flask</code>, and <code>FastAPI</code> applications, enhancing user experience and resource utilization.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-final-checklist"><a class="header" href="#-final-checklist">✅ Final Checklist</a></h1>
 <p>In summary, optimization in Python often revolves around improving time complexity, reducing memory usage, and leveraging Python's built-in features or external libraries that are implemented in C for speed. In the next section, we'll cover a brief checklist. If you only remember these things, you'll probably make good steps towards more performant code.</p>
 <p>Like any other language, Python also has its own set of performance pitfalls, often referred to as "anti-patterns". These anti-patterns can significantly degrade the performance of a Python application if not addressed. So we'll finish with an overview of some common performance anti-patterns in Python and suggestions on how to avoid them!</p>
@@ -1909,7 +1909,7 @@ if 3 in my_set:  # O(1) time complexity
     return memo[n]
 </code></pre>
 <h2 id="built-in-functions-and-libraries-or-not"><a class="header" href="#built-in-functions-and-libraries-or-not">Built-in Functions and Libraries (Or Not)</a></h2>
-<p>Python's standard library and third-party libraries like NumPy and Pandas are written in C, making them much faster than custom, pure Python code for certain operations, especially numerical computations and data processing.</p>
+<p>Python's standard library and third-party libraries like <code>NumPy</code> and <code>Pandas</code> are written in C, making them much faster than custom, pure Python code for certain operations, especially numerical computations and data processing.</p>
 <p><strong>Example: Using NumPy for Array Operations</strong></p>
 <p>Instead of:</p>
 <pre><code class="language-python">result = []
@@ -1921,7 +1921,7 @@ for i in range(10000):
 arr = np.arange(10000) * 2
 </code></pre>
 <h2 id="profiling-and-identifying-bottlenecks"><a class="header" href="#profiling-and-identifying-bottlenecks">Profiling and Identifying Bottlenecks</a></h2>
-<p>Before optimizing, it's crucial to identify where the bottlenecks are. Python provides profiling tools like cProfile to analyze the performance of your code.</p>
+<p>Before optimizing, it's crucial to identify where the bottlenecks are. Python provides profiling tools like <code>cProfile</code> to analyze the performance of your code.</p>
 <pre><code class="language-python">import cProfile
 def my_function():
     result = [i * i for i in range(10000)]
@@ -1932,7 +1932,7 @@ cProfile.run('my_function()')
 <h2 id="avoiding-global-variables"><a class="header" href="#avoiding-global-variables">Avoiding Global Variables</a></h2>
 <p>Access to global variables is slower than local variable access. If you're using global variables within a loop or a frequently called function, consider passing them as arguments or using them as local variables.</p>
 <h2 id="string-concatenation"><a class="header" href="#string-concatenation">String Concatenation</a></h2>
-<p>Strings in Python are immutable, so every time you concatenate strings, a new string is created. For efficient string concatenation, especially in loops, use .join() or string formatting.</p>
+<p>Strings in Python are immutable, so every time you concatenate strings, a new string is created. For efficient string concatenation, especially in loops, use <code>.join()</code> or string formatting.</p>
 <p><strong>Example: Using .join() for Efficient String Concatenation</strong></p>
 <p>Instead of:</p>
 <pre><code class="language-python">result = ""
@@ -1983,7 +1983,7 @@ for thread in threads:
 for thread in threads:
     thread.join()
 </code></pre>
-<p>Solution: Use multiprocessing or libraries like concurrent.futures.ProcessPoolExecutor for CPU-bound tasks.</p>
+<p>Solution: Use <code>multiprocessing</code> or libraries like <code>concurrent.futures.ProcessPoolExecutor</code> for CPU-bound tasks.</p>
 <pre><code class="language-python">from multiprocessing import Pool
 
 def compute_heavy():
@@ -2032,6 +2032,22 @@ print(sorted(my_list))
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

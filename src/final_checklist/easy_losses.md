@@ -61,7 +61,7 @@ for thread in threads:
     thread.join()
 ```
 
-Solution: Use multiprocessing or libraries like concurrent.futures.ProcessPoolExecutor for CPU-bound tasks.
+Solution: Use `multiprocessing` or libraries like `concurrent.futures.ProcessPoolExecutor` for CPU-bound tasks.
 
 ```python
 from multiprocessing import Pool

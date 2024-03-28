@@ -177,9 +177,9 @@
 <p>MicroPython is a lean and efficient implementation of Python 3, designed to run on microcontrollers and in constrained environments. Its goal is to be as compatible with standard Python as possible given the hardware limitations, making Python programming accessible for embedded systems development.</p>
 <p><strong>Features:</strong></p>
 <ul>
-<li>Compact: Requires minimal resources, running in as little as 256KB of code space and 16KB of RAM.</li>
-<li>Peripheral Access: Includes libraries to access low-level hardware, such as digital and analog I/O, SPI, I2C, and more.</li>
-<li>Interactive Prompt: Offers a Python command line (REPL) on the device for interactive development and debugging.</li>
+<li><strong>Compact</strong>: Requires minimal resources, running in as little as 256KB of code space and 16KB of RAM.</li>
+<li><strong>Peripheral Access</strong>: Includes libraries to access low-level hardware, such as digital and analog I/O, SPI, I2C, and more.</li>
+<li><strong>Interactive Prompt</strong>: Offers a Python command line (REPL) on the device for interactive development and debugging.</li>
 </ul>
 <p><strong>When to Use:</strong></p>
 <p>MicroPython shines in embedded systems and IoT applications where resources are limited. It's ideal for developers looking to leverage Python's ease of use and readability in hardware projects, from hobbyist level to professional embedded systems.</p>
@@ -228,6 +228,22 @@ while True:
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

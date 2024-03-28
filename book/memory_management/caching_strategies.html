@@ -177,7 +177,7 @@
 <p>Caching in Python is a technique used to store data in a temporary storage area (cache) so that future requests for that data can be served faster. This is particularly useful in situations where data retrieval or computation is resource-intensive. Python provides various strategies and tools for caching, which can be applied depending on the specific requirements of your application.</p>
 <h2 id="lru-least-recently-used-cache"><a class="header" href="#lru-least-recently-used-cache">LRU (Least Recently Used) Cache</a></h2>
 <p>The LRU caching strategy removes the least recently used items first. This is useful in applications where you want to cache a limited number of items and the likelihood of accessing recently used items is high.</p>
-<p>Python's functools module provides an @lru_cache decorator to implement LRU caching easily. It can be applied to any function whose output you want to cache.</p>
+<p>Python's functools module provides an <code>@lru_cache</code> decorator to implement LRU caching easily. It can be applied to any function whose output you want to cache.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from functools import lru_cache
 
@@ -186,9 +186,21 @@ def expensive_function(param):
     # Simulate an expensive operation
     return some_expensive_computation(param)
 </code></pre>
+<h2 id="memoization"><a class="header" href="#memoization">Memoization</a></h2>
+<p>Memoization is a specific form of caching that involves storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization is a form of LRU caching but is specifically applied to function calls.</p>
+<p>Python's functools module <code>@lru_cache</code> can also be used for memoization.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=None)  # No limit on cache size
+def fibonacci(n):
+    if n &lt; 2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+</code></pre>
 <h2 id="ttl-time-to-live-cache"><a class="header" href="#ttl-time-to-live-cache">TTL (Time To Live) Cache</a></h2>
 <p>TTL caching invalidates cache entries after a set period. This strategy is suitable when the data changes over time or if you want to ensure that data doesn't become stale.</p>
-<p>The cachetools library offers TTL caching capabilities.</p>
+<p>The <code>cachetools</code> library offers TTL caching capabilities.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from cachetools import TTLCache
 from cachetools.decorators import cached
@@ -199,22 +211,9 @@ ttl_cache = TTLCache(maxsize=100, ttl=300) # Cache up to 100 items, each for 300
 def get_data(key):
     # Fetch data that changes over time
     return fetch_some_data(key)
-
-## Memoization
-</code></pre>
-<p>Memoization is a specific form of caching that involves storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization is a form of LRU caching but is specifically applied to function calls.</p>
-<p>Python's functools module @lru_cache can also be used for memoization.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-python">from functools import lru_cache
-
-@lru_cache(maxsize=None)  # No limit on cache size
-def fibonacci(n):
-    if n &lt; 2:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
 </code></pre>
 <h2 id="disk-based-caching"><a class="header" href="#disk-based-caching">Disk-based Caching</a></h2>
-<p>When dealing with large amounts of data or needing to persist cache across program restarts, disk-based caching can be used. Libraries such as joblib provide mechanisms for storing cache data on disk.</p>
+<p>When dealing with large amounts of data or needing to persist cache across program restarts, disk-based caching can be used. Libraries such as <code>joblib</code> provide mechanisms for storing cache data on disk.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-python">from joblib import Memory
 memory = Memory("./cachedir", verbose=0)
@@ -262,6 +261,22 @@ def expensive_function(param):
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

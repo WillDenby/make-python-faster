@@ -174,9 +174,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-optimising-data-manipulation"><a class="header" href="#-optimising-data-manipulation">🐼 Optimising Data Manipulation</a></h1>
-<p>Optimizing data manipulation and analysis with Pandas is crucial for handling large datasets efficiently and effectively. Pandas, being one of the most popular libraries in Python for data analysis, provides numerous ways to optimize performance. Below, I'll highlight some key strategies and provide code examples where relevant.</p>
+<p>Optimizing data manipulation and analysis with <code>Pandas</code> is crucial for handling large datasets efficiently and effectively. Pandas, being one of the most popular libraries in Python for data analysis, provides numerous ways to optimize performance. Below, I'll highlight some key strategies and provide code examples where relevant.</p>
 <h2 id="choosing-the-right-data-types"><a class="header" href="#choosing-the-right-data-types">Choosing the Right Data Types</a></h2>
-<p>Pandas automatically assigns data types, but they might not always be the most memory-efficient. By converting columns to more appropriate data types, you can significantly reduce memory usage.</p>
+<p><code>Pandas</code> automatically assigns data types, but they might not always be the most memory-efficient. By converting columns to more appropriate data types, you can significantly reduce memory usage.</p>
 <p><strong>Example: Converting data types</strong></p>
 <pre><code class="language-python">import pandas as pd
 
@@ -196,7 +196,7 @@ for chunk in pd.read_csv('large_file.csv', chunksize=chunk_size):
     pass
 </code></pre>
 <h2 id="avoiding-loops-with-vectorization"><a class="header" href="#avoiding-loops-with-vectorization">Avoiding Loops with Vectorization</a></h2>
-<p>Loops in Python are slow. Pandas operations are optimized to use vectorized operations that are much faster than iterating through rows.</p>
+<p>Loops in Python are slow. <code>Pandas</code> operations are optimized to use vectorized operations that are much faster than iterating through rows.</p>
 <p><strong>Example: Vectorized operations</strong></p>
 <pre><code class="language-python"># Bad: Looping through DataFrame rows
 for index, row in df.iterrows():
@@ -206,7 +206,7 @@ for index, row in df.iterrows():
 df['new_column'] = df['column'] * 2
 </code></pre>
 <h2 id="using-efficient-functions"><a class="header" href="#using-efficient-functions">Using Efficient Functions</a></h2>
-<p>Pandas provides functions that are optimized for performance. For example, apply() is versatile but can be slower than using vectorized operations or specific functions like agg(), transform(), or groupby().</p>
+<p><code>Pandas</code> provides functions that are optimized for performance. For example, <code>apply()</code> is versatile but can be slower than using vectorized operations or specific functions like <code>agg()</code>, <code>transform()</code>, or <code>groupby()</code>.</p>
 <p><strong>Example: Efficient aggregation</strong></p>
 <pre><code class="language-python"># Using `apply()` - Less efficient
 df.groupby('group_column').apply(lambda x: x['column'].sum())
@@ -215,14 +215,14 @@ df.groupby('group_column').apply(lambda x: x['column'].sum())
 df.groupby('group_column')['column'].agg('sum')
 </code></pre>
 <h2 id="filtering-data-early"><a class="header" href="#filtering-data-early">Filtering Data Early</a></h2>
-<p>Filter out unnecessary data as early as possible in your pipeline to reduce the size of your DataFrame and speed up subsequent operations.</p>
+<p>Filter out unnecessary data as early as possible in your pipeline to reduce the size of your <code>DataFrame</code> and speed up subsequent operations.</p>
 <p><strong>Example: Early filtering</strong></p>
 <pre><code class="language-python"># Filter before performing other operations
 df_filtered = df[df['column'] &gt; 100]
 # Now work with df_filtered
 </code></pre>
 <h2 id="using-eval-and-query-for-compound-expressions"><a class="header" href="#using-eval-and-query-for-compound-expressions">Using eval() and query() for Compound Expressions</a></h2>
-<p>For complex operations, eval() and query() can be faster because they operate at a lower level and can avoid intermediate data structures.</p>
+<p>For complex operations, <code>eval()</code> and <code>query()</code> can be faster because they operate at a lower level and can avoid intermediate data structures.</p>
 <p><strong>Example: Using query()</strong></p>
 <pre><code class="language-python">result = df.query('column1 &gt; 200 &amp; column2 &lt; 300')
 </code></pre>
@@ -257,7 +257,7 @@ df = pd.read_parquet('data.parquet')
 <pre><code class="language-python">df['sparse_column'] = pd.arrays.SparseArray(df['sparse_column'])
 </code></pre>
 <h2 id="enhancing-performance-with-swifter"><a class="header" href="#enhancing-performance-with-swifter">Enhancing Performance with Swifter</a></h2>
-<p>For operations that are difficult to vectorize or when you're stuck with apply() for complex functions, consider using the swifter library. It automatically decides whether to use the original .apply() method, to vectorize the operation if possible, or to use parallel processing to speed up the computation.</p>
+<p>For operations that are difficult to vectorize or when you're stuck with <code>apply()</code> for complex functions, consider using the <code>swifter</code> library. It automatically decides whether to use the original <code>.apply()</code> method, to vectorize the operation if possible, or to use parallel processing to speed up the computation.</p>
 <p><strong>Example: Using swifter</strong></p>
 <pre><code class="language-python">import swifter
 
@@ -296,6 +296,22 @@ df['result'] = df['column'].swifter.apply(lambda x: complex_function(x))
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

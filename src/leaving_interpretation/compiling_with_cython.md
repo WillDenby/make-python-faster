@@ -16,7 +16,7 @@ def sum_of_squares(n):
     return total
 ```
 
-To optimize this with Cython, you'd create a .pyx file, say example_cy.pyx, and type the variables for C-level performance:
+To optimize this with Cython, you'd create a `.pyx` file, say `example_cy.pyx`, and type the variables for C-level performance:
 
 ```cython
 def sum_of_squares(int n):
@@ -29,7 +29,7 @@ def sum_of_squares(int n):
 
 ## Compilation
 
-To compile the Cython code, you need a setup script, setup.py, containing:
+To compile the Cython code, you need a setup script, `setup.py`, containing:
 
 ```python
 from distutils.core import setup
@@ -44,11 +44,11 @@ Run the compilation process with:
 python setup.py build_ext --inplace
 ```
 
-This generates a shared object file (.so or .pyd, depending on the OS) that you can import in Python.
+This generates a shared object file (`.so` or `.pyd`, depending on the OS) that you can import in Python.
 
 ## Using Cython in Jupyter Notebooks
 
-For quick experiments, Cython can be used directly in Jupyter notebooks with the %load_ext Cython magic command. Here’s how you can use it:
+For quick experiments, Cython can be used directly in Jupyter notebooks with the `%load_ext Cython` magic command. Here’s how you can use it:
 
 ```python
 %load_ext Cython
@@ -64,7 +64,7 @@ def sum_of_squares(int n):
 
 ## Profiling and Annotating
 
-Cython can generate an HTML file showing which lines of code are converted to pure C and which ones invoke the Python C-API (potentially slowing down execution). Compile with the -a option in your setup script or use the %%cython -a magic command in Jupyter notebooks to generate this annotation. Lines highlighted in yellow indicate Python interactions, urging a closer look for potential optimization.
+Cython can generate an HTML file showing which lines of code are converted to pure C and which ones invoke the Python C-API (potentially slowing down execution). Compile with the -a option in your setup script or use the `%%cython -a` magic command in Jupyter notebooks to generate this annotation. Lines highlighted in yellow indicate Python interactions, urging a closer look for potential optimization.
 
 ## Tips for Optimization
 

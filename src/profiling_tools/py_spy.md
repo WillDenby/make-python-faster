@@ -1,6 +1,6 @@
 # 🕵️‍♂️ Py-Spy
 
-Py-Spy is a sampling profiler for Python programs that can profile running Python processes without modifying them or needing program restarts.
+`Py-Spy` is a sampling profiler for Python programs that can profile running Python processes without modifying them or needing program restarts.
 
 **Usage Example:**
 

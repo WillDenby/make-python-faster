@@ -176,14 +176,14 @@
                         <h1 id="-reducing-footprint-and-avoiding-leaks"><a class="header" href="#-reducing-footprint-and-avoiding-leaks">♻️ Reducing Footprint and Avoiding Leaks</a></h1>
 <p>Reducing the memory footprint and avoiding memory leaks in Python are crucial for optimizing the performance and scalability of applications, especially when dealing with large datasets or running on limited-resource environments. Python, being a high-level language, abstracts away many memory management details, but there are still best practices and techniques you can apply to manage memory usage effectively.</p>
 <h2 id="efficient-data-types"><a class="header" href="#efficient-data-types">Efficient Data Types</a></h2>
-<p>Choosing the right data types can significantly reduce memory usage. For instance, using array.array for large arrays of numbers instead of lists, or <strong>slots</strong> to limit the attributes in a class.</p>
-<p><strong>Example with array.array:</strong></p>
+<p>Choosing the right data types can significantly reduce memory usage. For instance, using<code> array.array</code> for large arrays of numbers instead of lists, or <code>__slots__</code> to limit the attributes in a class.</p>
+<p><strong>Example with <code>array.array</code>:</strong></p>
 <pre><code class="language-python">import array
 
 # For a large array of integers
 int_array = array.array('i', range(1000000))
 </code></pre>
-<p><strong>Example with <strong>slots</strong>:</strong></p>
+<p><strong>Example with <code>__slots__</code>:</strong></p>
 <pre><code class="language-python">class SlotsBased:
     __slots__ = ['name', 'age']
 
@@ -217,7 +217,7 @@ for row in large_file_reader("large_file.txt"):
 </code></pre>
 <h2 id="weak-references"><a class="header" href="#weak-references">Weak References</a></h2>
 <p>Weak references allow the Python garbage collector to collect an object even if it has references, as long as they are weak. This is useful for caching or mapping large objects that you don't want to keep in memory indefinitely.</p>
-<p><strong>Example with weakref:</strong></p>
+<p><strong>Example with <code>weakref</code>:</strong></p>
 <pre><code class="language-python">import weakref
 
 class BigObject:
@@ -229,8 +229,8 @@ obj_weakref = weakref.ref(obj)
 # obj can be garbage collected even if obj_weakref exists
 </code></pre>
 <h2 id="monitoring-and-profiling-memory-usage"><a class="header" href="#monitoring-and-profiling-memory-usage">Monitoring and Profiling Memory Usage</a></h2>
-<p>Identifying and diagnosing memory issues requires monitoring and profiling. Tools like memory_profiler and objgraph can help identify memory leaks and high memory usage.</p>
-<p><strong>Example with memory_profiler:</strong></p>
+<p>Identifying and diagnosing memory issues requires monitoring and profiling. Tools like <code>memory_profiler</code> and <code>objgraph</code> can help identify memory leaks and high memory usage.</p>
+<p><strong>Example with <code>memory_profiler</code>:</strong></p>
 <pre><code class="language-python"># You need to install memory_profiler first (`pip install memory_profiler`)
 from memory_profiler import profile
 
@@ -288,6 +288,22 @@ for obj in gc.garbage:
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

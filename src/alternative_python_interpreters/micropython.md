@@ -4,9 +4,9 @@ MicroPython is a lean and efficient implementation of Python 3, designed to run 
 
 **Features:**
 
-- Compact: Requires minimal resources, running in as little as 256KB of code space and 16KB of RAM.
-- Peripheral Access: Includes libraries to access low-level hardware, such as digital and analog I/O, SPI, I2C, and more.
-- Interactive Prompt: Offers a Python command line (REPL) on the device for interactive development and debugging.
+- **Compact**: Requires minimal resources, running in as little as 256KB of code space and 16KB of RAM.
+- **Peripheral Access**: Includes libraries to access low-level hardware, such as digital and analog I/O, SPI, I2C, and more.
+- **Interactive Prompt**: Offers a Python command line (REPL) on the device for interactive development and debugging.
 
 **When to Use:**
 

@@ -6,7 +6,7 @@ Caching in Python is a technique used to store data in a temporary storage area 
 
 The LRU caching strategy removes the least recently used items first. This is useful in applications where you want to cache a limited number of items and the likelihood of accessing recently used items is high.
 
-Python's functools module provides an @lru_cache decorator to implement LRU caching easily. It can be applied to any function whose output you want to cache.
+Python's functools module provides an `@lru_cache` decorator to implement LRU caching easily. It can be applied to any function whose output you want to cache.
 
 **Example:**
 
@@ -19,31 +19,11 @@ def expensive_function(param):
     return some_expensive_computation(param)
 ```
 
-## TTL (Time To Live) Cache
-
-TTL caching invalidates cache entries after a set period. This strategy is suitable when the data changes over time or if you want to ensure that data doesn't become stale.
-
-The cachetools library offers TTL caching capabilities.
-
-**Example:**
-
-```python
-from cachetools import TTLCache
-from cachetools.decorators import cached
-
-ttl_cache = TTLCache(maxsize=100, ttl=300) # Cache up to 100 items, each for 300 seconds
-
-@cached(ttl_cache)
-def get_data(key):
-    # Fetch data that changes over time
-    return fetch_some_data(key)
-
 ## Memoization
-```
 
 Memoization is a specific form of caching that involves storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization is a form of LRU caching but is specifically applied to function calls.
 
-Python's functools module @lru_cache can also be used for memoization.
+Python's functools module `@lru_cache` can also be used for memoization.
 
 **Example:**
 
@@ -57,9 +37,29 @@ def fibonacci(n):
     return fibonacci(n-1) + fibonacci(n-2)
 ```
 
+## TTL (Time To Live) Cache
+
+TTL caching invalidates cache entries after a set period. This strategy is suitable when the data changes over time or if you want to ensure that data doesn't become stale.
+
+The `cachetools` library offers TTL caching capabilities.
+
+**Example:**
+
+```python
+from cachetools import TTLCache
+from cachetools.decorators import cached
+
+ttl_cache = TTLCache(maxsize=100, ttl=300) # Cache up to 100 items, each for 300 seconds
+
+@cached(ttl_cache)
+def get_data(key):
+    # Fetch data that changes over time
+    return fetch_some_data(key)
+```
+
 ## Disk-based Caching
 
-When dealing with large amounts of data or needing to persist cache across program restarts, disk-based caching can be used. Libraries such as joblib provide mechanisms for storing cache data on disk.
+When dealing with large amounts of data or needing to persist cache across program restarts, disk-based caching can be used. Libraries such as `joblib` provide mechanisms for storing cache data on disk.
 
 **Example:**
 

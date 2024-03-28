@@ -174,23 +174,23 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-when-to-optimise-your-code"><a class="header" href="#-when-to-optimise-your-code">❓ When to Optimise your Code</a></h1>
-<p>In most organisations, programmers live under the paradigm: <code>overall team velocity &gt; individual code optimisation</code></p>
-<p>Some of the tips in this book are general best practice (e.g. avoid pointless iterations in your loops); others require more of a time investment. So before considering any implementation of the latter, ask yourself the following three questions;</p>
+<p>In most organisations, programmers live under the following paradigm:</p>
+<blockquote>
+<p>Overall Team Velocity &gt; Individual Code Optimisation</p>
+</blockquote>
+<p>Some things in this book are quick wins/best practice. Other things require more of a time investment. Before considering any implementation of the latter, ask yourself the following questions:</p>
 <ol>
-<li><strong>Does the code achieve its objectives?</strong></li>
-</ol>
-<p>Can you build a prototype to demonstrate proof-of-concept? Is the code useful? Does it do what it's meant to do? If not, figure this bit out first!</p>
-<ol start="2">
+<li><strong>Does the code work?</strong></li>
+<li><strong>Does the code conform to team standards?</strong></li>
 <li><strong>Is the code robust?</strong></li>
+<li><strong>Does it really need optimisation?</strong></li>
 </ol>
-<p>Have you documented what you're doing? Does your code conform to organisational standards? Can other developers easily build on top of it?</p>
-<ol start="3">
-<li><strong>Is it worth further development?</strong></li>
-</ol>
-<p>Is this a mission-critical piece of code? Or is it only being run occasionally? Remember the famous quote from Tony Hoare/Donald Knuth: <code>Premature optimisation is the root of all evil</code></p>
-<p>We code to make the world more efficient. But consult this xkcd graphic if in doubt:</p>
+<p>We code to make the world more efficient, but some problems just aren't worth worrying about. Consult this xkcd graphic if in doubt:</p>
 <p><img src="https://imgs.xkcd.com/comics/is_it_worth_the_time.png" alt="A matrix about time saved vs time invested" /></p>
-<p>Some problems just aren't worth worrying about!</p>
+<p>And remember the now infamous quote from Tony Hoare/Donald Knuth:</p>
+<blockquote>
+<p>Premature optimisation is the root of all evil!</p>
+</blockquote>
 
                     </main>
 
@@ -221,6 +221,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

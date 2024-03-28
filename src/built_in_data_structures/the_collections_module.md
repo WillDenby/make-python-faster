@@ -4,9 +4,9 @@ The collections module in Python provides specialized container datatypes that a
 
 ## namedtuple()
 
-Use case: When you need to access elements by name to make the code more readable and self-documenting.
+**Use case**: When you need to access elements by name to make the code more readable and self-documenting.
 
-Efficiency: Access is as fast as a tuple because namedtuple instances are just as lightweight as regular tuples.
+**Efficiency**: Access is as fast as a tuple because namedtuple instances are just as lightweight as regular tuples.
 
 **Example:**
 
@@ -20,9 +20,9 @@ print(pt.x, pt.y)  # Output: 1 2
 
 ## deque
 
-Use case: When you need to add or pop elements from both ends of a collection efficiently.
+**Use case**: When you need to add or pop elements from both ends of a collection efficiently.
 
-Efficiency: Provides faster appends and pops from the left end but is slower than lists in random access.
+**Efficiency**: Provides faster appends and pops from the left end but is slower than lists in random access.
 
 **Example:**
 
@@ -37,9 +37,9 @@ print(dq)  # Output: deque([0, 1, 2])
 
 ## Counter
 
-Use case: When you need to count the occurrence of items in an iterable.
+**Use case**: When you need to count the occurrence of items in an iterable.
 
-Efficiency: Makes counting elements and element-wise operations more efficient than manually using a dictionary.
+**Efficiency**: Makes counting elements and element-wise operations more efficient than manually using a dictionary.
 
 **Example:**
 
@@ -52,9 +52,9 @@ print(cnt)  # Output: Counter({'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1})
 
 ## OrderedDict
 
-Use case: Prior to Python 3.7, when you needed to keep the order of keys in a dictionary. From Python 3.7 onwards, the built-in dict maintains insertion order, making OrderedDict less critical.
+**Use case**: Prior to Python 3.7, when you needed to keep the order of keys in a dictionary. From Python 3.7 onwards, the built-in dict maintains insertion order, making OrderedDict less critical.
 
-Efficiency: Useful in earlier Python versions for ordered operations.
+**Efficiency**: Useful in earlier Python versions for ordered operations.
 
 **Example:**
 
@@ -68,9 +68,9 @@ print(od)  # Output: OrderedDict([('a', 1), ('b', 2), ('c', 3), ('d', 4)])
 
 ## defaultdict
 
-Use case: When you need a dictionary that automatically initializes non-existent keys with a default value.
+**Use case**: When you need a dictionary that automatically initializes non-existent keys with a default value.
 
-Efficiency: Simplifies code by eliminating the need for manual checks and assignments for missing keys.
+**Efficiency**: Simplifies code by eliminating the need for manual checks and assignments for missing keys.
 
 **Example:**
 
@@ -85,9 +85,9 @@ print(dd)  # Output: defaultdict(<class 'list'>, {'a': [1, 1], 'b': [1]})
 
 ## ChainMap
 
-Use case: To combine multiple dictionaries or mappings into a single view.
+**Use case**: To combine multiple dictionaries or mappings into a single view.
 
-Efficiency: Convenient for scoping contexts like variable scopes in programming languages. Avoids merging dictionaries, which can be costly.
+**Efficiency**: Convenient for scoping contexts like variable scopes in programming languages. Avoids merging dictionaries, which can be costly.
 
 **Example:**
 

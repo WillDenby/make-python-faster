@@ -176,7 +176,7 @@
                         <h1 id="-unixs-time-command"><a class="header" href="#-unixs-time-command">⏲️ Unix's time Command</a></h1>
 <p>The Unix <code>time</code> command is used to measure the time taken by a program to execute, providing a simple way to time the execution duration of command-line programs and scripts. This is not a Python-specific tool but can be used with Python scripts or any other executable program.</p>
 <p><strong>Usage Example:</strong></p>
-<p>To time a Python script named script.py, you would use the time command like so:</p>
+<p>To time a Python script named <code>script.py</code>, you would use the time command like so:</p>
 <pre><code class="language-shell">time python script.py
 </code></pre>
 <p>This will output something similar to:</p>
@@ -220,6 +220,22 @@ sys     0m0.036s
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

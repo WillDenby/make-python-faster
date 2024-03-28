@@ -4,7 +4,7 @@ The Unix `time` command is used to measure the time taken by a program to execut
 
 **Usage Example:**
 
-To time a Python script named script.py, you would use the time command like so:
+To time a Python script named `script.py`, you would use the time command like so:
 
 ```shell
 time python script.py

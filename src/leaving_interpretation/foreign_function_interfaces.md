@@ -22,7 +22,7 @@ print(f"The current time is {t} seconds since the Epoch.")
 
 ## cffi
 
-`cffi` (C Foreign Function Interface) is another library for calling C code from Python. Compared to ctypes, cffi provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.
+`cffi` (C Foreign Function Interface) is another library for calling C code from Python. Compared to `ctypes`, `cffi` provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.
 
 Below is an example of using `cffi` to achieve the same functionality as the `ctypes` example, calling the time function from the C library.
 
@@ -53,7 +53,7 @@ Both `ctypes` and `cffi` are powerful tools for integrating C libraries with Pyt
 
 If you have some legacy scientific code, the most common way to bridge Python and Fortran is through the use of `f2py` and `numpy`'s Fortran integration facilities. 
 
-`f2py` is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. f2py generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.
+`f2py` is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. `f2py` generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.
 
 Suppose you have a simple Fortran subroutine that calculates the sum of two arrays:
 
@@ -69,13 +69,13 @@ subroutine add_arrays(a, b, c, n)
 end subroutine add_arrays
 ```
 
-You can compile this Fortran code into a Python module using f2py:
+You can compile this Fortran code into a Python module using `f2py`:
 
 ```shell
 f2py -c -m addarrays addarrays.f90
 ```
 
-This command creates a Python module named addarrays. You can then import this module in Python and call the add_arrays function:
+This command creates a Python module named `addarrays`. You can then import this module in Python and call the `add_arrays` function:
 
 ```python
 import addarrays

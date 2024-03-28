@@ -214,7 +214,7 @@ for thread in threads:
 for thread in threads:
     thread.join()
 </code></pre>
-<p>Solution: Use multiprocessing or libraries like concurrent.futures.ProcessPoolExecutor for CPU-bound tasks.</p>
+<p>Solution: Use <code>multiprocessing</code> or libraries like <code>concurrent.futures.ProcessPoolExecutor</code> for CPU-bound tasks.</p>
 <pre><code class="language-python">from multiprocessing import Pool
 
 def compute_heavy():
@@ -269,6 +269,22 @@ print(sorted(my_list))
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

@@ -65,7 +65,7 @@ def fibonacci(n, memo={}):
 
 ## Built-in Functions and Libraries (Or Not)
 
-Python's standard library and third-party libraries like NumPy and Pandas are written in C, making them much faster than custom, pure Python code for certain operations, especially numerical computations and data processing.
+Python's standard library and third-party libraries like `NumPy` and `Pandas` are written in C, making them much faster than custom, pure Python code for certain operations, especially numerical computations and data processing.
 
 **Example: Using NumPy for Array Operations**
 
@@ -86,7 +86,7 @@ arr = np.arange(10000) * 2
 
 ## Profiling and Identifying Bottlenecks
 
-Before optimizing, it's crucial to identify where the bottlenecks are. Python provides profiling tools like cProfile to analyze the performance of your code.
+Before optimizing, it's crucial to identify where the bottlenecks are. Python provides profiling tools like `cProfile` to analyze the performance of your code.
 
 ```python
 import cProfile
@@ -103,7 +103,7 @@ Access to global variables is slower than local variable access. If you're using
 
 ## String Concatenation
 
-Strings in Python are immutable, so every time you concatenate strings, a new string is created. For efficient string concatenation, especially in loops, use .join() or string formatting.
+Strings in Python are immutable, so every time you concatenate strings, a new string is created. For efficient string concatenation, especially in loops, use `.join()` or string formatting.
 
 **Example: Using .join() for Efficient String Concatenation**
 

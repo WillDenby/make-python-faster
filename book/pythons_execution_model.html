@@ -174,11 +174,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-pythons-execution-model"><a class="header" href="#-pythons-execution-model">🐍 Python's Execution Model</a></h1>
-<p>Before we dive into how to make our code faster, it's worth recapping how Python works.</p>
-<p>CPython is the default and most widely used implementation of the Python programming language. It is written in C and Python, providing a foundation for executing Python programs. CPython compiles Python code into bytecode, which is then executed by the Python virtual machine. The execution model of CPython involves several key components and processes, including parsing, compilation, and interpretation.</p>
+<p>Let's have a quick look at how Python works, under the hood. We'll touch on several important concepts that will crop up later in the book.</p>
+<p>CPython is the default and most widely used implementation of the Python programming language. It is written in C and Python, and provides a foundation for executing Python programs. CPython compiles Python code into bytecode, which is then executed by its Python virtual machine (PVM). So the execution model of CPython involves several key components and processes, including parsing, compilation, and interpretation.</p>
 <h2 id="parsing"><a class="header" href="#parsing">Parsing</a></h2>
 <p>The Python interpreter first reads your Python code. This stage involves parsing the code into an Abstract Syntax Tree (AST). The AST represents the code's structure in a tree-like form, making it easier for the compiler to understand and manipulate.</p>
-<p>Try running the following code, which uses the ast module to parse a simple function into an AST, illustrating what happens at the beginning of the Python code execution process:</p>
+<p>Try running the following code, which uses the <code>ast</code> module to parse a simple function into an AST, illustrating what happens at the beginning of the Python code execution process:</p>
 <pre><code class="language-python">import ast
 
 code = """
@@ -205,16 +205,16 @@ dis.dis(compiled_code)
 </code></pre>
 <h2 id="python-virtual-machine-pvm"><a class="header" href="#python-virtual-machine-pvm">Python Virtual Machine (PVM)</a></h2>
 <p>The Python virtual machine is the runtime engine of CPython. It executes the bytecode produced during the compilation stage. The PVM is an interpreter for the bytecode, going through the instructions one by one and performing the specified operations.</p>
-<h3 id="in-conclusion"><a class="header" href="#in-conclusion">In Conclusion</a></h3>
+<h3 id="in-summary"><a class="header" href="#in-summary">In Summary</a></h3>
 <p>The execution model of CPython can be summarized as follows:</p>
 <ol>
-<li>Source Code: The Python source code (.py files) is written by the programmer.</li>
-<li>AST: The source code is parsed into an Abstract Syntax Tree, representing the syntactical structure.</li>
-<li>Bytecode Compilation: The AST is compiled into bytecode, a lower-level, platform-independent code.</li>
-<li>PVM Execution: The Python virtual machine executes the bytecode, performing operations as specified.</li>
+<li><strong>Source Code</strong>: The Python source code (<code>.py</code> files) is written by the programmer.</li>
+<li><strong>AST</strong>: The source code is parsed into an Abstract Syntax Tree, representing the syntactical structure.</li>
+<li><strong>Bytecode Compilation</strong>: The AST is compiled into bytecode, a lower-level, platform-independent code.</li>
+<li><strong>PVM Execution</strong>: The Python virtual machine executes the bytecode, performing operations as specified.</li>
 </ol>
 <p>The efficiency and performance of CPython can be affected by factors such as the complexity of the Python code, the use of built-in functions (which are typically optimized C functions), and the interaction with external modules and libraries.</p>
-<p>It's also worth noting that while CPython is the standard and most commonly used Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) and Jython (which runs on the Java platform). Each implementation has its execution model, optimized for different use cases and performance characteristics. We'll see these later on.</p>
+<p>It's also worth noting that while CPython is the standard and most commonly used Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) and Jython (which runs on the Java platform). Each implementation has an execution model, optimized for different use cases and performance characteristics. We'll explore these later on in the <a href="./alternative_python_interpreters.html">Alternative Python Interpreters</a> chapter.</p>
 
                     </main>
 
@@ -245,6 +245,22 @@ dis.dis(compiled_code)
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

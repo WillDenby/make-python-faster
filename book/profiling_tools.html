@@ -174,15 +174,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-profiling-tools"><a class="header" href="#-profiling-tools">🔎 Profiling Tools</a></h1>
-<p>It's tempting to just dive into your code and start refactoring at once! But you might end up spending lots of time eeking out tiny performance gains on parts of your code that are already pretty efficient - and completely missing the real bottlenecks. That's why we start with profiling.</p>
-<p>Figure out <strong>where</strong> the problems are - and <strong>how bad</strong> they are. That way, you can make an evidence-based request for more time from management to spend on improving the code. Here are resources you might want to profile in terms of usage:</p>
+<p>It's tempting to just dive into your code and start refactoring immediately! But you might end up spending lots of time eeking out tiny performance gains on parts of your code that are already pretty efficient - and completely missing the real bottlenecks. That's why we start with profiling.</p>
+<p>Figure out <strong>where</strong> and <strong>how bad</strong> the problems are. Then, you can make an evidence-based request for more time from your manager.</p>
+<p>Here are resources you might want to profile in terms of usage:</p>
 <ul>
 <li>CPU</li>
 <li>Memory</li>
 <li>Network bandwidth</li>
 <li>Disk IO</li>
 </ul>
-<p>Here are some best practices:</p>
+<p>And here are some best practices:</p>
 <ol>
 <li><strong>Isolate the Code You Want to Benchmark</strong> - Make sure that the code you're benchmarking is isolated from setup and teardown operations that you don't intend to measure.</li>
 <li><strong>Choose the Right Tool for the Job</strong> - As we'll see, <code>timeit</code> is great for micro-benchmarks, while <code>cProfile</code> and <code>line_profiler</code> can help with more detailed profiling.</li>
@@ -191,8 +192,8 @@
 <li><strong>Consider Systematic Variations</strong> - Be aware of external factors that can affect benchmark results, such as other running processes, system load, and hardware differences. Try to minimize these variations when benchmarking.</li>
 <li><strong>Benchmark with Realistic Data</strong> - Test your code with data that closely resembles what you expect in production. The performance can greatly differ based on the type, size, and complexity of the input data.</li>
 </ol>
-<p>One thing to always remember is that profiling can add to the computer workload, and slow things down.</p>
-<p>There are several tools and techniques available for profiling, each with its own strengths and use cases. In the next few pages we'll check out some of the most commonly used profiling tools and methods, along with code examples.</p>
+<p>One thing to always remember is that profiling can add to the computer workload, and hence slow things down artificially.</p>
+<p>There are many tools and techniques available for profiling, each with their own strengths and use cases. In the next few pages we'll check out some of the most commonly used ones, along with code examples.</p>
 
                     </main>
 
@@ -223,6 +224,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

@@ -189,7 +189,7 @@ t = libc.time(None)
 print(f"The current time is {t} seconds since the Epoch.")
 </code></pre>
 <h2 id="cffi"><a class="header" href="#cffi">cffi</a></h2>
-<p><code>cffi</code> (C Foreign Function Interface) is another library for calling C code from Python. Compared to ctypes, cffi provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.</p>
+<p><code>cffi</code> (C Foreign Function Interface) is another library for calling C code from Python. Compared to <code>ctypes</code>, <code>cffi</code> provides more advanced features like out-of-line API mode, which allows for better error checking and integration with existing C code.</p>
 <p>Below is an example of using <code>cffi</code> to achieve the same functionality as the <code>ctypes</code> example, calling the time function from the C library.</p>
 <p>First, you need to install cffi: <code>pip install cffi</code></p>
 <p>Then, you can use <code>cffi</code> like this:</p>
@@ -208,7 +208,7 @@ print(f"The current time is {C.time(t)} seconds since the Epoch.")
 <p>Both <code>ctypes</code> and <code>cffi</code> are powerful tools for integrating C libraries with Python, each with its own strengths. The choice between them depends on the specific requirements of the project, such as the complexity of the C code being interfaced and the performance requirements.</p>
 <h2 id="what-about-fortran"><a class="header" href="#what-about-fortran">What About Fortran?</a></h2>
 <p>If you have some legacy scientific code, the most common way to bridge Python and Fortran is through the use of <code>f2py</code> and <code>numpy</code>'s Fortran integration facilities.</p>
-<p><code>f2py</code> is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. f2py generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.</p>
+<p><code>f2py</code> is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. <code>f2py</code> generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.</p>
 <p>Suppose you have a simple Fortran subroutine that calculates the sum of two arrays:</p>
 <pre><code class="language-fortran">subroutine add_arrays(a, b, c, n)
     integer, intent(in) :: n
@@ -220,10 +220,10 @@ print(f"The current time is {C.time(t)} seconds since the Epoch.")
     end do
 end subroutine add_arrays
 </code></pre>
-<p>You can compile this Fortran code into a Python module using f2py:</p>
+<p>You can compile this Fortran code into a Python module using <code>f2py</code>:</p>
 <pre><code class="language-shell">f2py -c -m addarrays addarrays.f90
 </code></pre>
-<p>This command creates a Python module named addarrays. You can then import this module in Python and call the add_arrays function:</p>
+<p>This command creates a Python module named <code>addarrays</code>. You can then import this module in Python and call the <code>add_arrays</code> function:</p>
 <pre><code class="language-python">import addarrays
 import numpy as np
 
@@ -263,6 +263,22 @@ print(c)
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

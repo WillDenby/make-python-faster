@@ -6,9 +6,9 @@ The Global Interpreter Lock (GIL) is a mechanism used in computer languages that
 
 The existence of the GIL has significant implications for developers writing multi-threaded applications in Python:
 
-1. Concurrency vs. Parallelism: While the GIL allows for concurrency (multiple threads can be created and managed), it does not allow for true parallelism (multiple threads executing simultaneously) in a single Python process. This means that multi-threaded programs that are CPU-bound may not see a performance improvement; in fact, they might run slower than if they were executed in a single thread due to overhead.
-2. I/O-bound Applications: For I/O-bound applications (waiting for input/output operations to complete), the GIL has less impact. The GIL is released while waiting for I/O, allowing other threads to run. Therefore, Python's threading module can be an excellent choice for I/O-bound applications.
-3. Alternative Approaches: To achieve true parallelism, Python developers often use multiprocessing instead of multithreading. The multiprocessing module creates separate Python processes for each task, each with its own Python interpreter and, by extension, its own GIL. This allows tasks to run in parallel on multiple cores.
+1. **Concurrency vs. Parallelism**: While the GIL allows for concurrency (multiple threads can be created and managed), it does not allow for true parallelism (multiple threads executing simultaneously) in a single Python process. This means that multi-threaded programs that are CPU-bound may not see a performance improvement; in fact, they might run slower than if they were executed in a single thread due to overhead.
+2. **I/O-bound Applications**: For I/O-bound applications (waiting for input/output operations to complete), the GIL has less impact. The GIL is released while waiting for I/O, allowing other threads to run. Therefore, Python's threading module can be an excellent choice for I/O-bound applications.
+3. **Alternative Approaches**: To achieve true parallelism, Python developers often use multiprocessing instead of multithreading. The `multiprocessing` module creates separate Python processes for each task, each with its own Python interpreter and, by extension, its own GIL. This allows tasks to run in parallel on multiple cores.
 
 ## Some Examples to Try
 

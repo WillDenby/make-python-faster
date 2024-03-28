@@ -213,7 +213,7 @@ PyMODINIT_FUNC PyInit_fastadd(void) {
 }
 </code></pre>
 <h2 id="compiling-the-extension"><a class="header" href="#compiling-the-extension">Compiling the Extension</a></h2>
-<p>To compile the extension, you'll need to create a setup.py file for your module. This file uses setuptools to compile your C code into a Python extension module.</p>
+<p>To compile the extension, you'll need to create a <code>setup.py</code> file for your module. This file uses <code>setuptools</code> to compile your C code into a Python extension module.</p>
 <pre><code class="language-python">from setuptools import setup, Extension
 
 module1 = Extension('fastadd',
@@ -224,7 +224,7 @@ setup(name = 'FastAddPackage',
       description = 'This is a demo package for adding two numbers.',
       ext_modules = [module1])
 </code></pre>
-<p>After creating the setup.py file, you can build the module by running the following command in your terminal:</p>
+<p>After creating the <code>setup.py</code> file, you can build the module by running the following command in your terminal:</p>
 <pre><code class="language-shell">python setup.py build_ext --inplace
 </code></pre>
 <h2 id="using-the-extension-in-python"><a class="header" href="#using-the-extension-in-python">Using the Extension in Python</a></h2>
@@ -271,6 +271,22 @@ print(result)  # Output: 15
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

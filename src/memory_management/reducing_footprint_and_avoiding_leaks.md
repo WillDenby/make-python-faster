@@ -4,9 +4,9 @@ Reducing the memory footprint and avoiding memory leaks in Python are crucial fo
 
 ## Efficient Data Types
 
-Choosing the right data types can significantly reduce memory usage. For instance, using array.array for large arrays of numbers instead of lists, or __slots__ to limit the attributes in a class.
+Choosing the right data types can significantly reduce memory usage. For instance, using` array.array` for large arrays of numbers instead of lists, or `__slots__` to limit the attributes in a class.
 
-**Example with array.array:**
+**Example with `array.array`:**
 
 ```python
 import array
@@ -15,7 +15,7 @@ import array
 int_array = array.array('i', range(1000000))
 ```
 
-**Example with __slots__:**
+**Example with `__slots__`:**
 
 ```python
 class SlotsBased:
@@ -64,7 +64,7 @@ with open("file.txt", "r") as file:
 
 Weak references allow the Python garbage collector to collect an object even if it has references, as long as they are weak. This is useful for caching or mapping large objects that you don't want to keep in memory indefinitely.
 
-**Example with weakref:**
+**Example with `weakref`:**
 
 ```python
 import weakref
@@ -80,9 +80,9 @@ obj_weakref = weakref.ref(obj)
 
 ## Monitoring and Profiling Memory Usage
 
-Identifying and diagnosing memory issues requires monitoring and profiling. Tools like memory_profiler and objgraph can help identify memory leaks and high memory usage.
+Identifying and diagnosing memory issues requires monitoring and profiling. Tools like `memory_profiler` and `objgraph` can help identify memory leaks and high memory usage.
 
-**Example with memory_profiler:**
+**Example with `memory_profiler`:**
 
 ```python
 # You need to install memory_profiler first (`pip install memory_profiler`)

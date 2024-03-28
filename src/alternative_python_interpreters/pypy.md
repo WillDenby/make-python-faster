@@ -12,7 +12,7 @@ PyPy stands out as the most popular alternative Python interpreter, known for it
 
 **When to Use:**
 
-PyPy is best suited for long-running applications where the overhead of JIT compilation can be amortized over time. It's particularly beneficial for applications with heavy numerical computations or extensive use of loops (but you may not need it if using NumPy!).
+PyPy is best suited for long-running applications where the overhead of JIT compilation can be amortized over time. It's particularly beneficial for applications with heavy numerical computations or extensive use of loops (but you may not need it if using `NumPy`!).
 
 **Code Example:**
 

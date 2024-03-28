@@ -1,10 +1,10 @@
 # 🐼 Optimising Data Manipulation
 
-Optimizing data manipulation and analysis with Pandas is crucial for handling large datasets efficiently and effectively. Pandas, being one of the most popular libraries in Python for data analysis, provides numerous ways to optimize performance. Below, I'll highlight some key strategies and provide code examples where relevant.
+Optimizing data manipulation and analysis with `Pandas` is crucial for handling large datasets efficiently and effectively. Pandas, being one of the most popular libraries in Python for data analysis, provides numerous ways to optimize performance. Below, I'll highlight some key strategies and provide code examples where relevant.
 
 ## Choosing the Right Data Types
 
-Pandas automatically assigns data types, but they might not always be the most memory-efficient. By converting columns to more appropriate data types, you can significantly reduce memory usage.
+`Pandas` automatically assigns data types, but they might not always be the most memory-efficient. By converting columns to more appropriate data types, you can significantly reduce memory usage.
 
 **Example: Converting data types**
 
@@ -34,7 +34,7 @@ for chunk in pd.read_csv('large_file.csv', chunksize=chunk_size):
 
 ## Avoiding Loops with Vectorization
 
-Loops in Python are slow. Pandas operations are optimized to use vectorized operations that are much faster than iterating through rows.
+Loops in Python are slow. `Pandas` operations are optimized to use vectorized operations that are much faster than iterating through rows.
 
 **Example: Vectorized operations**
 
@@ -49,7 +49,7 @@ df['new_column'] = df['column'] * 2
 
 ## Using Efficient Functions
 
-Pandas provides functions that are optimized for performance. For example, apply() is versatile but can be slower than using vectorized operations or specific functions like agg(), transform(), or groupby().
+`Pandas` provides functions that are optimized for performance. For example, `apply()` is versatile but can be slower than using vectorized operations or specific functions like `agg()`, `transform()`, or `groupby()`.
 
 **Example: Efficient aggregation**
 
@@ -63,7 +63,7 @@ df.groupby('group_column')['column'].agg('sum')
 
 ## Filtering Data Early
 
-Filter out unnecessary data as early as possible in your pipeline to reduce the size of your DataFrame and speed up subsequent operations.
+Filter out unnecessary data as early as possible in your pipeline to reduce the size of your `DataFrame` and speed up subsequent operations.
 
 **Example: Early filtering**
 
@@ -75,7 +75,7 @@ df_filtered = df[df['column'] > 100]
 
 ## Using eval() and query() for Compound Expressions
 
-For complex operations, eval() and query() can be faster because they operate at a lower level and can avoid intermediate data structures.
+For complex operations, `eval()` and `query()` can be faster because they operate at a lower level and can avoid intermediate data structures.
 
 **Example: Using query()**
 
@@ -135,7 +135,7 @@ df['sparse_column'] = pd.arrays.SparseArray(df['sparse_column'])
 
 ## Enhancing Performance with Swifter
 
-For operations that are difficult to vectorize or when you're stuck with apply() for complex functions, consider using the swifter library. It automatically decides whether to use the original .apply() method, to vectorize the operation if possible, or to use parallel processing to speed up the computation.
+For operations that are difficult to vectorize or when you're stuck with `apply()` for complex functions, consider using the `swifter` library. It automatically decides whether to use the original `.apply()` method, to vectorize the operation if possible, or to use parallel processing to speed up the computation.
 
 **Example: Using swifter**
 

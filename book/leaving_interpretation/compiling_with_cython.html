@@ -184,7 +184,7 @@
         total += i ** 2
     return total
 </code></pre>
-<p>To optimize this with Cython, you'd create a .pyx file, say example_cy.pyx, and type the variables for C-level performance:</p>
+<p>To optimize this with Cython, you'd create a <code>.pyx</code> file, say <code>example_cy.pyx</code>, and type the variables for C-level performance:</p>
 <pre><code class="language-cython">def sum_of_squares(int n):
     cdef int total = 0
     cdef int i
@@ -193,7 +193,7 @@
     return total
 </code></pre>
 <h2 id="compilation"><a class="header" href="#compilation">Compilation</a></h2>
-<p>To compile the Cython code, you need a setup script, setup.py, containing:</p>
+<p>To compile the Cython code, you need a setup script, <code>setup.py</code>, containing:</p>
 <pre><code class="language-python">from distutils.core import setup
 from Cython.Build import cythonize
 
@@ -202,9 +202,9 @@ setup(ext_modules = cythonize("example_cy.pyx"))
 <p>Run the compilation process with:</p>
 <pre><code class="language-shell">python setup.py build_ext --inplace
 </code></pre>
-<p>This generates a shared object file (.so or .pyd, depending on the OS) that you can import in Python.</p>
+<p>This generates a shared object file (<code>.so</code> or <code>.pyd</code>, depending on the OS) that you can import in Python.</p>
 <h2 id="using-cython-in-jupyter-notebooks"><a class="header" href="#using-cython-in-jupyter-notebooks">Using Cython in Jupyter Notebooks</a></h2>
-<p>For quick experiments, Cython can be used directly in Jupyter notebooks with the %load_ext Cython magic command. Here’s how you can use it:</p>
+<p>For quick experiments, Cython can be used directly in Jupyter notebooks with the <code>%load_ext Cython</code> magic command. Here’s how you can use it:</p>
 <pre><code class="language-python">%load_ext Cython
 
 %%cython
@@ -216,7 +216,7 @@ def sum_of_squares(int n):
     return total
 </code></pre>
 <h2 id="profiling-and-annotating"><a class="header" href="#profiling-and-annotating">Profiling and Annotating</a></h2>
-<p>Cython can generate an HTML file showing which lines of code are converted to pure C and which ones invoke the Python C-API (potentially slowing down execution). Compile with the -a option in your setup script or use the %%cython -a magic command in Jupyter notebooks to generate this annotation. Lines highlighted in yellow indicate Python interactions, urging a closer look for potential optimization.</p>
+<p>Cython can generate an HTML file showing which lines of code are converted to pure C and which ones invoke the Python C-API (potentially slowing down execution). Compile with the -a option in your setup script or use the <code>%%cython -a</code> magic command in Jupyter notebooks to generate this annotation. Lines highlighted in yellow indicate Python interactions, urging a closer look for potential optimization.</p>
 <h2 id="tips-for-optimization"><a class="header" href="#tips-for-optimization">Tips for Optimization</a></h2>
 <ul>
 <li><strong>Typing Variables</strong>: Use cdef to declare C static types for variables.</li>
@@ -255,6 +255,22 @@ def sum_of_squares(int n):
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

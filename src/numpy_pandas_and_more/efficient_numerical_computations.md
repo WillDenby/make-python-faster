@@ -1,10 +1,10 @@
 # ⚡ Efficient Numerical Computations
 
-Here's an overview of how NumPy can be leveraged for efficient numerical computations, along with some code examples.
+Here's an overview of how `NumPy` can be leveraged for efficient numerical computations, along with some code examples.
 
 ## Basic Array Operations
 
-NumPy arrays support a wide range of mathematical operations that can be performed efficiently and with concise syntax.
+`NumPy` arrays support a wide range of mathematical operations that can be performed efficiently and with concise syntax.
 
 **Creating Arrays:**
 
@@ -50,11 +50,11 @@ print(x / y)
 
 ## Advanced Array Operations
 
-NumPy provides advanced functionalities, including broadcasting, vectorized operations, and complex slicing.
+`NumPy` provides advanced functionalities, including broadcasting, vectorized operations, and complex slicing.
 
 **Broadcasting:**
 
-Broadcasting allows NumPy to work with arrays of different shapes during arithmetic operations.
+Broadcasting allows `NumPy` to work with arrays of different shapes during arithmetic operations.
 
 ```python
 a = np.array([1, 2, 3])
@@ -76,7 +76,7 @@ print(np.sin(angles))
 
 ## Linear Algebra
 
-NumPy provides a set of functions for linear algebra operations, making it simple to perform tasks like matrix multiplication, finding determinants, solving linear systems, and more.
+`NumPy` provides a set of functions for linear algebra operations, making it simple to perform tasks like matrix multiplication, finding determinants, solving linear systems, and more.
 
 ```python
 # Matrix multiplication
@@ -95,7 +95,7 @@ print(x)
 
 ## Statistical Functions
 
-NumPy also includes functions for performing statistical operations on arrays, such as finding the mean, median, standard deviation, etc.
+`NumPy` also includes functions for performing statistical operations on arrays, such as finding the mean, median, standard deviation, etc.
 
 ```python
 data = np.array([1, 2, 3, 4, 5])

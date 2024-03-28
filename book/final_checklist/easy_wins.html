@@ -213,7 +213,7 @@ if 3 in my_set:  # O(1) time complexity
     return memo[n]
 </code></pre>
 <h2 id="built-in-functions-and-libraries-or-not"><a class="header" href="#built-in-functions-and-libraries-or-not">Built-in Functions and Libraries (Or Not)</a></h2>
-<p>Python's standard library and third-party libraries like NumPy and Pandas are written in C, making them much faster than custom, pure Python code for certain operations, especially numerical computations and data processing.</p>
+<p>Python's standard library and third-party libraries like <code>NumPy</code> and <code>Pandas</code> are written in C, making them much faster than custom, pure Python code for certain operations, especially numerical computations and data processing.</p>
 <p><strong>Example: Using NumPy for Array Operations</strong></p>
 <p>Instead of:</p>
 <pre><code class="language-python">result = []
@@ -225,7 +225,7 @@ for i in range(10000):
 arr = np.arange(10000) * 2
 </code></pre>
 <h2 id="profiling-and-identifying-bottlenecks"><a class="header" href="#profiling-and-identifying-bottlenecks">Profiling and Identifying Bottlenecks</a></h2>
-<p>Before optimizing, it's crucial to identify where the bottlenecks are. Python provides profiling tools like cProfile to analyze the performance of your code.</p>
+<p>Before optimizing, it's crucial to identify where the bottlenecks are. Python provides profiling tools like <code>cProfile</code> to analyze the performance of your code.</p>
 <pre><code class="language-python">import cProfile
 def my_function():
     result = [i * i for i in range(10000)]
@@ -236,7 +236,7 @@ cProfile.run('my_function()')
 <h2 id="avoiding-global-variables"><a class="header" href="#avoiding-global-variables">Avoiding Global Variables</a></h2>
 <p>Access to global variables is slower than local variable access. If you're using global variables within a loop or a frequently called function, consider passing them as arguments or using them as local variables.</p>
 <h2 id="string-concatenation"><a class="header" href="#string-concatenation">String Concatenation</a></h2>
-<p>Strings in Python are immutable, so every time you concatenate strings, a new string is created. For efficient string concatenation, especially in loops, use .join() or string formatting.</p>
+<p>Strings in Python are immutable, so every time you concatenate strings, a new string is created. For efficient string concatenation, especially in loops, use <code>.join()</code> or string formatting.</p>
 <p><strong>Example: Using .join() for Efficient String Concatenation</strong></p>
 <p>Instead of:</p>
 <pre><code class="language-python">result = ""
@@ -276,6 +276,22 @@ for i in range(100):
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

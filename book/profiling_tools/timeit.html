@@ -174,7 +174,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-timeit"><a class="header" href="#-timeit">⏱️ timeit</a></h1>
-<p><code>timeit</code> is a Python module designed to allow Python developers to time small bits of Python code with a minimal influence from the timing mechanism itself. It provides a more accurate timing mechanism than time.time() for small code snippets by taking into account setup code and running the code multiple times to calculate an average time.</p>
+<p><code>timeit</code> is a Python module designed to allow Python developers to time small bits of Python code with a minimal influence from the timing mechanism itself. It provides a more accurate timing mechanism than time.time() for small code snippets by taking into account setup code and by running the code multiple times to calculate an average time.</p>
 <p><strong>Usage Example:</strong></p>
 <pre><code class="language-python">import timeit
 
@@ -187,7 +187,7 @@ c = a + b
 elapsed_time = timeit.timeit(stmt=code_to_test, number=100000)
 print(f"Elapsed time: {elapsed_time} seconds")
 </code></pre>
-<p>The function runs the code snippet specified by the stmt parameter number times and returns the total time taken.</p>
+<p>The function runs the code snippet specified by the <code>stmt</code> parameter a <code>number</code> of times, and returns the average time taken.</p>
 
                     </main>
 
@@ -218,6 +218,22 @@ print(f"Elapsed time: {elapsed_time} seconds")
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

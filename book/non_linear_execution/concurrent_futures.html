@@ -174,10 +174,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-concurrentfutures"><a class="header" href="#-concurrentfutures">🪢 concurrent.futures</a></h1>
-<p>The concurrent.futures module in Python provides a high-level interface for asynchronously executing callables. It simplifies the execution of tasks in parallel, abstracting away many of the lower-level details of thread or process management. The module offers two main executor classes - ThreadPoolExecutor and ProcessPoolExecutor. The former is used for executing tasks in separate threads, making it ideal for I/O-bound tasks. The latter runs each task in a separate process, circumventing the Global Interpreter Lock (GIL) and is more suitable for CPU-bound tasks.</p>
+<p>The <code>concurrent.futures</code> module in Python provides a high-level interface for asynchronously executing callables. It simplifies the execution of tasks in parallel, abstracting away many of the lower-level details of thread or process management. The module offers two main executor classes - <code>ThreadPoolExecutor</code> and <code>ProcessPoolExecutor</code>. The former is used for executing tasks in separate threads, making it ideal for I/O-bound tasks. The latter runs each task in a separate process, circumventing the Global Interpreter Lock (GIL) and is more suitable for CPU-bound tasks.</p>
 <h2 id="basic-usage"><a class="header" href="#basic-usage">Basic Usage</a></h2>
 <p><strong>Submitting Tasks</strong></p>
-<p>Tasks can be submitted for execution using the submit() method, which schedules the callable to be executed and returns a Future object. A Future represents the eventual result of a computation.</p>
+<p>Tasks can be submitted for execution using the <code>submit()</code> method, which schedules the callable to be executed and returns a <code>Future</code> object. A <code>Future</code> represents the eventual result of a computation.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 
 def task(n):
@@ -189,7 +189,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
     print(future.result())  # Prints: 25
 </code></pre>
 <p><strong>Using map()</strong></p>
-<p>The map() function is similar to the built-in map, but it executes the function across multiple threads or processes in parallel. It returns an iterator that yields the results of the function calls.</p>
+<p>The <code>map()</code> function is similar to the built-in <code>map</code>, but it executes the function across multiple threads or processes in parallel. It returns an iterator that yields the results of the function calls.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 
 def task(n):
@@ -202,7 +202,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
         print(result)  # Prints the squares of the numbers
 </code></pre>
 <h2 id="handling-future-results"><a class="header" href="#handling-future-results">Handling Future Results</a></h2>
-<p>The Future object allows you to check if the task has completed (done()), wait for its completion (result()), and even cancel the task (cancel()). It encapsulates the asynchronous execution of a callable and provides methods to check its status and retrieve its result.</p>
+<p>The <code>Future</code> object allows you to check if the task has completed (done()), wait for its completion (<code>result()</code>), and even cancel the task (<code>cancel()</code>). It encapsulates the asynchronous execution of a callable and provides methods to check its status and retrieve its result.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 import time
 
@@ -218,7 +218,7 @@ with ThreadPoolExecutor(max_workers=1) as executor:
     print(future.result())  # "Task completed"
 </code></pre>
 <h2 id="exception-handling"><a class="header" href="#exception-handling">Exception Handling</a></h2>
-<p>When the callable raises an exception, the Future object catches it. The exception will be re-raised when you call result().</p>
+<p>When the callable raises an exception, the <code>Future</code> object catches it. The exception will be re-raised when you call <code>result()</code>.</p>
 <pre><code class="language-python">from concurrent.futures import ThreadPoolExecutor
 
 def task():
@@ -233,10 +233,10 @@ with ThreadPoolExecutor(max_workers=1) as executor:
 </code></pre>
 <h2 id="choosing-between-threadpoolexecutor-and-processpoolexecutor"><a class="header" href="#choosing-between-threadpoolexecutor-and-processpoolexecutor">Choosing Between ThreadPoolExecutor and ProcessPoolExecutor</a></h2>
 <ul>
-<li>Use ThreadPoolExecutor for I/O-bound tasks or when executing a large number of small tasks.</li>
-<li>Use ProcessPoolExecutor for CPU-bound tasks to take advantage of multiple CPU cores.</li>
+<li>Use <code>ThreadPoolExecutor</code> for I/O-bound tasks or when executing a large number of small tasks.</li>
+<li>Use <code>ProcessPoolExecutor</code> for CPU-bound tasks to take advantage of multiple CPU cores.</li>
 </ul>
-<p>The concurrent.futures module abstracts the complexity of thread and process management, providing an easy-to-use interface for executing tasks concurrently. This allows you to write more efficient, readable code, especially for I/O-bound or CPU-intensive tasks.</p>
+<p>The <code>concurrent.futures</code> module abstracts the complexity of thread and process management, providing an easy-to-use interface for executing tasks concurrently. This allows you to write more efficient, readable code, especially for I/O-bound or CPU-intensive tasks.</p>
 
                     </main>
 
@@ -267,6 +267,22 @@ with ThreadPoolExecutor(max_workers=1) as executor:
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

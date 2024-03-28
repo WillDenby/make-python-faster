@@ -174,20 +174,13 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-algorithm-complexity"><a class="header" href="#-algorithm-complexity">🧠 Algorithm Complexity</a></h1>
-<p>We should also briefly recap algorithm complexity.</p>
+<p>We'll occasionally make reference to algorithm complexity in this book - so let's have a quick review of this too.</p>
 <p>Algorithm complexity encompasses both time complexity and space complexity. I.e. it measures the efficiency of an algorithm in terms of the time it takes to run (time complexity) and the amount of memory it consumes (space complexity) as a function of the size of the input data.</p>
-<p>Understanding algorithm complexity is essential for writing efficient code, especially in languages like Python, where execution speed and resource management can be vital considerations in the development of scalable and performant applications.</p>
+<p>Understanding algorithm complexity is essential for writing efficient code, especially in languages like Python, whose interpreted nature means that suboptimal algorithm choice/design can incur significant performance costs.</p>
 <h2 id="time-complexity"><a class="header" href="#time-complexity">Time Complexity</a></h2>
 <p>Time complexity measures how the runtime of an algorithm changes as the size of the input data increases. It's often expressed using Big O notation, which provides an upper bound on the growth rate of the algorithm's runtime, helping to understand its worst-case scenario.</p>
-<p><strong>Constant Time (O(1))</strong>: The execution time remains constant regardless of the input size. For example, accessing any element in an array by index.</p>
-<p><strong>Linear Time (O(n))</strong>: The execution time increases linearly with the size of the input. For example, searching for an element in an unsorted list.</p>
-<pre><code class="language-python">def find_element(lst, key):
-    for item in lst:
-        if item == key:
-            return True
-    return False
-</code></pre>
-<p><strong>Logarithmic Time (O(log n))</strong>: The execution time grows logarithmically with the size of the input. Binary search is a classic example.</p>
+<p><strong>Constant Time - O(1)</strong>: The execution time remains constant regardless of the input size. For example, accessing any element in an array by index.</p>
+<p><strong>Logarithmic Time - O(log n)</strong>: The execution time grows logarithmically with the size of the input. Binary search is a classic example.</p>
 <pre><code class="language-python">def binary_search(arr, low, high, key):
     if high &gt;= low:
         mid = (high + low) // 2
@@ -200,7 +193,14 @@
     else:
         return -1
 </code></pre>
-<p><strong>Quadratic Time (O(n^2))</strong>: The execution time grows quadratically with the input size. A common example is the bubble sort algorithm.</p>
+<p><strong>Linear Time - O(n)</strong>: The execution time increases linearly with the size of the input. For example, searching for an element in an unsorted list.</p>
+<pre><code class="language-python">def find_element(lst, key):
+    for item in lst:
+        if item == key:
+            return True
+    return False
+</code></pre>
+<p><strong>Quadratic Time - O(n^2)</strong>: The execution time grows quadratically with the input size. A common example is the bubble sort algorithm.</p>
 <pre><code class="language-python">def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -210,8 +210,8 @@
 </code></pre>
 <h2 id="space-complexity"><a class="header" href="#space-complexity">Space Complexity</a></h2>
 <p>Space complexity measures the total amount of memory that an algorithm needs to run as a function of the size of the input data. Like time complexity, it's often expressed in Big O notation.</p>
-<p><strong>Constant Space (O(1))</strong>: The algorithm requires a fixed amount of memory space regardless of the input size.</p>
-<p><strong>Linear Space (O(n))</strong>: The space required by the algorithm increases linearly with the size of the input data.</p>
+<p><strong>Constant Space - O(1)</strong>: The algorithm requires a fixed amount of memory space regardless of the input size.</p>
+<p><strong>Linear Space - O(n)</strong>: The space required by the algorithm increases linearly with the size of the input data.</p>
 <p>For example, merging two lists requires additional space proportional to the sum of both lists' sizes, making its space complexity O(n).</p>
 <pre><code class="language-python">def merge_lists(lst1, lst2):
     return lst1 + lst2  # Creates a new list with elements of lst1 followed by elements of lst2
@@ -247,6 +247,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
