@@ -4,6 +4,14 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Make Python Faster: a Practical Guide"
+description = "Learn about profiling tools. Optimise data structures. Understand asynchronous programming, multithreading, and multiprocessing. Explore alternative Python interpreters. Take advantage of C and compilation. Master memory management strategies. Build performant web apps."
+
+[output.html]
+git-repository-url = "https://github.com/WillDenby/make-python-faster/tree/main/src"
+edit-url-template = "https://github.com/WillDenby/make-python-faster/tree/main/src/{path}"
+
+[output.html.print]
+enable = false
 
 [output.html.fold]
 enable = true
