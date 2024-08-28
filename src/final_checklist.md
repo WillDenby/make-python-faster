@@ -5,3 +5,5 @@ In summary, optimisation in Python often revolves around improving the time comp
 In the next section, we'll cover a brief checklist of “easy wins”. On the flip-side, like any other language, Python also has its own set of performance pitfalls, often referred to as *anti-patterns*. These anti-patterns can degrade the performance of a Python application if not addressed. So we'll also review common anti-patterns in Python, and provide suggestions on how to avoid them!
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

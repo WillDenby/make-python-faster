@@ -121,3 +121,5 @@ async def read_async():
 - Use persistent database connections and connection pooling.
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

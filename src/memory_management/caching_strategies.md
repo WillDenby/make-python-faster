@@ -70,3 +70,5 @@ Implementing caching can significantly improve the performance of Python applica
 - TTL caching is suitable for data that changes over time, which needs a degree of “freshness”
 - Disk-based caching is ideal for large amounts of data, or when you need cache persistence. 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

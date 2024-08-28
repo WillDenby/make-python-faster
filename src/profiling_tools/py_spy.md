@@ -18,3 +18,5 @@ Or, you can generate a flame graph like this:
 py-spy record --pid <pid of your python program> --output profile.svg
 ```
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

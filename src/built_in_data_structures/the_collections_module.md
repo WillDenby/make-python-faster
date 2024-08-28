@@ -79,3 +79,5 @@ print(cm['color'])  # Output: red
 print(cm['user'])  # Output: admin
 ```
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

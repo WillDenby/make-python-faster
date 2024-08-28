@@ -104,3 +104,5 @@ print(np.median(data))
 print(np.std(data))
 ```
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

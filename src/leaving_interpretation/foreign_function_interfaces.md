@@ -88,3 +88,5 @@ c = addarrays.add_arrays(a, b)
 print(c)
 ```
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

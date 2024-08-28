@@ -42,3 +42,5 @@ mean_value = df.select([
 print(mean_value)
 ```
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

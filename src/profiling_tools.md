@@ -28,3 +28,5 @@ In this book I’ll mostly focus on the first two, as optimising the latter can 
 Finally, remember that profiling can add to the computer workload, and hence slow things down artificially. 
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

@@ -18,3 +18,5 @@ Lists are dynamic arrays and thus have some overhead for memory allocation to su
 
 So the memory usage of a list grows with the number of elements. However, because Python preallocates memory in chunks (to avoid frequent resizing), a list might use more memory than the actual data it stores.
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

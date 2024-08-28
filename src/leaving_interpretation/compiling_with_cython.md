@@ -62,3 +62,5 @@ def sum_of_squares(int n):
 
 Cython can also generate an HTML file showing which lines of code are converted to pure C and which ones invoke the Python C-API (potentially slowing down execution). Compile with the `-a` option in your setup script, or use the `%%cython -a` magic in Jupyter notebooks to generate this annotation. Lines highlighted in yellow indicate Python interactions.
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

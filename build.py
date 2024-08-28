@@ -65,13 +65,13 @@ def modify_md_files(add=True):
 modify_book_toml(remove=True)
 
 # Step 2: Change directory to 'src'
-os.chdir('src')
+
 
 # Step 3: Add a line to every .md file in 'src' except 'SUMMARY.md'
 modify_md_files(add=True)
 
 # Step 4: Change directory back to the parent
-os.chdir('..')
+
 
 # Step 5: Run 'mdbook build'
 subprocess.run(["mdbook", "build"])
@@ -95,13 +95,13 @@ subprocess.run(["git", "commit", "-m", "updated today"])
 subprocess.run(["git", "push"])
 
 # Step 12: Change directory to 'src'
-os.chdir('src')
+
 
 # Step 13: Remove the specific line from every .md file
 modify_md_files(add=False)
 
 # Step 14: Change directory back to the parent
-os.chdir('..')
+
 
 # Step 15: Re-add specific lines to book.toml
 modify_book_toml(remove=False)

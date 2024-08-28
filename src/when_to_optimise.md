@@ -17,3 +17,5 @@ So before thinking about how to optimise your code, ask yourself the following q
 3. Is the code robust/tested?
 4. Does it *really* need optimisation?
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

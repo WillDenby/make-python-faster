@@ -77,3 +77,5 @@ gc.collect()  # This triggers the deletion of both MyClass instances
 
 This dual approach helps automate memory management, but understanding it can be beneficial for optimizing your Python programs, especially for long-running or memory-intensive applications.
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

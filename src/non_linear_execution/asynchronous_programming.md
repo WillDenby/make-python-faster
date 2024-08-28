@@ -92,3 +92,5 @@ loop.close()
 
 These examples illustrate the basic usage of AsyncIO for concurrent programming in Python. AsyncIO's power lies in its ability to handle many tasks simultaneously, making it a valuable tool for any I/O-bound application.
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

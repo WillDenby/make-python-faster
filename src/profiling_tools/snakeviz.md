@@ -21,3 +21,5 @@ snakeviz profile_output
 
 This will open a browser tab with an interactive visualisation. 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

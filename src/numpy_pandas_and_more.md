@@ -66,3 +66,5 @@ While Python's built-in data structures are incredibly powerful and useful for a
 Let's explore them further!
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

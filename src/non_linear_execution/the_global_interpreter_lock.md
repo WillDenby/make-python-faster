@@ -68,3 +68,5 @@ print(f"Duration with threads: {end_time - start_time} seconds")
 
 In the CPU-bound example, you might not notice a significant performance improvement from using threads due to the GIL. In contrast, the I/O-bound example can benefit from multi-threading, as threads waiting for I/O allow others to run.
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

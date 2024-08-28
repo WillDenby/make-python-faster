@@ -58,3 +58,5 @@ JIT compilation introduces a one-time, up-front overhead, which means Numba migh
 
 But in general, Numba can help you achieve execution speeds that rival or exceed those of code written in more traditionally performant languages like C or Fortran, without sacrificing the ease of use and flexibility of Python.
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

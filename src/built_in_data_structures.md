@@ -12,3 +12,5 @@ First, it’s worth considering how you are handling the data that’s moving th
 - Generic structures (i.e. those containing multiple data types, such as floats and strings) tend to incur greater overhead when being manipulated than those of a single type.
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

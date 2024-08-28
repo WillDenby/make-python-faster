@@ -135,3 +135,5 @@ Optimising data manipulation and analysis in Pandas involves a combination of ch
 
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

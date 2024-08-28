@@ -21,3 +21,5 @@ if __name__ == '__main__':
 
 This code snippet wraps the function to profile, and then prints the statistics to the terminal. 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

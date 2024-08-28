@@ -61,3 +61,5 @@ The efficiency and performance of CPython can be further affected by factors suc
 While CPython is the standard Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) or GraalPy (which runs on the GraalVM Java platform). These implementations have different execution models, optimised for different use cases and performance characteristics. We'll explore these later on in the *Alternative Python Interpreters* chapter.
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

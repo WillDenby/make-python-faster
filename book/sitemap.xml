@@ -2,190 +2,190 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://makepythonfaster.com/</loc>
-        <lastmod>2024-08-28T23:33:42.416Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.579Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/algorithm_complexity</loc>
-        <lastmod>2024-08-28T23:33:42.421Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.584Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/alternative_python_interpreters</loc>
-        <lastmod>2024-08-28T23:33:42.451Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.620Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/built_in_data_structures</loc>
-        <lastmod>2024-08-28T23:33:42.435Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.597Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/final_checklist</loc>
-        <lastmod>2024-08-28T23:33:42.465Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.636Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/leaving_interpretation</loc>
-        <lastmod>2024-08-28T23:33:42.457Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.627Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/memory_management</loc>
-        <lastmod>2024-08-28T23:33:42.462Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.631Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/non_linear_execution</loc>
-        <lastmod>2024-08-28T23:33:42.446Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.613Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/numpy_pandas_and_more</loc>
-        <lastmod>2024-08-28T23:33:42.441Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.606Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/performant_web_applications</loc>
-        <lastmod>2024-08-28T23:33:42.465Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.635Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools</loc>
-        <lastmod>2024-08-28T23:33:42.424Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.586Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/pythons_execution_model</loc>
-        <lastmod>2024-08-28T23:33:42.419Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.582Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/when_to_optimise</loc>
-        <lastmod>2024-08-28T23:33:42.415Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.577Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/alternative_python_interpreters/cinder</loc>
-        <lastmod>2024-08-28T23:33:42.455Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.625Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/alternative_python_interpreters/graalpython</loc>
-        <lastmod>2024-08-28T23:33:42.454Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.623Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/alternative_python_interpreters/ironpython</loc>
-        <lastmod>2024-08-28T23:33:42.453Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.622Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/alternative_python_interpreters/micropython</loc>
-        <lastmod>2024-08-28T23:33:42.456Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.626Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/alternative_python_interpreters/pypy</loc>
-        <lastmod>2024-08-28T23:33:42.452Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.621Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/built_in_data_structures/dictionaries</loc>
-        <lastmod>2024-08-28T23:33:42.437Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.601Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/built_in_data_structures/lists</loc>
-        <lastmod>2024-08-28T23:33:42.436Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.599Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/built_in_data_structures/sets</loc>
-        <lastmod>2024-08-28T23:33:42.438Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.602Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/built_in_data_structures/the_collections_module</loc>
-        <lastmod>2024-08-28T23:33:42.440Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.604Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/built_in_data_structures/tuples</loc>
-        <lastmod>2024-08-28T23:33:42.436Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.600Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/final_checklist/easy_losses</loc>
-        <lastmod>2024-08-28T23:33:42.468Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.638Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/final_checklist/easy_wins</loc>
-        <lastmod>2024-08-28T23:33:42.467Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.637Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/leaving_interpretation/c_extensions_for_python</loc>
-        <lastmod>2024-08-28T23:33:42.458Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.628Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/leaving_interpretation/compiling_with_cython</loc>
-        <lastmod>2024-08-28T23:33:42.459Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.629Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/leaving_interpretation/foreign_function_interfaces</loc>
-        <lastmod>2024-08-28T23:33:42.461Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.630Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/leaving_interpretation/just_in_time_with_numba</loc>
-        <lastmod>2024-08-28T23:33:42.460Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.629Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/memory_management/caching_strategies</loc>
-        <lastmod>2024-08-28T23:33:42.463Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.633Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/memory_management/reducing_footprint_and_avoiding_leaks</loc>
-        <lastmod>2024-08-28T23:33:42.462Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.632Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/non_linear_execution/asynchronous_programming</loc>
-        <lastmod>2024-08-28T23:33:42.449Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.616Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/non_linear_execution/concurrent_futures</loc>
-        <lastmod>2024-08-28T23:33:42.450Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.618Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/non_linear_execution/the_global_interpreter_lock</loc>
-        <lastmod>2024-08-28T23:33:42.447Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.614Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/non_linear_execution/threading_and_multiprocessing</loc>
-        <lastmod>2024-08-28T23:33:42.448Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.615Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/numpy_pandas_and_more/dask_and_polars</loc>
-        <lastmod>2024-08-28T23:33:42.445Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.612Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/numpy_pandas_and_more/efficient_numerical_computations</loc>
-        <lastmod>2024-08-28T23:33:42.442Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.607Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/numpy_pandas_and_more/optimising_data_manipulation</loc>
-        <lastmod>2024-08-28T23:33:42.444Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.610Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/numpy_pandas_and_more/using_numexpr</loc>
-        <lastmod>2024-08-28T23:33:42.443Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.609Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/cprofile</loc>
-        <lastmod>2024-08-28T23:33:42.428Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.592Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/line_profiler</loc>
-        <lastmod>2024-08-28T23:33:42.430Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.595Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/memory_profiler</loc>
-        <lastmod>2024-08-28T23:33:42.431Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.596Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/py_spy</loc>
-        <lastmod>2024-08-28T23:33:42.433Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.597Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/snakeviz</loc>
-        <lastmod>2024-08-28T23:33:42.429Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.593Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/time_time</loc>
-        <lastmod>2024-08-28T23:33:42.425Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.588Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/timeit</loc>
-        <lastmod>2024-08-28T23:33:42.426Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.589Z</lastmod>
     </url>
     <url>
         <loc>https://makepythonfaster.com/profiling_tools/unixs_time_command</loc>
-        <lastmod>2024-08-28T23:33:42.427Z</lastmod>
+        <lastmod>2024-08-28T23:38:58.591Z</lastmod>
     </url>
 </urlset>

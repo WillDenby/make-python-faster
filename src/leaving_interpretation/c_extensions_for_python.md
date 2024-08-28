@@ -78,3 +78,5 @@ Writing C extensions can greatly improve the performance of your Python program,
 
 **Compatibility**: Keep in mind Python version compatibility, in case of variations in the API.
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)

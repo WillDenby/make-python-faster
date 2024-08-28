@@ -17,3 +17,5 @@ Before exploring these strategies, it’s worth considering another reason for w
 In order to take advantage of compilation, you often need to specify your datatypes (ints, floats, strings), so that you can remove the need for the flexibility of the interpreter. We saw a bit of this with Cinder. 
 
 
+
+[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
