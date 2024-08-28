@@ -32,7 +32,6 @@
 - [🚀 Alternative Python Interpreters](./alternative_python_interpreters.md)
   - [🏎️ PyPy](./alternative_python_interpreters/pypy.md)
   - [🔗 IronPython](./alternative_python_interpreters/ironpython.md)
-  - [☕ Jython](./alternative_python_interpreters/jython.md)
   - [🌌 GraalPython](./alternative_python_interpreters/graalpython.md)
   - [🔥 Cinder](./alternative_python_interpreters/cinder.md)
   - [🤖 MicroPython](./alternative_python_interpreters/micropython.md)

@@ -1,20 +1,18 @@
-# ❓ When to Optimise your Code
+# ❓ When to Optimise
 
-In most organisations, programmers live under the following paradigm:
+Most code doesn’t require optimisation. And time taken to optimise code could often be better spent elsewhere: refining the user experience, adding new features, or improving security.
 
-> Overall Team Velocity > Individual Code Optimisation
-
-Some things in this book are quick wins/best practice. Other things require more of a time investment. Before considering any implementation of the latter, ask yourself the following questions:
-
-1. **Does the code work?**
-2. **Does the code conform to team standards?**
-3. **Is the code robust?**
-4. **Does it really need optimisation?**
-
-We code to make the world more efficient, but some problems just aren't worth worrying about. Consult this xkcd graphic if in doubt:
-
-![A matrix about time saved vs time invested](https://imgs.xkcd.com/comics/is_it_worth_the_time.png)
-
-And remember the now infamous quote from Tony Hoare/Donald Knuth: 
+As Donald Knuth (never actually) said: 
 
 > Premature optimisation is the root of all evil!
+
+Not all optimisation is inherently bad. But the tendency to optimise too early, or in places where it’s not needed, can create more problems than it solves. 
+
+The most effective way to approach optimisation is to do so only when there is a clear, measurable performance issue that impacts the user experience, system reliability, product functionality, or cost.
+
+So before thinking about how to optimise your code, ask yourself the following questions:
+
+1. Does the code work?
+2. Does the code conform to team standards?
+3. Is the code robust/tested?
+4. Does it *really* need optimisation?

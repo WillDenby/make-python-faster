@@ -1,20 +1,10 @@
 # 🔗 IronPython
 
-IronPython is an open-source implementation of Python that runs on the .NET Framework and Mono. It is designed to seamlessly integrate with .NET, allowing Python developers to make use of .NET libraries and frameworks. IronPython aims to be a true implementation of Python, while also providing the additional performance and integration capabilities of .NET.
+IronPython is an open-source implementation of Python that runs on the .NET Framework, allowing Python developers to interoperate with .NET languages like C# and VB.NET, and make use of .NET libraries. 
 
-**Features:**
+IronPython aims to be a true and full implementation of Python, but by supporting dynamic compilation to .NET bytecode, it potentially offers the performance benefits of the .NET runtime.
 
-- Full integration with the .NET Framework, enabling access to a vast library of .NET functionality.
-- Allows Python code to interoperate with .NET languages like C# and VB.NET.
-- Supports dynamic compilation to .NET bytecode, potentially offering performance benefits on the .NET runtime.
-
-**When to Use:**
-
-IronPython is ideal for Python developers working in a .NET environment or needing to integrate Python code with .NET applications. It's particularly useful for projects that can benefit from the .NET framework's features, such as Windows-based desktop applications or web services.
-
-**Code Example:**
-
-Download IronPython first: [https://ironpython.net](https://ironpython.net)
+You can download it from: [https://ironpython.net](https://ironpython.net)
 
 Running a Python script with IronPython is similar to using the standard Python interpreter, but you use the `ipy` command instead.
 
@@ -22,7 +12,7 @@ Running a Python script with IronPython is similar to using the standard Python 
 ipy script.py
 ```
 
-To integrate Python code within a C# application using IronPython, you can do something like the following:
+To integrate Python code within a C# application using IronPython, you use the following syntax:
 
 ```csharp
 var engine = Python.CreateEngine();

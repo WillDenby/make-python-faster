@@ -2,7 +2,9 @@
 
 `cProfile` is a built-in profiler that provides a detailed breakdown of how much time your program spends in each function. It's great for getting an overview of which functions are the most time-consuming.
 
-**Usage Example:**
+## Usage Example
+
+Here’s a simple example of using `cProfile`:
 
 ```python
 import cProfile

@@ -1,22 +1,22 @@
 # 🐲 Snakeviz
 
-`Snakeviz` is a browser-based graphical viewer for the output of Python’s `cProfile` module.
+Snakeviz is a browser-based GUI for visualising the output of Python’s cProfile module.
 
-**Usage Example:**
+## Usage Example
 
-Install it with: `pip install snakeviz`
+Install Snakeviz with: `pip install snakeviz`
 
-First, generate a profile file using `cProfile`:
+First, you’ll need to generate a profile file using `cProfile`:
 
 ```python
 import cProfile
 cProfile.run('example_function()', 'profile_output')
 ```
 
-Then, visualize it with `Snakeviz`:
+Then, you can visualise the performance with Snakeviz:
 
 ```shell
 snakeviz profile_output
 ```
 
-This will open up a browser tab with an interactive visualization of your profiling data.
+This will open a browser tab with an interactive visualisation. 

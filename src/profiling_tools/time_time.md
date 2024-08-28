@@ -2,7 +2,9 @@
 
 The `time.time()` function from the Python standard library is a straightforward way to measure the elapsed time during code execution. It returns the current time in seconds since the Epoch (January 1, 1970, 00:00:00 UTC). You can use it to calculate how long a piece of code takes to execute by recording the time before and after the execution and then finding the difference.
 
-**Usage Example:**
+## Usage Example:
+
+Here’s a simple setup for `time.time()`:
 
 ```python
 import time
@@ -17,4 +19,4 @@ elapsed_time = end_time - start_time
 print(f"Elapsed time: {elapsed_time} seconds")
 ```
 
-This method is very basic and is useful for quick-and-dirty timing without needing to install or use more complex profiling tools.
+This method is basic, but useful for quick-and-dirty profiling. You can use it to identify areas for more refined profiling.

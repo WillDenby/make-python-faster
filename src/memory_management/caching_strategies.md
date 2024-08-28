@@ -1,14 +1,12 @@
 # 💾 Caching Strategies
 
-Caching in Python is a technique used to store data in a temporary storage area (cache) so that future requests for that data can be served faster. This is particularly useful in situations where data retrieval or computation is resource-intensive. Python provides various strategies and tools for caching, which can be applied depending on the specific requirements of your application.
+You can also use caching strategies (i.e. ways of storing data in a temporary area) to serve future requests for the same data faster. Caching is useful in situations where retrieving data, or computing it, is resource-intensive. You don’t want to perform these operations more than once! Python provides various tools for caching, as described below. 
 
 ## LRU (Least Recently Used) Cache
 
-The LRU caching strategy removes the least recently used items first. This is useful in applications where you want to cache a limited number of items and the likelihood of accessing recently used items is high.
+The LRU caching strategy removes the “least recently used” items first. It’s useful in applications where you want to cache a limited number of items and when the likelihood of accessing recently used items is high.
 
-Python's functools module provides an `@lru_cache` decorator to implement LRU caching easily. It can be applied to any function whose output you want to cache.
-
-**Example:**
+Python's `functools` module provides an `@lru_cache` decorator to implement LRU caching. It can be applied to any function whose output you want to cache:
 
 ```python
 from functools import lru_cache
@@ -21,11 +19,7 @@ def expensive_function(param):
 
 ## Memoization
 
-Memoization is a specific form of caching that involves storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization is a form of LRU caching but is specifically applied to function calls.
-
-Python's functools module `@lru_cache` can also be used for memoization.
-
-**Example:**
+Memoization is a specific form of caching that involves storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization is a form of LRU caching but is specifically applied to function calls. The `@lru_cache` can also be used for memoization:
 
 ```python
 from functools import lru_cache
@@ -39,11 +33,7 @@ def fibonacci(n):
 
 ## TTL (Time To Live) Cache
 
-TTL caching invalidates cache entries after a set period. This strategy is suitable when the data changes over time or if you want to ensure that data doesn't become stale.
-
-The `cachetools` library offers TTL caching capabilities.
-
-**Example:**
+TTL caching invalidates cache entries after a set period. This strategy is suitable when the data changes over time or if you want to ensure that data doesn't become stale. The `cachetools` library offers TTL caching capabilities:
 
 ```python
 from cachetools import TTLCache
@@ -59,9 +49,7 @@ def get_data(key):
 
 ## Disk-based Caching
 
-When dealing with large amounts of data or needing to persist cache across program restarts, disk-based caching can be used. Libraries such as `joblib` provide mechanisms for storing cache data on disk.
-
-**Example:**
+When you are dealing with large amounts of data or you need to persist a cache across program restarts, disk-based caching help. Libraries such as `joblib` provide mechanisms for storing cache data on disk:
 
 ```python
 from joblib import Memory
@@ -75,9 +63,9 @@ def expensive_function(param):
 
 ## Choosing the Right Strategy
 
-- **LRU Cache**: Use when working with a fixed-size cache and accessing recently used items is more probable.
-- **TTL Cache**: Suitable for data that changes over time or where freshness is critical.
-- **Memoization**: Best for optimizing expensive, deterministic functions with a limited set of inputs.
-- **Disk-based Caching**: Ideal for very large datasets or when cache persistence is necessary.
+Implementing caching can significantly improve the performance of Python applications by reducing the need to recompute results or re-fetch data. However, it's important to choose the right caching strategy based on the application's requirements and the nature of the data being cached. To summarise:
 
-Implementing caching can significantly improve the performance of Python applications by reducing the need to recompute results or re-fetch data. However, it's important to choose the right caching strategy based on the application's requirements and the nature of the data being cached.
+- LRU caching is useful for fixed-size caches, and when recent data is more likely to be accessed
+- Memoization is best for optimising expensive functions with a limited set of inputs
+- TTL caching is suitable for data that changes over time, which needs a degree of “freshness”
+- Disk-based caching is ideal for large amounts of data, or when you need cache persistence. 

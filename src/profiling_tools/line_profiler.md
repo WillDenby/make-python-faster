@@ -1,10 +1,10 @@
 # 📈 line_profiler
 
-`line_profiler` is an external tool that goes into more detail than cProfile by showing how much time is spent on each line of your code. This is especially useful for fine-tuning performance by identifying slow lines in functions.
+`line_profiler` is an 3rd party tool that goes into more detail than `cProfile`, by showing how much time is spent on each line of your code. 
 
-**Usage Example:**
+## Usage Example
 
-Install it with: `pip install line_profiler`
+Install it with: `pip install line_profiler`, and then run:
 
 ```python
 from line_profiler import LineProfiler
@@ -19,4 +19,4 @@ if __name__ == '__main__':
     lp.print_stats()
 ```
 
-You need to wrap the function you want to profile and then print the statistics.
+This code snippet wraps the function to profile, and then prints the statistics to the terminal. 

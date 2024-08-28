@@ -1,12 +1,10 @@
-# ♻️ Reducing Footprint and Avoiding Leaks
+# ♻️ Reducing the Memory Footprint
 
-Reducing the memory footprint and avoiding memory leaks in Python are crucial for optimizing the performance and scalability of applications, especially when dealing with large datasets or running on limited-resource environments. Python, being a high-level language, abstracts away many memory management details, but there are still best practices and techniques you can apply to manage memory usage effectively.
+There are several techniques available which can help you use memory more efficiently, in case your profiling identifies degradation. Let’s have a look. 
 
 ## Efficient Data Types
 
-Choosing the right data types can significantly reduce memory usage. For instance, using` array.array` for large arrays of numbers instead of lists, or `__slots__` to limit the attributes in a class.
-
-**Example with `array.array`:**
+Choosing the right data types can reduce memory usage. For instance, you can use `array.array` for large arrays of numbers instead of lists:
 
 ```python
 import array
@@ -15,7 +13,7 @@ import array
 int_array = array.array('i', range(1000000))
 ```
 
-**Example with `__slots__`:**
+Or, you can use `__slots__` to limit the attributes in a class:
 
 ```python
 class SlotsBased:
@@ -34,9 +32,7 @@ class RegularClass:
 
 ## Using Generators
 
-Generators yield items one at a time, consuming less memory when processing large datasets.
-
-**Example of using a generator:**
+Generators yield items one at a time, consuming less memory when iterating through a series of operations:
 
 ```python
 def large_file_reader(file_name):
@@ -50,9 +46,7 @@ for row in large_file_reader("large_file.txt"):
 
 ## Explicitly Releasing Resources
 
-Garbage collection in Python usually handles memory management, but in some cases, you might need to manually release resources. This is especially true for external resources like file handles or network connections.
-
-**Example of using context managers to ensure resources are released:**
+In some cases, you might want to manually release resources, rather than rely on the GC. This can help for managing external resources like file handles or network connections. Here’s an example of using context managers to ensure resources are released:
 
 ```python
 with open("file.txt", "r") as file:
@@ -62,9 +56,7 @@ with open("file.txt", "r") as file:
 
 ## Weak References
 
-Weak references allow the Python garbage collector to collect an object even if it has references, as long as they are weak. This is useful for caching or mapping large objects that you don't want to keep in memory indefinitely.
-
-**Example with `weakref`:**
+Weak references allow the Python garbage collector to collect an object even if it has references, as long as they are “weak”. This is useful for caching or mapping large objects that you don't want to keep in memory indefinitely. Here’s an example using `weakref`:
 
 ```python
 import weakref
@@ -80,9 +72,7 @@ obj_weakref = weakref.ref(obj)
 
 ## Monitoring and Profiling Memory Usage
 
-Identifying and diagnosing memory issues requires monitoring and profiling. Tools like `memory_profiler` and `objgraph` can help identify memory leaks and high memory usage.
-
-**Example with `memory_profiler`:**
+Identifying and diagnosing memory issues requires monitoring and profiling. Tools like `memory_profiler` (which we saw earlier) and `objgraph` can help identify memory leaks and high memory usage:
 
 ```python
 # You need to install memory_profiler first (`pip install memory_profiler`)
@@ -96,11 +86,9 @@ def my_function():
     return a
 ```
 
-## Garbage Collection Tuning
+## Garbage Collector Tuning
 
-Python’s garbage collector can be tuned or manually invoked to manage memory more aggressively. However, be cautious as forcing garbage collection can impact performance.
-
-**Example of invoking garbage collection:**
+Python’s garbage collector can be tuned or manually invoked to manage memory more aggressively:
 
 ```python
 import gc
@@ -108,18 +96,6 @@ import gc
 gc.collect()  # Force a garbage collection
 ```
 
-## Avoiding Circular References
+However, be cautious as forcing garbage collection can impact performance by adding overhead.
 
-Circular references can prevent Python's garbage collector from reclaiming memory. Use weak references or redesign your data structures to avoid them.
-
-**Detecting circular references:**
-
-```python
-import gc
-
-gc.collect()  # Collect all objects if possible
-for obj in gc.garbage:
-    print(obj)
-```
-
-These techniques, combined with a thoughtful design, can help manage memory effectively in Python applications, improving performance and reducing the risk of memory-related issues.
+These techniques, combined with a thoughtful design, can help you better manage memory in your Python applications.

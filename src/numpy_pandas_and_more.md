@@ -1,33 +1,35 @@
-# ⚙️ NumPy, Pandas, and More
+# ⚙️ NumPy and Numpy
 
-`Numpy` and `Pandas` are two widely used libraries in Python for data manipulation and analysis. Compared to built-in data structures, they offer more efficient storage and data operations, especially when dealing with large datasets or complex numerical computations. Later in this section, we'll also explore related libraries like Dask and Polars, which further extend these capabilities. 
+NumPy and Pandas are two common libraries for data manipulation and analysis. Compared to Python’s built-in data structures, they can offer more efficient and intuitive storage and data operations, especially when dealing with large datasets or complex numerical computations. 
 
-## Numpy
+## The Problem with Lists
 
-Python's native list structure has a problem with vector operations and matrix manipulations. Lists don't actually hold the data - instead, they hold pointers to the data location. The advantage of this is that the contents of a list can be heterogenous. However, it introduces a fetch/look-up overhead, and if you are doing lots of operations, this adds up.
+Python's native list structure has a problem with vector operations and matrix manipulations. Lists don't actually hold the data - instead, they hold pointers to the data location. The advantage of this is that the contents of a list can be heterogenous. However, this introduces a fetch/look-up overhead, which adds up if you are doing lots of operations.
 
-What does this look like in hardware terms? In brief, there's a cost in moving data from memory to the CPU. Modern computers can have tiered architectures, with DRAM, SRAM, external caches, and on-chip caches. CPUs can also do things like branch prediction, speculation, overlapped instruction fetching, pipelining, and superscalar execution. If you want to get into the weeds, you can use the Linux perf tool to do some profiling, looking for `cache-misses` (memory bound) and `page-faults` (disk/network bound). But we might as well be sensible with how we do things.
+(What does this look like in hardware terms? In brief, there's a cost in moving data from memory to the CPU. If you want to get into the weeds, you can use the Linux `perf` tool to look for `cache-misses` and `page-faults` when manipulating lists.)
 
-### The Array Module?
+## The Array Module?
 
-Python offers an `array` module, that overcomes the memory fragementation issue by storing items sequentially. Iterating through an `array` therefore doesn't require multiple look-ups, as data can be cached (i.e. closer in terms of spatial and temporal locality to the CPU). But then we run into a different issue: Python, as a high-level interpreted language, isn't optimised for vector operations, and isn't good at dealing with the low-level implementation of `array`.
+Python offers an `array` module, which partially overcomes lists’ memory fragmentation issue by storing items sequentially. Iterating through an `array` doesn't require multiple look-ups, as data can be cached (making it closer in terms of spatial and temporal locality to the CPU). 
 
-### Enter NumPy
+But then we run into a different issue: Python, as a high-level interpreted language, isn't optimised for vector operations, and isn't good at communicating with the low-level implementation of `array`.
 
-`Numpy` is a library for numerical computing in Python. It introduces an array object (ndarray), which is a multidimensional container of items of the same type and size. Here's why you might use Numpy arrays over Python lists:
+## NumPy to the Rescue
 
-**Efficiency**: `Numpy` arrays are stored at one continuous place in memory unlike lists, so processes can access and manipulate them very efficiently. This is particularly beneficial for operations involving large data sets.
+NumPy is a library for numerical computing in Python. It introduces an array object (`ndarray`), which is a multidimensional container of items of the same type and size. NumPy has the following benefits over built-in lists:
 
-**Convenience**: `Numpy` offers comprehensive mathematical functions that can be applied on arrays without writing loops. This makes code cleaner and faster.
+**Efficiency**: NumPy arrays are stored at one continuous place in memory, maximising locality. This is particularly beneficial for operations involving large data sets.
 
-**Functionality**: `Numpy` supports an extensive range of operations including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation, and much more.
+**Convenience**: NumPy offers comprehensive mathematical functions that can be applied to arrays without writing loops. This makes code cleaner and faster.
 
-**Example: Summing Elements**
+**Functionality**: NumPy supports an extensive range of operations including shape manipulation, sorting, selecting discrete Fourier transforms, linear algebra, random simulation, and much more.
+
+It has a special but not totally alien syntax:
 
 ```python
 import numpy as np
 
-# With Numpy
+# With NumPy
 numpy_array = np.array([1, 2, 3, 4])
 print(np.sum(numpy_array))  # Output: 10
 
@@ -36,19 +38,15 @@ python_list = [1, 2, 3, 4]
 print(sum(python_list))  # Output: 10
 ```
 
-The `Numpy` version is much faster and more efficient, especially with larger arrays.
-
 ## Pandas
 
-`Pandas` is built on top of `Numpy` and is crucial for data manipulation and analysis. It introduces two new data structures to Python: `Series` and `DataFrame`, which are built on `Numpy` arrays.
+Pandas is a library built on top of NumPy, which introduces two new data structures to Python: `Series` and `DataFrame`. These enable the following:
 
-**Data Representation**: `Pandas` provides a fast, flexible, and expressive data structure designed to make working with "relational" or "labeled" data both easy and intuitive.
+**More intuitive data representation**: Pandas provides a fast, flexible, and expressive data structure, designed to make working with "relational" or "labeled" data easier.
 
-**Functionality**: It offers powerful, expressive, and flexible data operations for cleaning, transforming, merging, reshaping, aggregation, and selection of data.
+**Functionality**: Pandas offers expressive and flexible data operations for the loading, cleaning, transforming, merging, reshaping, aggregation, and selection of data.
 
-**Handling Missing Data**: `Pandas` is designed to handle missing data using `numpy.nan`, making it incredibly versatile for data analysis tasks where missing data is a common issue.
-
-**Example: Handling CSV Files**
+For example, here’s how to load a CSV file into a `DataFrame`
 
 ```python
 import pandas as pd
@@ -61,8 +59,8 @@ print(data.head())  # Displays the first 5 rows of the file
 # handling the header separately, and not having the convenient data manipulation functions that Pandas offers.
 ```
 
-`Pandas` abstracts away much of the complexity of handling tabular data, making it invaluable for data analysis.
+**Handling missing data**: Pandas is designed to handle missing data using `numpy.nan`, making it incredibly versatile for data analysis tasks, where absent data is common. 
 
-While Python's built-in data structures are incredibly powerful and useful for a wide range of programming tasks, `Numpy` and `Pandas` offer specialized features that are better suited for numerical computing and data analysis. 
+While Python's built-in data structures are incredibly powerful and useful for a wide range of programming tasks, Numpy and Pandas offer specialised features that are better suited for numerical computing and data analysis. 
 
 Let's explore them further!

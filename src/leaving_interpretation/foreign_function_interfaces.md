@@ -1,12 +1,12 @@
 # 🌉 Foreign Function Interfaces
 
-Foreign Function Interfaces (FFIs) in Python allow Python code to call C libraries directly. This capability is essential for situations where Python developers need to access and use legacy C code, optimize performance-critical sections of an application, or use hardware-accelerated or system-level functionality not directly available in Python. The most common tools for working with FFIs in Python are `ctypes` and `cffi`.
+Foreign Function Interfaces (FFIs) in Python allow Python code to call C libraries directly. This capability is useful if you want to use legacy C code, optimise performance-critical sections of an application, or use hardware-accelerated or system-level functionality not directly available in Python. The most common tools for working with FFIs in Python are `ctypes` and `cffi`.
 
 ## ctypes
 
 `ctypes` is a foreign function library for Python that provides C compatible data types and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python.
 
-Here's a simple example that uses `ctypes` to call the time function from the C standard library, which returns the current time in seconds since the Epoch (1970-01-01 00:00:00 +0000 (UTC)).
+Here's a simple example that uses `ctypes` to call the time function from the C standard library, which returns the current time in seconds since the Epoch (1970-01-01 00:00:00 +0000 (UTC)):
 
 ```python
 import ctypes
@@ -41,19 +41,19 @@ t = ffi.new("long *")
 print(f"The current time is {C.time(t)} seconds since the Epoch.")
 ```
 
-## When to Use Which
+## ctypes vs cffi
 
 `ctypes` is part of the standard Python library, so it doesn't require any additional installations. It's straightforward for simple use cases but can become cumbersome for complex C libraries or where callback functions are involved.
 
 `cffi` requires installation but offers a more flexible and powerful interface for working with C code. It supports both ABI (Application Binary Interface) level and API (Application Programming Interface) level interfaces, making it suitable for more complex integration scenarios.
 
-Both `ctypes` and `cffi` are powerful tools for integrating C libraries with Python, each with its own strengths. The choice between them depends on the specific requirements of the project, such as the complexity of the C code being interfaced and the performance requirements.
+The choice between them ultimately depends on the specific requirements of the project, such as the complexity of the C code being interfaced and the performance requirements.
 
 ## What About Fortran?
 
-If you have some legacy scientific code, the most common way to bridge Python and Fortran is through the use of `f2py` and `numpy`'s Fortran integration facilities. 
+If you have legacy scientific codes, the most common way to bridge Python and Fortran is through the use of `f2py` or NumPy’s integration facilities. 
 
-`f2py` is one of the easiest and most efficient ways to call Fortran code from Python, especially for numerical computations. `f2py` generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.
+`f2py` is one of the easiest ways to call Fortran code from Python. It generates Python wrapper modules automatically, allowing Fortran routines to be called as if they were Python functions.
 
 Suppose you have a simple Fortran subroutine that calculates the sum of two arrays:
 

@@ -1,8 +1,8 @@
 # 🧹 Easy Losses
 
-## Using Lists Where Other Data Structures Are More Efficient
+## Using Lists in the Wrong Place
 
-Anti-pattern: Using lists for operations that require frequent lookups, insertions, and deletions.
+**Anti-pattern**: Using lists for operations that require frequent lookups, insertions, and deletions:
 
 ```python
 # Inefficient for frequent lookups
@@ -11,7 +11,7 @@ if 4 in my_list:
     print("Found!")
 ```
 
-Solution: Use set or dict for frequent lookups and insertions.
+**Solution**: Using sets or dicts for frequent lookups and insertions:
 
 ```python
 my_set = {1, 2, 3, 4, 5}
@@ -19,9 +19,9 @@ if 4 in my_set:  # Much faster lookup
     print("Found!")
 ```
 
-## Not Using List Comprehensions or Generator Expressions
+## Avoiding List Comprehensions / Generator Expressions
 
-Anti-pattern: Using loops to generate lists or to iterate over collections when a list comprehension or generator expression would be more efficient and concise.
+**Anti-pattern**: Using loops to generate lists or to iterate over collections increases complexity:
 
 ```python
 result = []
@@ -30,13 +30,13 @@ for i in range(100):
         result.append(i*i)
 ```
 
-Solution: Use list comprehensions for more concise and faster code.
+**Solution**: Use list comprehensions for more concise and faster code:
 
 ```python
 result = [i*i for i in range(100) if i % 2 == 0]
 ```
 
-For large datasets or when the result list is not needed all at once, use generator expressions to save memory.
+When the result list is not needed all at once, use generator expressions to save memory:
 
 ```python
 result = (i*i for i in range(100) if i % 2 == 0)
@@ -44,7 +44,7 @@ result = (i*i for i in range(100) if i % 2 == 0)
 
 ## Misusing the Global Interpreter Lock (GIL)
 
-Anti-pattern: Relying solely on threads for concurrency in CPU-bound tasks, which can be inefficient due to the Global Interpreter Lock (GIL) in CPython.
+**Anti-pattern**: Relying solely on threads for concurrency in CPU-bound tasks can be inefficient, due to the GIL:
 
 ```python
 from threading import Thread
@@ -61,7 +61,7 @@ for thread in threads:
     thread.join()
 ```
 
-Solution: Use `multiprocessing` or libraries like `concurrent.futures.ProcessPoolExecutor` for CPU-bound tasks.
+**Solution**: Use `multiprocessing` or libraries like `concurrent.futures.ProcessPoolExecutor` for CPU-bound tasks:
 
 ```python
 from multiprocessing import Pool
@@ -74,9 +74,9 @@ with Pool(4) as p:
     p.map(compute_heavy, [1, 2, 3, 4])
 ```
 
-## Not Utilizing Built-in Functions and Libraries
+## Under-Utilising Built-in Functions / Libraries
 
-Anti-pattern: Reimplementing functionality that is already provided by Python's built-in functions or standard libraries.
+**Anti-pattern**: Reimplementing functionality that is already provided (and optimised) by Python's built-in functions or standard libraries.
 
 ```python
 # Custom implementation of a feature that exists in standard library
@@ -88,11 +88,11 @@ my_list = [3, 1, 4, 1, 5]
 print(sorted(my_list))
 ```
 
-Solution: Always check the Python standard library and built-in functions before implementing common algorithms and data structures.
+**Solution**: Always check the Python standard library and built-in functions before implementing common algorithms and data structures.
 
 ## Deeply Nested Functions
 
-Anti-pattern: Writing deeply nested functions or loops, which can make code hard to read, debug, and optimize.
+**Anti-pattern**: Writing deeply nested functions or loops, which can make code hard to read, debug, and optimise.
 
 ```python
 def deeply_nested(data):
@@ -102,6 +102,6 @@ def deeply_nested(data):
             pass
 ```
 
-Solution: Refactor deeply nested loops into separate functions or use more efficient data structures or algorithms to simplify the logic.
+**Solution**: Refactor deeply nested loops into separate functions or use more efficient data structures or algorithms to simplify the logic.
 
-By being aware of these common anti-patterns and applying the suggested solutions, you can significantly improve the performance and maintainability of your Python code.
+By being aware of these common anti-patterns and applying the suggested solutions, you can quickly improve the performance and maintainability of your Python code.

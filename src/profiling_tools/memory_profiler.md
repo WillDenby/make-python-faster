@@ -1,10 +1,12 @@
 # 🧠 memory_profiler
 
-`memory_profiler` monitors the memory usage of your application, which can be crucial for identifying memory leaks or functions that use more memory than expected.
+`memory_profiler` monitors the memory usage of your application, enabling you to find functions that use more memory than expected, or use memory in an inefficient way. 
 
-**Usage Example:**
+## Usage Example
 
 Install it with: `pip install memory_profiler`
+
+This snippet decorates a function to profile its memory usage line by line.
 
 ```python
 from memory_profiler import profile
@@ -20,4 +22,4 @@ if __name__ == '__main__':
     my_func()
 ```
 
-This decorates a function to profile its memory usage line by line.
+You can thereby use `memory_profiler` to identify where the space complexity of your code may need consideration. 

@@ -1,8 +1,10 @@
 # ⏱️ timeit
 
-`timeit` is a Python module designed to allow Python developers to time small bits of Python code with a minimal influence from the timing mechanism itself. It provides a more accurate timing mechanism than time.time() for small code snippets by taking into account setup code and by running the code multiple times to calculate an average time.
+`timeit` provides a more accurate timing mechanism than `time.time()` for small code snippets, by taking into account setup code and by running the code multiple times to calculate an average time.
 
-**Usage Example:**
+## Usage Example
+
+You can use `timeit` like this:
 
 ```python
 import timeit

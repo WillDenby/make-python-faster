@@ -1,12 +1,12 @@
 # 🐻‍❄️ Dask and Polars
 
-These are two libraries designed to address the shortcomings of `Pandas`.
+These are two libraries designed to address the shortcomings of Pandas - the fact that it struggles with very large datasets, and leaves some performance on the table.
 
 ## Dask
 
-`Dask` is a flexible parallel computing library for analytics, enabling you to scale up to clusters or down to your laptop. It's particularly well-suited for working with large datasets that don't fit into memory, as it breaks down complex computations into manageable tasks, which are executed in parallel. Dask provides dynamic task scheduling optimized for computation. It's designed to integrate seamlessly with existing Python libraries like `NumPy`, `Pandas`, and `Scikit-Learn`, allowing you to scale those libraries' functionality across multiple cores or machines.
+Dask is a flexible parallel computing library for analytics, enabling you to scale up to clusters or down to your laptop. It's well-suited for working with large datasets that don't fit into memory, as it breaks down complex computations into tasks which can be executed in parallel. 
 
-Here's a simple example that demonstrates how to use `Dask` `Array` to perform a computation that is automatically parallelized:
+Here's a simple example demonstrating how to use a Dask `Array` to parallelise a computation:
 
 ```python
 import dask.array as da
@@ -22,11 +22,11 @@ print(mean_result)
 
 ## Polars
 
-`Polars` is a fast `DataFrame` library implemented in Rust, designed for high performance and efficiency. It's capable of handling large datasets with ease and speed, focusing on lazy computations for optimal performance. `Polars` leverages Rust's memory safety and speed, bringing efficient data processing capabilities to Python. It's especially good for tasks involving large datasets that require high-speed manipulation, filtering, and aggregation.
+Polars is a DataFrame library implemented in Rust, designed for high performance and efficiency. 
 
-`Polars` operates with both eager and lazy evaluation. The lazy evaluation allows for more optimized computations by building a computation graph and optimizing it before execution, which can lead to significant performance improvements.
+It's particularly notable for its “lazy” evaluation mode. This optimises performance, by only executing operations on data that it has to, enabling higher-speed manipulation, filtering, and aggregation. It works by building a computation graph prior to execution.
 
-It's largely recreated the `Pandas` API, for ease-of-transition:
+Polars has largely recreated the Pandas API, to encourage Pandas users/code to transition:
 
 ```python
 import polars as pl

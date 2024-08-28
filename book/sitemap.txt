@@ -15,7 +15,6 @@ https://makepythonfaster.com/when_to_optimise
 https://makepythonfaster.com/alternative_python_interpreters/cinder
 https://makepythonfaster.com/alternative_python_interpreters/graalpython
 https://makepythonfaster.com/alternative_python_interpreters/ironpython
-https://makepythonfaster.com/alternative_python_interpreters/jython
 https://makepythonfaster.com/alternative_python_interpreters/micropython
 https://makepythonfaster.com/alternative_python_interpreters/pypy
 https://makepythonfaster.com/built_in_data_structures/dictionaries
