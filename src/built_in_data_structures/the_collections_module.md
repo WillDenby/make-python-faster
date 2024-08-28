@@ -78,3 +78,4 @@ cm = ChainMap(environment, defaults)
 print(cm['color'])  # Output: red
 print(cm['user'])  # Output: admin
 ```
+

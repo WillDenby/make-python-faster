@@ -99,3 +99,4 @@ gc.collect()  # Force a garbage collection
 However, be cautious as forcing garbage collection can impact performance by adding overhead.
 
 These techniques, combined with a thoughtful design, can help you better manage memory in your Python applications.
+

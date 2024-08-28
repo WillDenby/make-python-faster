@@ -35,3 +35,5 @@ c = ne.evaluate('2*a + 3*b + 1')
 
 In the example above, both snippets achieve the same result, but Numexpr can execute the operation faster on large arrays due to its efficient memory use and parallel computation capabilities.
 
+
+

@@ -78,3 +78,4 @@ with ThreadPoolExecutor(max_workers=1) as executor:
 To summarise, the `concurrent.futures` module abstracts the complexity of thread and process management, providing an easy-to-use interface for executing tasks concurrently.
 
 Use `ThreadPoolExecutor` for I/O-bound tasks or when executing a large number of small tasks. Use `ProcessPoolExecutor` for CPU-bound tasks to take advantage of multiple CPU cores.
+

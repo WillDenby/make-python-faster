@@ -76,3 +76,4 @@ gc.collect()  # This triggers the deletion of both MyClass instances
 - **Leaked Memory**: While Python's garbage collector can detect objects in a reference cycle that are no longer reachable, the presence of reference cycles can still lead to memory leaks if the collector doesn't run frequently or if objects modify their `__del__` methods in ways that prevent garbage collection.
 
 This dual approach helps automate memory management, but understanding it can be beneficial for optimizing your Python programs, especially for long-running or memory-intensive applications.
+

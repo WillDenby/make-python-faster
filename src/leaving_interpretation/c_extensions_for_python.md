@@ -77,3 +77,4 @@ Writing C extensions can greatly improve the performance of your Python program,
 **Reference Counting**: Pay attention to reference counting when working with Python objects in C, to prevent memory leaks or crashes.
 
 **Compatibility**: Keep in mind Python version compatibility, in case of variations in the API.
+

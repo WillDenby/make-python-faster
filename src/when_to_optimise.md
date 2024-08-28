@@ -16,3 +16,4 @@ So before thinking about how to optimise your code, ask yourself the following q
 2. Does the code conform to team standards?
 3. Is the code robust/tested?
 4. Does it *really* need optimisation?
+

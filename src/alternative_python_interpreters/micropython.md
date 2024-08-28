@@ -20,3 +20,4 @@ while True:
 ```
 
 This script toggles an LED on and off on a board like the ESP8266 or ESP32, showcasing the simplicity of using Python for hardware programming.
+

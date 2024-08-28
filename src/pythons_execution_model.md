@@ -59,3 +59,5 @@ The execution model of CPython can be summarised as follows:
 The efficiency and performance of CPython can be further affected by factors such as the structural complexity of the Python code, or the interaction with external modules and libraries.
 
 While CPython is the standard Python interpreter, other implementations exist, such as PyPy (which focuses on performance through Just-In-Time compilation) or GraalPy (which runs on the GraalVM Java platform). These implementations have different execution models, optimised for different use cases and performance characteristics. We'll explore these later on in the *Alternative Python Interpreters* chapter.
+
+

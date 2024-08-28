@@ -17,3 +17,4 @@ Accessing an element by index is O(1). Adding/removing elements at the end is al
 Lists are dynamic arrays and thus have some overhead for memory allocation to support their mutability and variable size. Each item in a list holds a reference to an object (which could be anything), and there's additional memory overhead for maintaining the size of the list and the pointers to each item.
 
 So the memory usage of a list grows with the number of elements. However, because Python preallocates memory in chunks (to avoid frequent resizing), a list might use more memory than the actual data it stores.
+

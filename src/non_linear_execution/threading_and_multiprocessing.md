@@ -67,3 +67,4 @@ Python's GIL means that even if you're using multiple threads, only one thread c
 Meanwhile, multiprocessing can lead to significant memory overhead, as each process has its own Python interpreter and memory space. Creating and managing processes is heavier than threads. Therefore, multiprocessing is often not beneficial for tasks that are quick to execute.
 
 Both approaches are powerful tools in Python for achieving parallelism and improving program performance, but choosing the right one depends on the nature of your tasks.
+

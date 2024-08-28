@@ -18,3 +18,4 @@ However, in the worst-case scenario (e.g. many key collisions), these operations
 Hash tables involve using a sparse array to provide fast access paths to values based on unique keys. Each entry in the hash table holds the key, the value, and a hash of the key for fast comparison.
 
 This overhead allows for fast access but means that, byte for byte, a dictionary will use more memory than a list or tuple storing the same data. The memory usage becomes more efficient as the dictionary grows larger, but sparse usage (many empty entries) can lead to wasted space.
+

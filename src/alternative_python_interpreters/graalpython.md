@@ -14,3 +14,4 @@ For polyglot applications, you can access Python code from Java like this:
 Context context = Context.newBuilder().allowAllAccess(true).build();
 context.eval("python", "print('Hello from GraalPython')");
 ```
+

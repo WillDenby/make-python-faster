@@ -119,3 +119,5 @@ async def read_async():
 - Optimise front-end assets (e.g. minified CSS/JS, image compression) to reduce load times.
 - Use something like Celery for background tasks, to prevent blocking web requests for operations like sending emails or processing data.
 - Use persistent database connections and connection pooling.
+
+

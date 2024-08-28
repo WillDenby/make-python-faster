@@ -11,3 +11,4 @@ A strictly sequential, or linear, flow of execution in Python (or any programmin
 As the amount of data or the complexity of the problem increases, the execution time increases linearly (or sometimes even more than linearly). In contrast, parallel or concurrent execution models can scale better by distributing work across available resources.
 
 Why can it be difficult to avoid sequential execution? CPython’s Global Interpreter Lock (GIL), which we’ll explore in the next chapter, helps to ensure your code’s memory safety, at the cost of introducing barriers to parallelism. 
+

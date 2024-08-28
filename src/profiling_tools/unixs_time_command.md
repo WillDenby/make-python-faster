@@ -21,3 +21,4 @@ sys     0m0.036s
 - `real` indicates the total elapsed time (wall clock).
 - `user` shows the total time spent in user mode.
 - `sys` represents the total time spent in kernel mode.
+

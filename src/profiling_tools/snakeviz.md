@@ -20,3 +20,4 @@ snakeviz profile_output
 ```
 
 This will open a browser tab with an interactive visualisation. 
+

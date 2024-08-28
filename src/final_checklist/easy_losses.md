@@ -105,3 +105,4 @@ def deeply_nested(data):
 **Solution**: Refactor deeply nested loops into separate functions or use more efficient data structures or algorithms to simplify the logic.
 
 By being aware of these common anti-patterns and applying the suggested solutions, you can quickly improve the performance and maintainability of your Python code.
+

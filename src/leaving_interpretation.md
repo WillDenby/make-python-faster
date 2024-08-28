@@ -15,3 +15,5 @@ And if your code is slow because of factors like lots of I/O, network, disk, dat
 Before exploring these strategies, it’s worth considering another reason for why Python is slow: it's dynamically-typed. The virtual machine has to be prepared for datatypes to potentially change, from e.g. a string to an integer. It also has to wrap up low-level types with higher-level functions like hashing and printing. This is why compilation can help for code that has lots of loops, making lots of calls. 
 
 In order to take advantage of compilation, you often need to specify your datatypes (ints, floats, strings), so that you can remove the need for the flexibility of the interpreter. We saw a bit of this with Cinder. 
+
+

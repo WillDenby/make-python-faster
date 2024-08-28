@@ -14,3 +14,4 @@ Accessing an element by index is O(1), and searching for an element is O(n).
 Since tuples are immutable, operations like adding or removing elements are not applicable. And because they cannot change in size, Python knows exactly how much memory to allocate at creation time.
 
 This makes them more memory-efficient than lists with the same elements. Nevertheless, like lists, each element is a reference to another object, so the overall memory usage still depends on what is stored in the tuple.
+

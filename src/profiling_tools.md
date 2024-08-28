@@ -26,3 +26,5 @@ In this book I’ll mostly focus on the first two, as optimising the latter can 
 **Use representative data and environments**: Benchmark in a way relevant to the originator of the performance complaint. You can make a judgement call about whether it’s worth worrying about certain hardware setups, for example. 
 
 Finally, remember that profiling can add to the computer workload, and hence slow things down artificially. 
+
+

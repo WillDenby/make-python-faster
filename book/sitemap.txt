@@ -10,7 +10,6 @@ https://makepythonfaster.com/numpy_pandas_and_more
 https://makepythonfaster.com/performant_web_applications
 https://makepythonfaster.com/profiling_tools
 https://makepythonfaster.com/pythons_execution_model
-https://makepythonfaster.com/table_of_contents
 https://makepythonfaster.com/when_to_optimise
 https://makepythonfaster.com/alternative_python_interpreters/cinder
 https://makepythonfaster.com/alternative_python_interpreters/graalpython

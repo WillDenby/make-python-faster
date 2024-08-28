@@ -41,3 +41,4 @@ mean_value = df.select([
 
 print(mean_value)
 ```
+

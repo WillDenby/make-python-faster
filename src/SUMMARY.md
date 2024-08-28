@@ -1,6 +1,5 @@
 # Summary
 
-- [📖 Table of Contents](./table_of_contents.md)
 - [❓ When to Optimise](./when_to_optimise.md)
 - [🐍 Python's Execution Model](./pythons_execution_model.md)
 - [🧠 Algorithm Complexity](./algorithm_complexity.md)

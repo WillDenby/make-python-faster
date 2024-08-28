@@ -57,3 +57,4 @@ The performance gain with JIT compilation can be significant, especially for mor
 JIT compilation introduces a one-time, up-front overhead, which means Numba might not be beneficial for functions that are only called once, or if you are processing small datasets. And Numba does not support all Python features and libraries, so some code might need adaptation.
 
 But in general, Numba can help you achieve execution speeds that rival or exceed those of code written in more traditionally performant languages like C or Fortran, without sacrificing the ease of use and flexibility of Python.
+

@@ -16,3 +16,8 @@ enable = false
 [output.html.fold]
 enable = true
 level = 0
+
+
+pdf-engine = "xelatex"
+
+

@@ -17,3 +17,4 @@ Or, you can generate a flame graph like this:
 ```shell
 py-spy record --pid <pid of your python program> --output profile.svg
 ```
+
