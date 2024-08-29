@@ -101,4 +101,5 @@ However, be cautious as forcing garbage collection can impact performance by add
 These techniques, combined with a thoughtful design, can help you better manage memory in your Python applications.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

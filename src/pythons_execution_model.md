@@ -62,4 +62,5 @@ While CPython is the standard Python interpreter, other implementations exist, s
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

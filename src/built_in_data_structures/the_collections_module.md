@@ -80,4 +80,5 @@ print(cm['user'])  # Output: admin
 ```
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

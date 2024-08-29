@@ -23,4 +23,5 @@ sys     0m0.036s
 - `sys` represents the total time spent in kernel mode.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

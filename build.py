@@ -6,11 +6,14 @@ def modify_book_toml(remove=True):
     Function to remove or re-add specific lines to book.toml
     """
     book_toml_path = 'book.toml'
-    remove_lines = [
+    remove_lines_pdf = [
         "[output.pandoc.profile.pdf]",
         "output-file = \"output.pdf\"",
         "to = \"latex\""
     ]
+    remove_lines_epub = ["[output.epub]"]
+
+    
 
     # Read the book.toml file
     with open(book_toml_path, 'r', encoding='utf-8') as file:
@@ -19,13 +22,14 @@ def modify_book_toml(remove=True):
     # Modify the file content based on the operation
     if remove:
         # Remove the specific lines
-        lines = [line for line in lines if line.strip() not in remove_lines]
+        lines = [line for line in lines if line.strip() not in remove_lines_pdf + remove_lines_epub]
     else:
         # Re-add the specific lines
         lines.extend([
             "\n[output.pandoc.profile.pdf]\n",
             "output-file = \"output.pdf\"\n",
-            "to = \"latex\"\n"
+            "to = \"latex\"\n",
+            "\n[output.epub]\n"
         ])
 
     # Write the modified content back to the file
@@ -37,7 +41,7 @@ def modify_md_files(add=True):
     Function to add or remove a specific line in every .md file except SUMMARY.md
     """
     src_dir = 'src'
-    target_line = "[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)"
+    target_line = "[Get PDF](https://makepythonfaster.gumroad.com/l/get)"
 
     # Traverse through every .md file in 'src' and its subfolders
     for root, _, files in os.walk(src_dir):

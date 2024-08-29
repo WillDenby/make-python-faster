@@ -67,4 +67,5 @@ Let's explore them further!
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

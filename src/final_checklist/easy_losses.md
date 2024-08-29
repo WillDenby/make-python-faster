@@ -107,4 +107,5 @@ def deeply_nested(data):
 By being aware of these common anti-patterns and applying the suggested solutions, you can quickly improve the performance and maintainability of your Python code.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

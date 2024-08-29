@@ -16,4 +16,5 @@ Since tuples are immutable, operations like adding or removing elements are not 
 This makes them more memory-efficient than lists with the same elements. Nevertheless, like lists, each element is a reference to another object, so the overall memory usage still depends on what is stored in the tuple.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

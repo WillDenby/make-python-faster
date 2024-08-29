@@ -13,4 +13,5 @@ As the amount of data or the complexity of the problem increases, the execution 
 Why can it be difficult to avoid sequential execution? CPython’s Global Interpreter Lock (GIL), which we’ll explore in the next chapter, helps to ensure your code’s memory safety, at the cost of introducing barriers to parallelism. 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

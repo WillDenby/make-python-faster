@@ -29,4 +29,5 @@ Finally, remember that profiling can add to the computer workload, and hence slo
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

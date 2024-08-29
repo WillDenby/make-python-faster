@@ -69,4 +69,5 @@ Meanwhile, multiprocessing can lead to significant memory overhead, as each proc
 Both approaches are powerful tools in Python for achieving parallelism and improving program performance, but choosing the right one depends on the nature of your tasks.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

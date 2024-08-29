@@ -22,4 +22,5 @@ print(f"Elapsed time: {elapsed_time} seconds")
 The function runs the code snippet specified by the `stmt` parameter a `number` of times, and returns the average time taken.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

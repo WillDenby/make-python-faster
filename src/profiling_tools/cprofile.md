@@ -20,4 +20,5 @@ if __name__ == "__main__":
 This will output statistics about the time spent in each function, allowing you to identify which parts of your code are the slowest.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

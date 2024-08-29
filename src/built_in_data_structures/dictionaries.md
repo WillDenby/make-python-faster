@@ -20,4 +20,5 @@ Hash tables involve using a sparse array to provide fast access paths to values 
 This overhead allows for fast access but means that, byte for byte, a dictionary will use more memory than a list or tuple storing the same data. The memory usage becomes more efficient as the dictionary grows larger, but sparse usage (many empty entries) can lead to wasted space.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

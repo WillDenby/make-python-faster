@@ -38,4 +38,5 @@ In the example above, both snippets achieve the same result, but Numexpr can exe
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

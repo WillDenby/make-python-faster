@@ -18,4 +18,5 @@ def fib(n: int64) -> int64:
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

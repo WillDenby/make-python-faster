@@ -16,4 +16,5 @@ context.eval("python", "print('Hello from GraalPython')");
 ```
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

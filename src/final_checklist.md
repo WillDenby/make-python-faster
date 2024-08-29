@@ -6,4 +6,5 @@ In the next section, we'll cover a brief checklist of “easy wins”. On the fl
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

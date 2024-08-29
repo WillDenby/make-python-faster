@@ -19,4 +19,5 @@ py-spy record --pid <pid of your python program> --output profile.svg
 ```
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

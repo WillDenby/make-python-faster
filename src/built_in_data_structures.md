@@ -13,4 +13,5 @@ First, it’s worth considering how you are handling the data that’s moving th
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

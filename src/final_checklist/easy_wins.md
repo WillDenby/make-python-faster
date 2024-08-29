@@ -104,4 +104,5 @@ result = "".join(str(i) for i in range(100))
 ```
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

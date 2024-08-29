@@ -18,4 +18,5 @@ So before thinking about how to optimise your code, ask yourself the following q
 4. Does it *really* need optimisation?
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

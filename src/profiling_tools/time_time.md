@@ -22,4 +22,5 @@ print(f"Elapsed time: {elapsed_time} seconds")
 This method is basic, but useful for quick-and-dirty profiling. You can use it to identify areas for more refined profiling.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

@@ -71,4 +71,5 @@ Implementing caching can significantly improve the performance of Python applica
 - Disk-based caching is ideal for large amounts of data, or when you need cache persistence. 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

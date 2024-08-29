@@ -4,4 +4,5 @@ The standard Python interpreter (CPython) sometimes faces criticism for performa
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

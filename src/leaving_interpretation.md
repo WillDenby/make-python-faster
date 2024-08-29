@@ -18,4 +18,5 @@ In order to take advantage of compilation, you often need to specify your dataty
 
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)

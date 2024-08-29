@@ -16,4 +16,5 @@ Like dictionaries, set operations such as adding, removing, and checking for mem
 Sets are conceptually similar to dictionaries with only keys and no values. They are also backed by a hash table, providing fast operations for checking membership, adding, and removing elements. They are memory-efficient for operations involving large numbers of elements but might use more memory than lists or tuples for the same number of elements, due to the hash table mechanism.
 
 
-[Get PDF/ePub](https://makepythonfaster.gumroad.com/l/get)
+
+[Get PDF](https://makepythonfaster.gumroad.com/l/get)
